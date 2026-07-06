@@ -46,37 +46,53 @@ function showUnlockedToast(){
   showUnlockedToast._t = setTimeout(() => toast.classList.remove('show'), 1500);
 }
 
+function reveal(secrets){
+  document.querySelectorAll('.secret .real[data-secret]').forEach(el => {
+    const name = el.dataset.secret;
+    if (secrets[name] != null) {
+      const sval = el.querySelector('.sval');
+      if (sval) sval.textContent = secrets[name];
+      const copyBtn = el.querySelector('.copy');
+      if (copyBtn) copyBtn.dataset.copy = secrets[name];
+    }
+  });
+  document.querySelector('.phone-flow').classList.add('unlocked');
+}
+
+const UNLOCK_KEY = 'sw-unlock';
+
 export function initUnlock(){
   const btn = document.getElementById('unlockBtn');
   const input = document.getElementById('unlockInput');
   const flow = document.querySelector('.phone-flow');
 
   if (btn && input && flow) {
-    async function attempt(){
+    async function attempt(passphrase, { silent = false } = {}){
       try {
         const enc = await fetch('data/secrets.enc.json').then(r => r.json());
-        const secrets = await decryptSecrets(input.value.trim(), enc);
-        document.querySelectorAll('.secret .real[data-secret]').forEach(el => {
-          const name = el.dataset.secret;
-          if (secrets[name] != null) {
-            const sval = el.querySelector('.sval');
-            if (sval) sval.textContent = secrets[name];
-            const copyBtn = el.querySelector('.copy');
-            if (copyBtn) copyBtn.dataset.copy = secrets[name];
-          }
-        });
-        flow.classList.add('unlocked');
-        input.removeAttribute('aria-invalid');
-        showUnlockedToast();
+        const secrets = await decryptSecrets(passphrase, enc);
+        reveal(secrets);
+        sessionStorage.setItem(UNLOCK_KEY, passphrase);
+        if (!silent) {
+          input.removeAttribute('aria-invalid');
+          showUnlockedToast();
+        }
       } catch {
-        input.setAttribute('aria-invalid', 'true');
-        input.value = '';
-        const lang = document.documentElement.lang || 'en';
-        input.placeholder = (T.tryAgain && T.tryAgain[lang]) || 'Try again';
+        if (!silent) {
+          input.setAttribute('aria-invalid', 'true');
+          input.value = '';
+          const lang = document.documentElement.lang || 'en';
+          input.placeholder = (T.tryAgain && T.tryAgain[lang]) || 'Try again';
+        } else {
+          sessionStorage.removeItem(UNLOCK_KEY);
+        }
       }
     }
-    btn.addEventListener('click', attempt);
-    input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
+    btn.addEventListener('click', () => attempt(input.value.trim()));
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(input.value.trim()); });
+
+    const stored = sessionStorage.getItem(UNLOCK_KEY);
+    if (stored) attempt(stored, { silent: true });
   }
 
   document.addEventListener('click', (e) => {
