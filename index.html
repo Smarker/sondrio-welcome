@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>Sondrio Stay</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main class="phone-flow" id="app">
+
+    <nav class="langbar" aria-label="Language">
+      <button class="lang" data-lang="it" aria-pressed="false">IT</button>
+      <button class="lang" data-lang="en" aria-pressed="true">EN</button>
+      <button class="lang" data-lang="es" aria-pressed="false">ES</button>
+      <button class="lang" data-lang="fr" aria-pressed="false">FR</button>
+      <button class="lang" data-lang="de" aria-pressed="false">DE</button>
+    </nav>
+
+    <section class="hero">
+      <div class="heromedia reveal">
+        <video class="herovideo" poster="media/hero-poster.jpg" muted loop playsinline autoplay preload="none"></video>
+        <div class="heromedia-fallback" aria-hidden="true">
+          <svg viewBox="0 0 360 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="var(--sky1)"/><stop offset="1" stop-color="var(--sky2)"/></linearGradient></defs>
+            <rect width="360" height="200" fill="url(#sky)"/>
+            <circle cx="292" cy="52" r="26" fill="var(--sun)" opacity=".6"/>
+            <ellipse class="cloud" cx="60" cy="46" rx="34" ry="11" fill="#fff" opacity=".5"/>
+            <path d="M0 200 L0 130 L70 78 L120 116 L175 66 L230 120 L300 82 L360 120 L360 200 Z" fill="var(--m1)"/>
+            <path d="M0 200 L0 154 L60 112 L118 148 L180 100 L250 150 L320 116 L360 150 L360 200 Z" fill="var(--m2)" opacity=".92"/>
+            <path d="M0 200 L0 178 L80 150 L150 176 L220 146 L300 178 L360 152 L360 200 Z" fill="var(--m3)"/>
+          </svg>
+        </div>
+        <span class="loopTag"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span data-t="loopTag">Looped vibe video</span></span>
+      </div>
+      <div class="heroText reveal">
+        <div class="kicker" data-t="welcome">Welcome</div>
+        <div class="htitle">Sondrio Stay</div>
+        <p class="hsub" data-t="heroSub">Everything you need for a restful stay in Sondrio.</p>
+        <div class="loc">
+          <svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          Sondrio · Valtellina, Italy
+        </div>
+        <a class="directions" href="#"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="getDirections">Get directions</span></a>
+      </div>
+    </section>
+
+    <div class="body">
+      <div class="privacy reveal">
+        <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+        <span class="pt" data-t="privacyText">Your check-in code and Wi-Fi are private to guests.</span>
+        <input id="unlockInput" class="unlockinput" type="text" inputmode="text" autocomplete="off" placeholder="Access phrase" data-t-placeholder="accessPhrase" aria-label="Access phrase">
+        <button class="unlockbtn" id="unlockBtn" data-t="unlock">Unlock</button>
+      </div>
+
+      <div class="note reveal">
+        <p data-t="welcomeNote">We're so glad you're here. Here's everything you need to feel at home.</p>
+        <div class="sig" data-t="sig">With love, Stephanie &amp; Julian</div>
+      </div>
+
+      <article class="card reveal">
+        <div class="chead">
+          <span class="cicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-6h6v6"/></svg></span>
+          <span class="ctitle" data-t="arrival">Arrival &amp; departure</span>
+        </div>
+        <div class="row"><span class="rlabel" data-t="checkinFrom">Check-in from</span><span class="rval">15:00</span></div>
+        <div class="row"><span class="rlabel" data-t="doorCode">Door code</span><span class="rval secret"><span class="mask"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>••••</span><span class="real" data-secret="doorCode"><span class="sval"></span><button class="copy" data-t="copy">Copy</button></span></span></div>
+        <div class="row"><span class="rlabel" data-t="checkoutBy">Check-out by</span><span class="rval">12:00</span></div>
+        <div class="steps"><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-11"/></svg><span data-t="departSteps">Before you go: bins out, dishwasher on, keys back in the lockbox.</span></div>
+      </article>
+
+      <div class="band reveal">
+        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg>
+        <span class="cap" data-t="bandStay">A wide shot of the apartment</span>
+        <span class="sub" data-t="addPhoto">add photo</span>
+      </div>
+
+      <article class="card reveal">
+        <div class="chead">
+          <span class="cicon" style="--tint:var(--accent)"><svg viewBox="0 0 24 24"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/></svg></span>
+          <span class="ctitle" data-t="wifi">Wi-Fi</span>
+        </div>
+        <div class="row"><span class="rlabel" data-t="network">Network</span><span class="rval">CasaSondrio<button class="copy" data-copy="CasaSondrio" data-t="copy">Copy</button></span></div>
+        <div class="row"><span class="rlabel" data-t="password">Password</span><span class="rval secret"><span class="mask"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>••••••</span><span class="real" data-secret="wifiPassword"><span class="sval"></span><button class="copy" data-t="copy">Copy</button></span></span></div>
+      </article>
+
+      <article class="card reveal">
+        <div class="chead">
+          <span class="cicon" style="--tint:var(--gold)"><svg viewBox="0 0 24 24"><path d="M7 21V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v16"/><path d="M4 21h13"/><path d="M15 9h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0v-7l-2-2"/><path d="m9 8 2 4h-2l2 4"/></svg></span>
+          <span class="ctitle" data-t="evTitle">EV charger &amp; amenities</span>
+        </div>
+        <p class="ptext" data-t="evText">22 kW charger right outside, next to the apartment. Everything below is included.</p>
+        <div class="chips">
+          <span class="chip" data-t="c1">Coffee</span><span class="chip" data-t="c2">Washer</span>
+          <span class="chip" data-t="c5">Dryer</span><span class="chip" data-t="c3">Fresh linens</span><span class="chip" data-t="c4">Heating</span>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="chead">
+          <span class="cicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></span>
+          <span class="ctitle" data-t="peekTitle">A peek inside</span>
+        </div>
+        <p class="ptext" data-t="peekText">A few glimpses of the place. Add your own photos and clips.</p>
+        <div class="gallery">
+          <div class="slot"><div class="frame"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div><div class="slotlabel" data-t="pBedroom">Bedroom</div><div class="slotsub" data-t="addPhoto">add photo</div></div>
+          <div class="slot"><div class="frame"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div><div class="slotlabel" data-t="pLiving">Living room</div><div class="slotsub" data-t="addPhoto">add photo</div></div>
+          <div class="slot"><div class="frame"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div><div class="slotlabel" data-t="pKitchen">Kitchen</div><div class="slotsub" data-t="addPhoto">add photo</div></div>
+          <div class="slot"><div class="frame video"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="slotlabel" data-t="shortClip">Short clip</div><div class="slotsub" data-t="addVideo">add video</div></div>
+        </div>
+      </article>
+
+      <div class="band reveal">
+        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg>
+        <span class="cap" data-t="bandVibe">A vibe shot of the valley and the light</span>
+        <span class="sub" data-t="addPhoto">add photo</span>
+      </div>
+
+      <article class="card reveal">
+        <div class="chead">
+          <span class="cicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><path d="M13 4v7l6 3M6 20l3-8 4 2 2-5"/><circle cx="6" cy="20" r="0"/></svg></span>
+          <span class="ctitle" data-t="nbTitle">The neighbourhood</span>
+        </div>
+        <p class="ptext" data-t="nbText">Everything's a few minutes on foot.</p>
+        <div class="row"><span class="rlabel" data-t="nbTrain">Train to Milan</span><span class="rval">7 min</span></div>
+        <div class="row"><span class="rlabel" data-t="nbGrocery">Grocery</span><span class="rval">5 min</span></div>
+        <div class="row"><span class="rlabel" data-t="nbPiazza">Main piazza</span><span class="rval">5 min</span></div>
+        <div class="row"><span class="rlabel" data-t="nbFood">Restaurants</span><span class="rval">5 min</span></div>
+      </article>
+
+      <article class="card reveal">
+        <div class="chead">
+          <span class="cicon" style="--tint:var(--accent)"><svg viewBox="0 0 24 24"><path d="M5 3v8a3 3 0 0 0 6 0V3M8 3v18M17 3c-1.5 1-2 3-2 6s.5 4 2 4v8"/></svg></span>
+          <span class="ctitle" data-t="eatTitle">Where to eat</span>
+        </div>
+        <div class="eat">
+          <div style="flex:1">
+            <div class="ename">Il Tabernario · Enoteca delle Alpi</div>
+            <div class="edesc" data-t="eat1">Wine bar and enoteca with alpine small plates.</div>
+            <a class="emap" href="#"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="openMaps">Open map</span></a>
+          </div>
+        </div>
+        <div class="eat">
+          <div style="flex:1">
+            <div class="ename">Trattoria Olmo</div>
+            <div class="edesc" data-t="eat2">Classic Valtellina trattoria, pizzoccheri and more.</div>
+            <a class="emap" href="#"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="openMaps">Open map</span></a>
+          </div>
+        </div>
+        <div class="eat">
+          <div style="flex:1">
+            <div class="ename">Pizzeria Vesuvio</div>
+            <div class="edesc" data-t="eat3">Wood-fired pizza, a local favourite.</div>
+            <a class="emap" href="#"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="openMaps">Open map</span></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="chead">
+          <span class="cicon" style="--tint:var(--gold)"><svg viewBox="0 0 24 24"><path d="M3 12h18M3 12l4-7h10l4 7M6 12v4M18 12v4"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg></span>
+          <span class="ctitle" data-t="dtTitle">Day trips</span>
+        </div>
+        <p class="ptext" data-t="dtText">Some of our favourite escapes, all within easy reach.</p>
+        <div class="trips">
+          <div class="trip">
+            <div class="tframe"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div>
+            <div class="tname">Lake Como</div>
+            <div class="tdesc" data-t="dtComoD">Iconic lakeside towns, villas and gardens.</div>
+            <div class="ttime"><svg viewBox="0 0 24 24"><path d="M3 12h18M5 12l3-5h8l3 5M7 12v3M17 12v3"/><circle cx="8" cy="17" r="1.4"/><circle cx="16" cy="17" r="1.4"/></svg>~1 h 15</div>
+          </div>
+          <div class="trip">
+            <div class="tframe"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div>
+            <div class="tname">Tirano</div>
+            <div class="tdesc" data-t="dtTiranoD">Where the scenic Bernina Express begins.</div>
+            <div class="ttime"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="12" rx="2"/><path d="M5 10h14M8 20l-2 2M16 20l2 2"/></svg>~30 min</div>
+          </div>
+          <div class="trip">
+            <div class="tframe"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div>
+            <div class="tname">Bormio</div>
+            <div class="tdesc" data-t="dtBormioD">Alpine ski town with historic thermal spas.</div>
+            <div class="ttime"><svg viewBox="0 0 24 24"><path d="M3 12h18M5 12l3-5h8l3 5M7 12v3M17 12v3"/><circle cx="8" cy="17" r="1.4"/><circle cx="16" cy="17" r="1.4"/></svg>~1 h</div>
+          </div>
+          <div class="trip">
+            <div class="tframe"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div>
+            <div class="tname">St. Moritz</div>
+            <div class="tdesc" data-t="dtStMoritzD">Glamorous Swiss alpine resort over the border.</div>
+            <div class="ttime"><svg viewBox="0 0 24 24"><path d="M3 12h18M5 12l3-5h8l3 5M7 12v3M17 12v3"/><circle cx="8" cy="17" r="1.4"/><circle cx="16" cy="17" r="1.4"/></svg>~2 h</div>
+          </div>
+        </div>
+        <p class="dtcar"><span data-t="dtCar">Renting a car? Hertz and Avis both have offices in Sondrio.</span> <a href="https://www.hertz.com/us/en/location/italy/sondrio" data-t="dtCarLink">Hertz Sondrio</a></p>
+      </article>
+
+      <article class="card reveal">
+        <div class="chead">
+          <span class="cicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><path d="M4 6v14l6-3 6 3 4-2V4l-4 2-6-3-6 3Z"/><path d="M10 3v14M16 6v14"/></svg></span>
+          <span class="ctitle" data-t="exploreTitle">Explore Valtellina</span>
+        </div>
+        <p class="ptext" data-t="exploreText">Trails, wine cellars and our favourite spots, minutes from the door.</p>
+        <div class="gallery">
+          <div class="slot"><div class="frame"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div><div class="slotlabel" data-t="gVineyards">Vineyards</div><div class="slotsub" data-t="addPhoto">add photo</div></div>
+          <div class="slot"><div class="frame"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div><div class="slotlabel" data-t="gTrails">Trails</div><div class="slotsub" data-t="addPhoto">add photo</div></div>
+          <div class="slot"><div class="frame"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div><div class="slotlabel" data-t="gTown">Old town</div><div class="slotsub" data-t="addPhoto">add photo</div></div>
+        </div>
+        <button class="btn green"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="openMaps">Open map</span></button>
+      </article>
+
+      <article class="card reveal">
+        <div class="chead">
+          <span class="cicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><path d="M12 2 15 9l7 .5-5.5 4.5 1.8 6.9L12 17l-6.3 3.9 1.8-6.9L2 9.5 9 9Z"/></svg></span>
+          <span class="ctitle" data-t="ttTitle">Things to do</span>
+        </div>
+        <div class="seasons" role="group" aria-label="Season">
+          <button class="szbtn" data-season="winter" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M12 2v20M4 7l16 10M20 7 4 17M2.5 12h19"/></svg><span data-t="seasonWinter">Winter</span></button>
+          <button class="szbtn" data-season="summer" aria-pressed="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M5 5l1.7 1.7M17.3 17.3 19 19M19 5l-1.7 1.7M6.7 17.3 5 19"/></svg><span data-t="seasonSummer">Summer</span></button>
+        </div>
+        <div id="acts">
+          <div class="act" data-season="winter">
+            <span class="aicon" style="--tint:var(--accent)"><svg viewBox="0 0 24 24"><path d="M3 20 9 8l4 7 2-3 6 8Z"/></svg></span>
+            <div class="atext"><div class="atitle"><span data-t="actSki">Ski Bormio &amp; Santa Caterina</span><span class="szn" data-t="seasonWinter">Winter</span></div><div class="adesc" data-t="actSkiD">World-class pistes and the Stelvio, about an hour away.</div></div>
+          </div>
+          <div class="act" data-season="summer">
+            <span class="aicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><circle cx="13" cy="4" r="1.6"/><path d="M11 21l1.6-6 3 2 1.4 4M12.6 15 11 10l4-1 2 3 3 1"/></svg></span>
+            <div class="atext"><div class="atitle"><span data-t="actHike">Hike the valley trails</span><span class="szn" data-t="seasonSummer">Summer</span></div><div class="adesc" data-t="actHikeD">Dozens of marked trails, from gentle valley walks to alpine routes.</div></div>
+          </div>
+          <div class="act" data-season="summer">
+            <span class="aicon" style="--tint:var(--accent)"><svg viewBox="0 0 24 24"><path d="M6 21V4l9 3-3 3 3 3-9 2"/></svg></span>
+            <div class="atext"><div class="atitle"><span data-t="actClimb">Rock climbing &amp; via ferrata</span><span class="szn" data-t="seasonSummer">Summer</span></div><div class="adesc" data-t="actClimbD">Crags and via ferrata routes across the valley.</div></div>
+          </div>
+          <div class="act" data-season="summer">
+            <span class="aicon" style="--tint:var(--gold)"><svg viewBox="0 0 24 24"><path d="M8 3h8l-1 6a3 3 0 0 1-6 0ZM12 15v5M9 21h6"/></svg></span>
+            <div class="atext"><div class="atitle"><span data-t="actWine">Valtellina wine tasting</span><span class="szn" data-t="seasonSummer">Summer</span></div><div class="adesc" data-t="actWineD">Nebbiolo reds and terraced cellars, minutes away.</div></div>
+          </div>
+          <div class="act" data-season="all">
+            <span class="aicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><path d="M4 14c2-2 4-2 6 0s4 2 6 0 4-2 4-2M4 19c2-2 4-2 6 0s4 2 6 0 4-2 4-2M12 3v6"/></svg></span>
+            <div class="atext"><div class="atitle"><span data-t="actTerme">Bormio thermal baths</span><span class="szn" data-t="seasonAll">Year-round</span></div><div class="adesc" data-t="actTermeD">Bagni Vecchi and Bagni Nuovi, historic and modern spas.</div></div>
+          </div>
+          <div class="act" data-season="all">
+            <span class="aicon" style="--tint:var(--accent)"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="12" rx="2"/><path d="M5 10h14M8 20l-2 2M16 20l2 2"/><circle cx="9" cy="13" r="1"/><circle cx="15" cy="13" r="1"/></svg></span>
+            <div class="atext"><div class="atitle"><span data-t="actBernina">Bernina Express</span><span class="szn" data-t="seasonAll">Year-round</span></div><div class="adesc" data-t="actBerninaD">UNESCO alpine railway to St. Moritz, boarding at Tirano.</div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="hostrow">
+          <span class="portrait"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
+          <div>
+            <div class="hostnames">Stephanie &amp; Julian</div>
+            <div class="hostsub" data-t="hostsSub">Your hosts · reply within minutes</div>
+          </div>
+        </div>
+        <div class="btnrow">
+          <a class="btn red" href="#"><svg viewBox="0 0 24 24"><path d="M6 3h3l2 5-2 1.5a11 11 0 0 0 5 5L20 12l1 3v3a2 2 0 0 1-2 2A16 16 0 0 1 4 6a2 2 0 0 1 2-3Z"/></svg><span data-t="callHostShort">Call</span></a>
+          <a class="btn green" href="#"><svg viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.2 1.1-1.7 1.2-.4.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6s.6-1.8.9-2.1c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.7 1.7c.1.1.1.3 0 .5l-.3.5-.3.3c-.1.1-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.7 1.1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.6-.1l1.6.8c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/></svg><span data-t="waHost">WhatsApp</span></a>
+        </div>
+      </article>
+
+      <article class="card reveal">
+        <div class="chead">
+          <span class="cicon" style="--tint:var(--accent)"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><path d="M9.5 10.5 11.5 12.5 15 9"/></svg></span>
+          <span class="ctitle" data-t="emTitle">Emergency</span>
+        </div>
+        <p class="ptext" data-t="emText">112 reaches ambulance, fire and police from any phone.</p>
+        <div class="row"><span class="rlabel" data-t="emServices">Emergency services</span><span class="rval">112</span></div>
+        <div class="row"><span class="rlabel" data-t="emPharmacy">Nearest pharmacy</span><span class="rval">5 min</span></div>
+      </article>
+
+      <div class="foot">Sondrio Stay · Valtellina</div>
+    </div>
+
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="js/i18n.js"></script>
+</body>
+</html>
