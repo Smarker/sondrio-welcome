@@ -1,15 +1,16 @@
 // tests/unlock.test.mjs
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
-import { decryptSecrets } from '../js/unlock.js';
+import { encryptSecrets, decryptSecrets } from '../js/unlock.js';
 
-const enc = JSON.parse(await readFile(new URL('../data/secrets.enc.json', import.meta.url)));
-test('correct passphrase decrypts', async () => {
-  const out = await decryptSecrets('valtellina-2026', enc);
-  assert.equal(out.doorCode, '4827');
-  assert.equal(out.wifiPassword, 'valtellina26');
+test('round-trips', async () => {
+  const fixture = { doorCode: 'A1B2', wifiPassword: 'unit-test-pw' };
+  const enc = await encryptSecrets('unit-pass', fixture);
+  const out = await decryptSecrets('unit-pass', enc);
+  assert.deepEqual(out, fixture);
 });
-test('wrong passphrase throws', async () => {
-  await assert.rejects(() => decryptSecrets('nope', enc));
+
+test('wrong passphrase rejects', async () => {
+  const enc = await encryptSecrets('unit-pass', { doorCode: 'x', wifiPassword: 'y' });
+  await assert.rejects(() => decryptSecrets('WRONG', enc));
 });
