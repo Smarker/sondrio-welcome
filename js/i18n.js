@@ -33,5 +33,10 @@ function initI18n(){
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const saveData = navigator.connection && navigator.connection.saveData;
   if (v && (reduce || saveData)) { v.removeAttribute('autoplay'); v.pause?.(); }
+
+  const io = new IntersectionObserver((ents) => {
+    ents.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:.12 });
+  document.querySelectorAll('.reveal').forEach((el,i) => { el.style.transitionDelay=(i*55)+'ms'; io.observe(el); });
 }
 if (typeof document !== 'undefined') initI18n();
