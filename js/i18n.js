@@ -1,4 +1,5 @@
 import { T } from './content.js';
+import { initSeasons } from './seasons.js';
 const AVAILABLE = ['it','en','es','fr','de'];
 
 export function resolveLanguage(navLang, available = AVAILABLE){
@@ -25,5 +26,6 @@ function initI18n(){
       localStorage.setItem('sw-lang', b.dataset.lang);
       applyLanguage(b.dataset.lang);
     }));
+  initSeasons();
 }
 if (typeof document !== 'undefined') initI18n();
