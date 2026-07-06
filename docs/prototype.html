@@ -1,0 +1,628 @@
+<title>Sondrio Stay — Content & Layout Preview</title>
+
+<style>
+  :root{
+    --page-bg:#efe9df;--page-ink:#2c2823;--page-muted:#6f665b;
+    --page-line:#ddd3c4;--page-card:#f7f2e9;--page-accent:#a2402f;
+    --shadow:0 24px 60px -30px rgba(40,32,24,.55);
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--page-bg:#191512;--page-ink:#ece5da;--page-muted:#a99e8f;
+      --page-line:#332c25;--page-card:#221d19;--page-accent:#c9614b;
+      --shadow:0 30px 70px -30px rgba(0,0,0,.75);}
+  }
+  :root[data-theme="light"]{--page-bg:#efe9df;--page-ink:#2c2823;--page-muted:#6f665b;
+    --page-line:#ddd3c4;--page-card:#f7f2e9;--page-accent:#a2402f;--shadow:0 24px 60px -30px rgba(40,32,24,.55);}
+  :root[data-theme="dark"]{--page-bg:#191512;--page-ink:#ece5da;--page-muted:#a99e8f;
+    --page-line:#332c25;--page-card:#221d19;--page-accent:#c9614b;--shadow:0 30px 70px -30px rgba(0,0,0,.75);}
+
+  *{box-sizing:border-box}
+  body{margin:0}
+  .wrap{font-family:var(--sans);background:var(--page-bg);color:var(--page-ink);min-height:100vh;
+    padding:clamp(20px,5vw,56px) clamp(16px,5vw,40px) 64px;display:flex;flex-direction:column;align-items:center;gap:22px;
+    transition:background-color .5s ease,color .5s ease}
+  .intro{max-width:640px;text-align:center;display:flex;flex-direction:column;gap:11px}
+  .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--page-accent);font-weight:600}
+  .intro h1{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-weight:600;line-height:1.08;
+    margin:0;font-size:clamp(25px,5.5vw,38px);text-wrap:balance;letter-spacing:-.01em}
+  .intro p{margin:0;color:var(--page-muted);font-size:15px;line-height:1.55;text-wrap:balance}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:center;font-size:12.5px;color:var(--page-muted)}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .legend .box{width:22px;height:15px;border-radius:4px;border:1.5px dashed color-mix(in srgb,var(--page-muted) 60%,var(--page-card))}
+  .legend .box.v{border-style:solid;border-color:color-mix(in srgb,var(--page-accent) 45%,var(--page-card));background:color-mix(in srgb,var(--page-accent) 8%,var(--page-card))}
+
+  /* Tricolore Rustico — the chosen palette */
+  .screen{
+    --bg:#f3ecdd;--ink:#2c2620;--muted:#867a67;--line:#e3d8c1;--card:#faf4e8;
+    --accent:#a2402f;--g:#3f5c43;--gold:#c58a3a;
+    --sky1:#e7d8be;--sky2:#f3ecdd;--m1:#ccb488;--m2:#6f8256;--m3:#8a4433;--sun:#d9a94e;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --rise:16px;--dur:.7s;--ease:cubic-bezier(.2,.7,.2,1);
+    position:relative;width:100%;height:100%;border-radius:34px;overflow-y:auto;overflow-x:hidden;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;background:var(--bg);color:var(--ink)}
+  .screen::-webkit-scrollbar{display:none}
+
+  .phone{width:min(390px,94vw);height:min(780px,80vh);background:#0a0a0a;border-radius:44px;padding:11px;
+    box-shadow:var(--shadow);position:relative}
+  .notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:128px;height:26px;background:#0a0a0a;border-radius:0 0 16px 16px;z-index:10}
+  .stage{display:flex;flex-direction:column;align-items:center;gap:14px}
+
+  .langbar{position:sticky;top:0;z-index:5;display:flex;gap:6px;justify-content:center;padding:40px 12px 11px;
+    background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line)}
+  .lang{border:1px solid transparent;background:transparent;color:var(--muted);font-family:var(--sans);font-size:12px;
+    font-weight:600;letter-spacing:.04em;padding:6px 10px;border-radius:999px;cursor:pointer;transition:.2s}
+  .lang:hover{color:var(--ink)}
+  .lang[aria-pressed="true"]{background:var(--accent);color:#fff}
+
+  /* hero with looped-video slot */
+  .hero{padding:14px 16px 4px}
+  .heromedia{position:relative;height:200px;border-radius:20px;overflow:hidden;border:1px solid var(--line)}
+  .heromedia svg{position:absolute;inset:0;width:100%;height:100%}
+  .cloud{animation:drift 14s linear infinite}
+  @keyframes drift{0%{transform:translateX(-40px)}100%{transform:translateX(430px)}}
+  .loopTag{position:absolute;left:12px;bottom:12px;display:inline-flex;align-items:center;gap:7px;
+    background:color-mix(in srgb,#000 42%,transparent);color:#fff;font-size:11.5px;font-weight:600;
+    padding:6px 11px;border-radius:999px;backdrop-filter:blur(4px)}
+  .loopTag svg{position:static;width:13px;height:13px;fill:#fff}
+  .heroText{padding:18px 2px 0}
+  .kicker{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .htitle{font-family:var(--serif);font-weight:600;line-height:1.06;margin:8px 0 7px;font-size:31px;letter-spacing:-.01em;text-wrap:balance}
+  .hsub{color:var(--muted);font-size:15px;line-height:1.55;margin:0}
+  .loc{margin-top:12px;font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:7px}
+  .loc svg{width:14px;height:14px;stroke:var(--g);fill:none;stroke-width:1.7}
+  .directions{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;margin-top:14px;color:#fff;border:none;
+    border-radius:14px;padding:14px;font-family:var(--sans);font-size:14px;font-weight:700;letter-spacing:.01em;cursor:pointer;text-decoration:none;
+    background:linear-gradient(180deg,color-mix(in srgb,var(--g) 80%,#fff),var(--g));
+    box-shadow:0 10px 22px -10px color-mix(in srgb,var(--g) 75%,transparent),inset 0 1px 0 rgba(255,255,255,.3);
+    transition:transform .2s var(--ease),box-shadow .2s var(--ease),filter .2s}
+  .directions:hover{transform:translateY(-1px);filter:brightness(1.04)}
+  .directions:active{transform:translateY(0)}
+  .directions svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:1.8}
+
+  .body{padding:18px 16px 40px;display:flex;flex-direction:column;gap:14px}
+
+  .note{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:17px 18px}
+  .note p{margin:0;font-family:var(--serif);font-size:16px;line-height:1.5;font-style:italic;color:var(--ink)}
+  .note .sig{margin-top:9px;font-style:normal;font-family:var(--sans);font-size:12.5px;color:var(--muted);font-weight:600}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 18px 16px}
+  .chead{display:flex;align-items:center;gap:11px;margin-bottom:12px}
+  .cicon{width:38px;height:38px;border-radius:11px;flex:none;display:grid;place-items:center;background:color-mix(in srgb,var(--tint) 15%,var(--card))}
+  .cicon svg{width:20px;height:20px;stroke:var(--tint);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .ctitle{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.2}
+  .row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--line)}
+  .row:first-of-type{border-top:none}
+  .rlabel{font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .rval{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:8px}
+  .copy{border:none;background:color-mix(in srgb,var(--accent) 12%,var(--card));color:var(--accent);font-family:var(--sans);
+    font-size:11px;font-weight:700;padding:5px 9px;border-radius:8px;cursor:pointer;letter-spacing:.03em;transition:.2s;white-space:nowrap}
+  .copy:hover{background:var(--accent);color:#fff}
+  .steps{margin:12px 0 0;padding:11px 13px;background:color-mix(in srgb,var(--g) 8%,var(--card));border-radius:12px;
+    font-size:13px;line-height:1.5;color:var(--muted);display:flex;gap:9px;align-items:flex-start}
+  .steps svg{width:16px;height:16px;stroke:var(--g);fill:none;stroke-width:1.7;flex:none;margin-top:1px}
+  .ptext{font-size:14px;line-height:1.55;color:var(--muted);margin:2px 0 0}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+  .chip{font-size:11.5px;font-weight:600;color:var(--g);background:color-mix(in srgb,var(--g) 12%,var(--card));padding:5px 10px;border-radius:999px}
+  .btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;margin-top:12px;border:none;border-radius:14px;
+    padding:14px;font-family:var(--sans);font-size:14px;font-weight:700;letter-spacing:.01em;cursor:pointer;color:#fff;text-decoration:none;
+    position:relative;overflow:hidden;transition:transform .2s var(--ease),box-shadow .2s var(--ease),filter .2s}
+  .btn svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:1.8}
+  .btn.red{background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 80%,#fff),var(--accent));
+    box-shadow:0 10px 22px -10px color-mix(in srgb,var(--accent) 75%,transparent),inset 0 1px 0 rgba(255,255,255,.32)}
+  .btn.green{background:linear-gradient(180deg,color-mix(in srgb,var(--g) 80%,#fff),var(--g));
+    box-shadow:0 10px 22px -10px color-mix(in srgb,var(--g) 75%,transparent),inset 0 1px 0 rgba(255,255,255,.3)}
+  .btn:hover{transform:translateY(-1px);filter:brightness(1.04)}
+  .btn:active{transform:translateY(0)}
+
+  /* media placeholders (where photos / videos go) */
+  .gallery{display:flex;gap:11px;overflow-x:auto;margin-top:13px;padding-bottom:4px;scrollbar-width:none}
+  .gallery::-webkit-scrollbar{display:none}
+  .slot{flex:0 0 132px;display:flex;flex-direction:column;gap:7px}
+  .frame{aspect-ratio:4/5;border-radius:14px;display:grid;place-items:center;
+    border:1.5px dashed color-mix(in srgb,var(--muted) 55%,var(--card));background:color-mix(in srgb,var(--g) 5%,var(--card));color:var(--muted)}
+  .frame.video{aspect-ratio:9/16;border-style:solid;border-color:color-mix(in srgb,var(--accent) 40%,var(--card));background:color-mix(in srgb,var(--accent) 7%,var(--card))}
+  .frame svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.5}
+  .frame.video svg{fill:var(--accent);stroke:none;width:30px;height:30px}
+  .slotlabel{font-size:12px;font-weight:600;color:var(--ink);text-align:center}
+  .slotsub{font-size:10.5px;color:var(--muted);text-align:center;margin-top:-4px}
+
+  /* day-trip cards (photo + what-it-is + time) */
+  .trips{display:flex;gap:12px;overflow-x:auto;margin-top:13px;padding-bottom:4px;scrollbar-width:none}
+  .trips::-webkit-scrollbar{display:none}
+  .trip{flex:0 0 184px;display:flex;flex-direction:column;gap:8px}
+  .tframe{aspect-ratio:4/3;border-radius:14px;display:grid;place-items:center;color:var(--muted);
+    border:1.5px dashed color-mix(in srgb,var(--muted) 55%,var(--card));background:color-mix(in srgb,var(--g) 5%,var(--card))}
+  .tframe svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.5}
+  .tname{font-family:var(--serif);font-weight:600;font-size:15.5px;line-height:1.15}
+  .tdesc{font-size:12.5px;color:var(--muted);line-height:1.4}
+  .ttime{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:var(--g);margin-top:1px}
+  .ttime svg{width:14px;height:14px;stroke:var(--g);fill:none;stroke-width:1.7}
+  .dtcar{margin-top:14px;font-size:12.5px;color:var(--muted);line-height:1.45}
+  .dtcar a{color:var(--accent);font-weight:600;text-decoration:none}
+
+  /* private (locked) details */
+  .privacy{display:flex;align-items:center;gap:11px;background:color-mix(in srgb,var(--accent) 7%,var(--card));
+    border:1px solid color-mix(in srgb,var(--accent) 22%,var(--line));border-radius:15px;padding:12px 14px}
+  .privacy svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:1.7;flex:none}
+  .privacy .pt{flex:1;font-size:12.5px;color:var(--muted);line-height:1.4}
+  .unlockbtn{border:none;background:var(--accent);color:#fff;font-family:var(--sans);font-size:12px;font-weight:700;
+    padding:9px 14px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:.2s}
+  .unlockbtn:hover{filter:brightness(1.06)}
+  #screen.unlocked .privacy{display:none}
+  .secret .real{display:none}
+  .secret .mask{display:inline-flex;align-items:center;gap:6px;color:var(--muted);letter-spacing:.16em;font-weight:700}
+  .secret .mask svg{width:13px;height:13px;stroke:var(--muted);fill:none;stroke-width:1.8}
+  #screen.unlocked .secret .real{display:inline-flex;align-items:center;gap:8px}
+  #screen.unlocked .secret .mask{display:none}
+
+  /* where to eat */
+  .eat{display:flex;gap:11px;padding:12px 0;border-top:1px solid var(--line)}
+  .eat:first-of-type{border-top:none}
+  .ename{font-family:var(--serif);font-weight:600;font-size:15px;line-height:1.2}
+  .edesc{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.45}
+  .emap{margin-top:6px;display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;color:var(--g);text-decoration:none}
+  .emap svg{width:13px;height:13px;stroke:var(--g);fill:none;stroke-width:1.8}
+
+  .btnrow{display:flex;gap:10px;margin-top:12px}
+  .btnrow .btn{margin-top:0;flex:1}
+
+  /* full-bleed photo band + host portrait */
+  .band{border-radius:18px;aspect-ratio:16/10;display:grid;place-items:center;gap:7px;color:var(--muted);
+    border:1.5px dashed color-mix(in srgb,var(--muted) 55%,var(--card));background:color-mix(in srgb,var(--gold) 6%,var(--card))}
+  .band svg{width:30px;height:30px;stroke:currentColor;fill:none;stroke-width:1.5}
+  .band .cap{font-size:12px;font-weight:600;color:var(--ink)}
+  .band .sub{font-size:10.5px;margin-top:-4px}
+  .hostrow{display:flex;align-items:center;gap:13px}
+  .portrait{width:58px;height:58px;border-radius:50%;flex:none;display:grid;place-items:center;color:var(--muted);
+    border:1.5px dashed color-mix(in srgb,var(--muted) 55%,var(--card));background:color-mix(in srgb,var(--g) 7%,var(--card))}
+  .portrait svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.5}
+  .hostnames{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.2}
+  .hostsub{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .foot{text-align:center;font-size:11px;color:var(--muted);padding:6px 0 8px;font-family:var(--serif)}
+
+  /* season control + activities */
+  .seasons{display:inline-flex;gap:4px;background:color-mix(in srgb,var(--muted) 14%,var(--card));border-radius:999px;padding:4px;margin:2px 0 6px}
+  .szbtn{border:none;background:transparent;color:var(--muted);font-family:var(--sans);font-size:12.5px;font-weight:700;
+    padding:6px 13px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.2s}
+  .szbtn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8}
+  .szbtn[aria-pressed="true"]{background:var(--card);color:var(--accent);box-shadow:0 3px 8px -3px rgba(0,0,0,.35)}
+  .act{display:flex;gap:11px;padding:12px 0;border-top:1px solid var(--line)}
+  .act:first-of-type{border-top:none}
+  .act.hide{display:none}
+  .aicon{width:34px;height:34px;border-radius:10px;flex:none;display:grid;place-items:center;background:color-mix(in srgb,var(--tint) 15%,var(--card))}
+  .aicon svg{width:18px;height:18px;stroke:var(--tint);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .atext{flex:1;min-width:0}
+  .atitle{font-weight:600;font-size:14.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .szn{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:999px;
+    color:var(--gold);background:color-mix(in srgb,var(--gold) 15%,var(--card))}
+  .adesc{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.45}
+
+  .reveal{opacity:0;transform:translateY(var(--rise))}
+  .reveal.in{opacity:1;transform:none;transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease)}
+  .swapping .htitle,.swapping .hsub,.swapping .kicker,.swapping .ctitle,.swapping .rlabel,.swapping .ptext,
+  .swapping .chip,.swapping .steps,.swapping .note p,.swapping .btn span,.swapping .copy,.swapping .slotlabel,.swapping .directions span{animation:swap .38s ease}
+  @keyframes swap{0%{opacity:1}35%{opacity:.25}100%{opacity:1}}
+
+  .toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,20px);background:var(--page-ink);color:var(--page-bg);
+    font-size:13px;font-weight:600;padding:10px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:.28s;z-index:20}
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+  .hint{font-size:12px;color:var(--page-muted);display:flex;align-items:center;gap:8px;text-align:center}
+  .hint svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.6;animation:bob 1.8s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Tricolore Rustico · content & layout</div>
+    <h1>Your welcome packet, and where your media goes</h1>
+    <p>This is the real content flow in your chosen palette. Dashed frames mark where your <strong>photos</strong> go; solid red frames mark <strong>short videos</strong>. Scroll the phone and try all five languages.</p>
+    <div class="legend">
+      <span><span class="box"></span>Photo slot</span>
+      <span><span class="box v"></span>Video slot</span>
+    </div>
+  </header>
+
+  <div class="stage">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen" id="screen">
+
+        <nav class="langbar" aria-label="Language">
+          <button class="lang" data-lang="it" aria-pressed="false">IT</button>
+          <button class="lang" data-lang="en" aria-pressed="true">EN</button>
+          <button class="lang" data-lang="es" aria-pressed="false">ES</button>
+          <button class="lang" data-lang="fr" aria-pressed="false">FR</button>
+          <button class="lang" data-lang="de" aria-pressed="false">DE</button>
+        </nav>
+
+        <section class="hero">
+          <div class="heromedia reveal">
+            <svg viewBox="0 0 360 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="var(--sky1)"/><stop offset="1" stop-color="var(--sky2)"/></linearGradient></defs>
+              <rect width="360" height="200" fill="url(#sky)"/>
+              <circle cx="292" cy="52" r="26" fill="var(--sun)" opacity=".6"/>
+              <ellipse class="cloud" cx="60" cy="46" rx="34" ry="11" fill="#fff" opacity=".5"/>
+              <path d="M0 200 L0 130 L70 78 L120 116 L175 66 L230 120 L300 82 L360 120 L360 200 Z" fill="var(--m1)"/>
+              <path d="M0 200 L0 154 L60 112 L118 148 L180 100 L250 150 L320 116 L360 150 L360 200 Z" fill="var(--m2)" opacity=".92"/>
+              <path d="M0 200 L0 178 L80 150 L150 176 L220 146 L300 178 L360 152 L360 200 Z" fill="var(--m3)"/>
+            </svg>
+            <span class="loopTag"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span data-t="loopTag">Looped vibe video</span></span>
+          </div>
+          <div class="heroText reveal">
+            <div class="kicker" data-t="welcome">Welcome</div>
+            <div class="htitle">Sondrio Stay</div>
+            <p class="hsub" data-t="heroSub">Everything you need for a restful stay in Sondrio.</p>
+            <div class="loc">
+              <svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+              Sondrio · Valtellina, Italy
+            </div>
+            <a class="directions" href="#"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="getDirections">Get directions</span></a>
+          </div>
+        </section>
+
+        <div class="body">
+          <div class="privacy reveal">
+            <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+            <span class="pt" data-t="privacyText">Your check-in code and Wi-Fi are private to guests.</span>
+            <button class="unlockbtn" id="unlockBtn" data-t="unlock">Unlock</button>
+          </div>
+
+          <div class="note reveal">
+            <p data-t="welcomeNote">We're so glad you're here. Here's everything you need to feel at home.</p>
+            <div class="sig" data-t="sig">With love, Stephanie &amp; Julian</div>
+          </div>
+
+          <article class="card reveal">
+            <div class="chead">
+              <span class="cicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-6h6v6"/></svg></span>
+              <span class="ctitle" data-t="arrival">Arrival &amp; departure</span>
+            </div>
+            <div class="row"><span class="rlabel" data-t="checkinFrom">Check-in from</span><span class="rval">15:00</span></div>
+            <div class="row"><span class="rlabel" data-t="doorCode">Door code</span><span class="rval secret"><span class="mask"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>••••</span><span class="real">4827<button class="copy" data-copy="4827" data-t="copy">Copy</button></span></span></div>
+            <div class="row"><span class="rlabel" data-t="checkoutBy">Check-out by</span><span class="rval">12:00</span></div>
+            <div class="steps"><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-11"/></svg><span data-t="departSteps">Before you go: bins out, dishwasher on, keys back in the lockbox.</span></div>
+          </article>
+
+          <div class="band reveal">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg>
+            <span class="cap" data-t="bandStay">A wide shot of the apartment</span>
+            <span class="sub" data-t="addPhoto">add photo</span>
+          </div>
+
+          <article class="card reveal">
+            <div class="chead">
+              <span class="cicon" style="--tint:var(--accent)"><svg viewBox="0 0 24 24"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/></svg></span>
+              <span class="ctitle" data-t="wifi">Wi-Fi</span>
+            </div>
+            <div class="row"><span class="rlabel" data-t="network">Network</span><span class="rval">CasaSondrio<button class="copy" data-copy="CasaSondrio" data-t="copy">Copy</button></span></div>
+            <div class="row"><span class="rlabel" data-t="password">Password</span><span class="rval secret"><span class="mask"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>••••••</span><span class="real">valtellina26<button class="copy" data-copy="valtellina26" data-t="copy">Copy</button></span></span></div>
+          </article>
+
+          <article class="card reveal">
+            <div class="chead">
+              <span class="cicon" style="--tint:var(--gold)"><svg viewBox="0 0 24 24"><path d="M7 21V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v16"/><path d="M4 21h13"/><path d="M15 9h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0v-7l-2-2"/><path d="m9 8 2 4h-2l2 4"/></svg></span>
+              <span class="ctitle" data-t="evTitle">EV charger &amp; amenities</span>
+            </div>
+            <p class="ptext" data-t="evText">22 kW charger right outside, next to the apartment. Everything below is included.</p>
+            <div class="chips">
+              <span class="chip" data-t="c1">Coffee</span><span class="chip" data-t="c2">Washer</span>
+              <span class="chip" data-t="c5">Dryer</span><span class="chip" data-t="c3">Fresh linens</span><span class="chip" data-t="c4">Heating</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="chead">
+              <span class="cicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></span>
+              <span class="ctitle" data-t="peekTitle">A peek inside</span>
+            </div>
+            <p class="ptext" data-t="peekText">A few glimpses of the place. Add your own photos and clips.</p>
+            <div class="gallery">
+              <div class="slot"><div class="frame"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div><div class="slotlabel" data-t="pBedroom">Bedroom</div><div class="slotsub" data-t="addPhoto">add photo</div></div>
+              <div class="slot"><div class="frame"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div><div class="slotlabel" data-t="pLiving">Living room</div><div class="slotsub" data-t="addPhoto">add photo</div></div>
+              <div class="slot"><div class="frame"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div><div class="slotlabel" data-t="pKitchen">Kitchen</div><div class="slotsub" data-t="addPhoto">add photo</div></div>
+              <div class="slot"><div class="frame video"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="slotlabel" data-t="shortClip">Short clip</div><div class="slotsub" data-t="addVideo">add video</div></div>
+            </div>
+          </article>
+
+          <div class="band reveal">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg>
+            <span class="cap" data-t="bandVibe">A vibe shot of the valley and the light</span>
+            <span class="sub" data-t="addPhoto">add photo</span>
+          </div>
+
+          <article class="card reveal">
+            <div class="chead">
+              <span class="cicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><path d="M13 4v7l6 3M6 20l3-8 4 2 2-5"/><circle cx="6" cy="20" r="0"/></svg></span>
+              <span class="ctitle" data-t="nbTitle">The neighbourhood</span>
+            </div>
+            <p class="ptext" data-t="nbText">Everything's a few minutes on foot.</p>
+            <div class="row"><span class="rlabel" data-t="nbTrain">Train to Milan</span><span class="rval">7 min</span></div>
+            <div class="row"><span class="rlabel" data-t="nbGrocery">Grocery</span><span class="rval">5 min</span></div>
+            <div class="row"><span class="rlabel" data-t="nbPiazza">Main piazza</span><span class="rval">5 min</span></div>
+            <div class="row"><span class="rlabel" data-t="nbFood">Restaurants</span><span class="rval">5 min</span></div>
+          </article>
+
+          <article class="card reveal">
+            <div class="chead">
+              <span class="cicon" style="--tint:var(--accent)"><svg viewBox="0 0 24 24"><path d="M5 3v8a3 3 0 0 0 6 0V3M8 3v18M17 3c-1.5 1-2 3-2 6s.5 4 2 4v8"/></svg></span>
+              <span class="ctitle" data-t="eatTitle">Where to eat</span>
+            </div>
+            <div class="eat">
+              <div style="flex:1">
+                <div class="ename">Il Tabernario · Enoteca delle Alpi</div>
+                <div class="edesc" data-t="eat1">Wine bar and enoteca with alpine small plates.</div>
+                <a class="emap" href="#"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="openMaps">Open map</span></a>
+              </div>
+            </div>
+            <div class="eat">
+              <div style="flex:1">
+                <div class="ename">Trattoria Olmo</div>
+                <div class="edesc" data-t="eat2">Classic Valtellina trattoria, pizzoccheri and more.</div>
+                <a class="emap" href="#"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="openMaps">Open map</span></a>
+              </div>
+            </div>
+            <div class="eat">
+              <div style="flex:1">
+                <div class="ename">Pizzeria Vesuvio</div>
+                <div class="edesc" data-t="eat3">Wood-fired pizza, a local favourite.</div>
+                <a class="emap" href="#"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="openMaps">Open map</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="chead">
+              <span class="cicon" style="--tint:var(--gold)"><svg viewBox="0 0 24 24"><path d="M3 12h18M3 12l4-7h10l4 7M6 12v4M18 12v4"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg></span>
+              <span class="ctitle" data-t="dtTitle">Day trips</span>
+            </div>
+            <p class="ptext" data-t="dtText">Some of our favourite escapes, all within easy reach.</p>
+            <div class="trips">
+              <div class="trip">
+                <div class="tframe"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div>
+                <div class="tname">Lake Como</div>
+                <div class="tdesc" data-t="dtComoD">Iconic lakeside towns, villas and gardens.</div>
+                <div class="ttime"><svg viewBox="0 0 24 24"><path d="M3 12h18M5 12l3-5h8l3 5M7 12v3M17 12v3"/><circle cx="8" cy="17" r="1.4"/><circle cx="16" cy="17" r="1.4"/></svg>~1 h 15</div>
+              </div>
+              <div class="trip">
+                <div class="tframe"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div>
+                <div class="tname">Tirano</div>
+                <div class="tdesc" data-t="dtTiranoD">Where the scenic Bernina Express begins.</div>
+                <div class="ttime"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="12" rx="2"/><path d="M5 10h14M8 20l-2 2M16 20l2 2"/></svg>~30 min</div>
+              </div>
+              <div class="trip">
+                <div class="tframe"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div>
+                <div class="tname">Bormio</div>
+                <div class="tdesc" data-t="dtBormioD">Alpine ski town with historic thermal spas.</div>
+                <div class="ttime"><svg viewBox="0 0 24 24"><path d="M3 12h18M5 12l3-5h8l3 5M7 12v3M17 12v3"/><circle cx="8" cy="17" r="1.4"/><circle cx="16" cy="17" r="1.4"/></svg>~1 h</div>
+              </div>
+              <div class="trip">
+                <div class="tframe"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div>
+                <div class="tname">St. Moritz</div>
+                <div class="tdesc" data-t="dtStMoritzD">Glamorous Swiss alpine resort over the border.</div>
+                <div class="ttime"><svg viewBox="0 0 24 24"><path d="M3 12h18M5 12l3-5h8l3 5M7 12v3M17 12v3"/><circle cx="8" cy="17" r="1.4"/><circle cx="16" cy="17" r="1.4"/></svg>~2 h</div>
+              </div>
+            </div>
+            <p class="dtcar"><span data-t="dtCar">Renting a car? Hertz and Avis both have offices in Sondrio.</span> <a href="https://www.hertz.com/us/en/location/italy/sondrio" data-t="dtCarLink">Hertz Sondrio</a></p>
+          </article>
+
+          <article class="card reveal">
+            <div class="chead">
+              <span class="cicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><path d="M4 6v14l6-3 6 3 4-2V4l-4 2-6-3-6 3Z"/><path d="M10 3v14M16 6v14"/></svg></span>
+              <span class="ctitle" data-t="exploreTitle">Explore Valtellina</span>
+            </div>
+            <p class="ptext" data-t="exploreText">Trails, wine cellars and our favourite spots, minutes from the door.</p>
+            <div class="gallery">
+              <div class="slot"><div class="frame"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div><div class="slotlabel" data-t="gVineyards">Vineyards</div><div class="slotsub" data-t="addPhoto">add photo</div></div>
+              <div class="slot"><div class="frame"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div><div class="slotlabel" data-t="gTrails">Trails</div><div class="slotsub" data-t="addPhoto">add photo</div></div>
+              <div class="slot"><div class="frame"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div><div class="slotlabel" data-t="gTown">Old town</div><div class="slotsub" data-t="addPhoto">add photo</div></div>
+            </div>
+            <button class="btn green"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="openMaps">Open map</span></button>
+          </article>
+
+          <article class="card reveal">
+            <div class="chead">
+              <span class="cicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><path d="M12 2 15 9l7 .5-5.5 4.5 1.8 6.9L12 17l-6.3 3.9 1.8-6.9L2 9.5 9 9Z"/></svg></span>
+              <span class="ctitle" data-t="ttTitle">Things to do</span>
+            </div>
+            <div class="seasons" role="group" aria-label="Season">
+              <button class="szbtn" data-season="winter" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M12 2v20M4 7l16 10M20 7 4 17M2.5 12h19"/></svg><span data-t="seasonWinter">Winter</span></button>
+              <button class="szbtn" data-season="summer" aria-pressed="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M5 5l1.7 1.7M17.3 17.3 19 19M19 5l-1.7 1.7M6.7 17.3 5 19"/></svg><span data-t="seasonSummer">Summer</span></button>
+            </div>
+            <div id="acts">
+              <div class="act" data-season="winter">
+                <span class="aicon" style="--tint:var(--accent)"><svg viewBox="0 0 24 24"><path d="M3 20 9 8l4 7 2-3 6 8Z"/></svg></span>
+                <div class="atext"><div class="atitle"><span data-t="actSki">Ski Bormio &amp; Santa Caterina</span><span class="szn" data-t="seasonWinter">Winter</span></div><div class="adesc" data-t="actSkiD">World-class pistes and the Stelvio, about an hour away.</div></div>
+              </div>
+              <div class="act" data-season="summer">
+                <span class="aicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><circle cx="13" cy="4" r="1.6"/><path d="M11 21l1.6-6 3 2 1.4 4M12.6 15 11 10l4-1 2 3 3 1"/></svg></span>
+                <div class="atext"><div class="atitle"><span data-t="actHike">Hike the valley trails</span><span class="szn" data-t="seasonSummer">Summer</span></div><div class="adesc" data-t="actHikeD">Dozens of marked trails, from gentle valley walks to alpine routes.</div></div>
+              </div>
+              <div class="act" data-season="summer">
+                <span class="aicon" style="--tint:var(--accent)"><svg viewBox="0 0 24 24"><path d="M6 21V4l9 3-3 3 3 3-9 2"/></svg></span>
+                <div class="atext"><div class="atitle"><span data-t="actClimb">Rock climbing &amp; via ferrata</span><span class="szn" data-t="seasonSummer">Summer</span></div><div class="adesc" data-t="actClimbD">Crags and via ferrata routes across the valley.</div></div>
+              </div>
+              <div class="act" data-season="summer">
+                <span class="aicon" style="--tint:var(--gold)"><svg viewBox="0 0 24 24"><path d="M8 3h8l-1 6a3 3 0 0 1-6 0ZM12 15v5M9 21h6"/></svg></span>
+                <div class="atext"><div class="atitle"><span data-t="actWine">Valtellina wine tasting</span><span class="szn" data-t="seasonSummer">Summer</span></div><div class="adesc" data-t="actWineD">Nebbiolo reds and terraced cellars, minutes away.</div></div>
+              </div>
+              <div class="act" data-season="all">
+                <span class="aicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><path d="M4 14c2-2 4-2 6 0s4 2 6 0 4-2 4-2M4 19c2-2 4-2 6 0s4 2 6 0 4-2 4-2M12 3v6"/></svg></span>
+                <div class="atext"><div class="atitle"><span data-t="actTerme">Bormio thermal baths</span><span class="szn" data-t="seasonAll">Year-round</span></div><div class="adesc" data-t="actTermeD">Bagni Vecchi and Bagni Nuovi, historic and modern spas.</div></div>
+              </div>
+              <div class="act" data-season="all">
+                <span class="aicon" style="--tint:var(--accent)"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="12" rx="2"/><path d="M5 10h14M8 20l-2 2M16 20l2 2"/><circle cx="9" cy="13" r="1"/><circle cx="15" cy="13" r="1"/></svg></span>
+                <div class="atext"><div class="atitle"><span data-t="actBernina">Bernina Express</span><span class="szn" data-t="seasonAll">Year-round</span></div><div class="adesc" data-t="actBerninaD">UNESCO alpine railway to St. Moritz, boarding at Tirano.</div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="hostrow">
+              <span class="portrait"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
+              <div>
+                <div class="hostnames">Stephanie &amp; Julian</div>
+                <div class="hostsub" data-t="hostsSub">Your hosts · reply within minutes</div>
+              </div>
+            </div>
+            <div class="btnrow">
+              <a class="btn red" href="#"><svg viewBox="0 0 24 24"><path d="M6 3h3l2 5-2 1.5a11 11 0 0 0 5 5L20 12l1 3v3a2 2 0 0 1-2 2A16 16 0 0 1 4 6a2 2 0 0 1 2-3Z"/></svg><span data-t="callHostShort">Call</span></a>
+              <a class="btn green" href="#"><svg viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.2 1.1-1.7 1.2-.4.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6s.6-1.8.9-2.1c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.7 1.7c.1.1.1.3 0 .5l-.3.5-.3.3c-.1.1-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.7 1.1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.6-.1l1.6.8c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/></svg><span data-t="waHost">WhatsApp</span></a>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="chead">
+              <span class="cicon" style="--tint:var(--accent)"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><path d="M9.5 10.5 11.5 12.5 15 9"/></svg></span>
+              <span class="ctitle" data-t="emTitle">Emergency</span>
+            </div>
+            <p class="ptext" data-t="emText">112 reaches ambulance, fire and police from any phone.</p>
+            <div class="row"><span class="rlabel" data-t="emServices">Emergency services</span><span class="rval">112</span></div>
+            <div class="row"><span class="rlabel" data-t="emPharmacy">Nearest pharmacy</span><span class="rval">5 min</span></div>
+          </article>
+
+          <div class="foot">Sondrio Stay · Valtellina</div>
+        </div>
+      </div>
+    </div>
+    <div class="hint">
+      <svg viewBox="0 0 24 24"><path d="M12 5v14"/><path d="m6 13 6 6 6-6"/></svg>
+      Scroll inside the phone · try the languages
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Copied</div>
+
+<script>
+  const T = {
+    welcome:{it:"Benvenuti",en:"Welcome",es:"Bienvenidos",fr:"Bienvenue",de:"Willkommen"},
+    heroSub:{it:"Tutto ciò che serve per un soggiorno sereno a Sondrio.",en:"Everything you need for a restful stay in Sondrio.",es:"Todo lo necesario para una estancia tranquila en Sondrio.",fr:"Tout le nécessaire pour un séjour paisible à Sondrio.",de:"Alles für einen erholsamen Aufenthalt in Sondrio."},
+    getDirections:{it:"Indicazioni stradali",en:"Get directions",es:"Cómo llegar",fr:"Itinéraire",de:"Route berechnen"},
+    loopTag:{it:"Video in loop",en:"Looped vibe video",es:"Vídeo en bucle",fr:"Vidéo en boucle",de:"Loop-Video"},
+    welcomeNote:{it:"Siamo felici di ospitarvi. Qui trovate tutto ciò che serve per sentirvi a casa.",en:"We're so glad you're here. Here's everything you need to feel at home.",es:"Nos alegra teneros aquí. Aquí está todo para que os sintáis como en casa.",fr:"Ravis de vous accueillir. Voici tout pour vous sentir chez vous.",de:"Schön, dass Sie da sind. Hier ist alles, damit Sie sich wie zu Hause fühlen."},
+    sig:{it:"Con affetto, Stephanie e Julian",en:"With love, Stephanie & Julian",es:"Con cariño, Stephanie y Julian",fr:"Avec toute notre affection, Stephanie & Julian",de:"Herzlich, Stephanie & Julian"},
+    arrival:{it:"Arrivo e partenza",en:"Arrival & departure",es:"Llegada y salida",fr:"Arrivée & départ",de:"Ankunft & Abreise"},
+    checkinFrom:{it:"Check-in dalle",en:"Check-in from",es:"Entrada desde",fr:"Arrivée dès",de:"Check-in ab"},
+    doorCode:{it:"Codice porta",en:"Door code",es:"Código puerta",fr:"Code porte",de:"Türcode"},
+    checkoutBy:{it:"Check-out entro",en:"Check-out by",es:"Salida antes de",fr:"Départ avant",de:"Check-out bis"},
+    departSteps:{it:"Prima di partire: rifiuti fuori, lavastoviglie avviata, chiavi nella cassetta.",en:"Before you go: bins out, dishwasher on, keys back in the lockbox.",es:"Antes de salir: basura fuera, lavavajillas puesto, llaves en la caja.",fr:"Avant de partir : poubelles sorties, lave-vaisselle lancé, clés dans la boîte.",de:"Vor der Abreise: Müll raus, Spülmaschine an, Schlüssel in die Box."},
+    wifi:{it:"Wi-Fi",en:"Wi-Fi",es:"Wi-Fi",fr:"Wi-Fi",de:"WLAN"},
+    network:{it:"Rete",en:"Network",es:"Red",fr:"Réseau",de:"Netzwerk"},
+    password:{it:"Password",en:"Password",es:"Contraseña",fr:"Mot de passe",de:"Passwort"},
+    evTitle:{it:"Ricarica auto e servizi",en:"EV charger & amenities",es:"Cargador VE y servicios",fr:"Recharge & équipements",de:"E-Ladestation & Ausstattung"},
+    evText:{it:"Colonnina da 22 kW proprio fuori, accanto all'appartamento. Tutto qui sotto è incluso.",en:"22 kW charger right outside, next to the apartment. Everything below is included.",es:"Cargador de 22 kW justo fuera, junto al apartamento. Todo lo de abajo está incluido.",fr:"Borne 22 kW juste dehors, à côté de l'appartement. Tout ci-dessous est inclus.",de:"22-kW-Ladestation direkt draußen, neben der Wohnung. Alles unten ist inklusive."},
+    c1:{it:"Caffè",en:"Coffee",es:"Café",fr:"Café",de:"Kaffee"},
+    c2:{it:"Lavatrice",en:"Washer",es:"Lavadora",fr:"Lave-linge",de:"Waschmaschine"},
+    c5:{it:"Asciugatrice",en:"Dryer",es:"Secadora",fr:"Sèche-linge",de:"Trockner"},
+    c3:{it:"Biancheria",en:"Fresh linens",es:"Ropa de cama",fr:"Linge de maison",de:"Frische Wäsche"},
+    c4:{it:"Riscaldamento",en:"Heating",es:"Calefacción",fr:"Chauffage",de:"Heizung"},
+    nbTitle:{it:"Il quartiere",en:"The neighbourhood",es:"El barrio",fr:"Le quartier",de:"Die Nachbarschaft"},
+    nbText:{it:"Tutto a pochi minuti a piedi.",en:"Everything's a few minutes on foot.",es:"Todo a pocos minutos a pie.",fr:"Tout à quelques minutes à pied.",de:"Alles wenige Gehminuten entfernt."},
+    nbTrain:{it:"Treno per Milano",en:"Train to Milan",es:"Tren a Milán",fr:"Train pour Milan",de:"Zug nach Mailand"},
+    nbGrocery:{it:"Supermercato",en:"Grocery",es:"Supermercado",fr:"Supermarché",de:"Supermarkt"},
+    nbPiazza:{it:"Piazza principale",en:"Main piazza",es:"Plaza principal",fr:"Place principale",de:"Hauptplatz"},
+    nbFood:{it:"Ristoranti",en:"Restaurants",es:"Restaurantes",fr:"Restaurants",de:"Restaurants"},
+    dtTitle:{it:"Gite in giornata",en:"Day trips",es:"Excursiones de un día",fr:"Excursions d'une journée",de:"Tagesausflüge"},
+    dtText:{it:"Alcune delle nostre fughe preferite, tutte a portata di mano.",en:"Some of our favourite escapes, all within easy reach.",es:"Algunas de nuestras escapadas favoritas, muy cerca.",fr:"Quelques-unes de nos escapades préférées, tout près.",de:"Einige unserer Lieblingsausflüge, alle gut erreichbar."},
+    dtComoD:{it:"Cittadine sul lago, ville e giardini iconici.",en:"Iconic lakeside towns, villas and gardens.",es:"Pueblos junto al lago, villas y jardines icónicos.",fr:"Villages au bord du lac, villas et jardins emblématiques.",de:"Ikonische Seeorte, Villen und Gärten."},
+    dtTiranoD:{it:"Dove inizia il panoramico Bernina Express.",en:"Where the scenic Bernina Express begins.",es:"Donde empieza el panorámico Bernina Express.",fr:"Le départ du panoramique Bernina Express.",de:"Startpunkt des landschaftlichen Bernina Express."},
+    dtBormioD:{it:"Località sciistica alpina con terme storiche.",en:"Alpine ski town with historic thermal spas.",es:"Estación de esquí alpina con termas históricas.",fr:"Station de ski alpine aux thermes historiques.",de:"Alpiner Skiort mit historischen Thermen."},
+    dtStMoritzD:{it:"Elegante località alpina svizzera oltre confine.",en:"Glamorous Swiss alpine resort over the border.",es:"Glamurosa estación alpina suiza al otro lado.",fr:"Station alpine suisse chic de l'autre côté.",de:"Mondäner Schweizer Alpenort jenseits der Grenze."},
+    dtCar:{it:"Volete noleggiare un'auto? Hertz e Avis hanno uffici a Sondrio.",en:"Renting a car? Hertz and Avis both have offices in Sondrio.",es:"¿Alquilar coche? Hertz y Avis tienen oficinas en Sondrio.",fr:"Louer une voiture ? Hertz et Avis ont des bureaux à Sondrio.",de:"Auto mieten? Hertz und Avis haben Büros in Sondrio."},
+    bandStay:{it:"Una foto ampia dell'appartamento",en:"A wide shot of the apartment",es:"Una foto amplia del apartamento",fr:"Une vue large de l'appartement",de:"Eine Weitwinkelaufnahme der Wohnung"},
+    bandVibe:{it:"Un'immagine d'atmosfera della valle e della luce",en:"A vibe shot of the valley and the light",es:"Una foto de ambiente del valle y la luz",fr:"Une image d'ambiance de la vallée et la lumière",de:"Ein Stimmungsbild vom Tal und dem Licht"},
+    hostsSub:{it:"I vostri host · rispondiamo in pochi minuti",en:"Your hosts · reply within minutes",es:"Vuestros anfitriones · respondemos en minutos",fr:"Vos hôtes · réponse en quelques minutes",de:"Ihre Gastgeber · Antwort in Minuten"},
+    emTitle:{it:"Emergenze",en:"Emergency",es:"Emergencias",fr:"Urgences",de:"Notfall"},
+    emText:{it:"Il 112 raggiunge ambulanza, vigili del fuoco e polizia da qualsiasi telefono.",en:"112 reaches ambulance, fire and police from any phone.",es:"El 112 conecta con ambulancia, bomberos y policía desde cualquier teléfono.",fr:"Le 112 joint l'ambulance, les pompiers et la police depuis n'importe quel téléphone.",de:"Die 112 erreicht Rettung, Feuerwehr und Polizei von jedem Telefon."},
+    emServices:{it:"Numero unico emergenze",en:"Emergency services",es:"Servicios de emergencia",fr:"Services d'urgence",de:"Notdienste"},
+    emPharmacy:{it:"Farmacia più vicina",en:"Nearest pharmacy",es:"Farmacia más cercana",fr:"Pharmacie la plus proche",de:"Nächste Apotheke"},
+    ttTitle:{it:"Cose da fare",en:"Things to do",es:"Qué hacer",fr:"À faire",de:"Aktivitäten"},
+    seasonWinter:{it:"Inverno",en:"Winter",es:"Invierno",fr:"Hiver",de:"Winter"},
+    seasonSummer:{it:"Estate",en:"Summer",es:"Verano",fr:"Été",de:"Sommer"},
+    seasonAll:{it:"Tutto l'anno",en:"Year-round",es:"Todo el año",fr:"Toute l'année",de:"Ganzjährig"},
+    actSki:{it:"Sci a Bormio e Santa Caterina",en:"Ski Bormio & Santa Caterina",es:"Esquí en Bormio y Santa Caterina",fr:"Ski à Bormio & Santa Caterina",de:"Skifahren in Bormio & Santa Caterina"},
+    actSkiD:{it:"Piste di livello mondiale e lo Stelvio, a circa un'ora.",en:"World-class pistes and the Stelvio, about an hour away.",es:"Pistas de primer nivel y el Stelvio, a una hora.",fr:"Pistes de niveau mondial et le Stelvio, à environ une heure.",de:"Weltklasse-Pisten und das Stilfserjoch, etwa eine Stunde entfernt."},
+    actHike:{it:"Cammina sui sentieri della valle",en:"Hike the valley trails",es:"Camina por los senderos del valle",fr:"Randonnée sur les sentiers de la vallée",de:"Wandern auf den Talwegen"},
+    actHikeD:{it:"Decine di sentieri segnati, da facili passeggiate a percorsi alpini.",en:"Dozens of marked trails, from gentle valley walks to alpine routes.",es:"Decenas de senderos señalizados, de paseos suaves a rutas alpinas.",fr:"Des dizaines de sentiers balisés, de balades faciles aux itinéraires alpins.",de:"Dutzende markierte Wege, von leichten Talwanderungen bis zu alpinen Routen."},
+    actClimb:{it:"Arrampicata e vie ferrate",en:"Rock climbing & via ferrata",es:"Escalada y vías ferratas",fr:"Escalade et via ferrata",de:"Klettern & Klettersteige"},
+    actClimbD:{it:"Falesie e vie ferrate in tutta la valle.",en:"Crags and via ferrata routes across the valley.",es:"Riscos y vías ferratas por todo el valle.",fr:"Falaises et via ferrata dans toute la vallée.",de:"Felsen und Klettersteige im ganzen Tal."},
+    actWine:{it:"Degustazione di vini della Valtellina",en:"Valtellina wine tasting",es:"Cata de vinos de Valtellina",fr:"Dégustation de vins de Valteline",de:"Valtellina-Weinprobe"},
+    actWineD:{it:"Rossi di Nebbiolo e cantine terrazzate, a pochi minuti.",en:"Nebbiolo reds and terraced cellars, minutes away.",es:"Tintos de Nebbiolo y bodegas en terrazas, a pocos minutos.",fr:"Rouges de Nebbiolo et caves en terrasses, à quelques minutes.",de:"Nebbiolo-Rotweine und Terrassenkeller, wenige Minuten entfernt."},
+    actTerme:{it:"Terme di Bormio",en:"Bormio thermal baths",es:"Termas de Bormio",fr:"Thermes de Bormio",de:"Thermen von Bormio"},
+    actTermeD:{it:"Bagni Vecchi e Bagni Nuovi, spa storiche e moderne.",en:"Bagni Vecchi and Bagni Nuovi, historic and modern spas.",es:"Bagni Vecchi y Bagni Nuovi, termas históricas y modernas.",fr:"Bagni Vecchi et Bagni Nuovi, thermes historiques et modernes.",de:"Bagni Vecchi und Bagni Nuovi, historische und moderne Thermen."},
+    actBernina:{it:"Bernina Express",en:"Bernina Express",es:"Bernina Express",fr:"Bernina Express",de:"Bernina Express"},
+    actBerninaD:{it:"Ferrovia alpina UNESCO fino a St. Moritz, partenza da Tirano.",en:"UNESCO alpine railway to St. Moritz, boarding at Tirano.",es:"Ferrocarril alpino UNESCO a St. Moritz, desde Tirano.",fr:"Chemin de fer alpin UNESCO vers St-Moritz, départ à Tirano.",de:"UNESCO-Alpenbahn nach St. Moritz, Einstieg in Tirano."},
+    gVineyards:{it:"Vigneti",en:"Vineyards",es:"Viñedos",fr:"Vignes",de:"Weinberge"},
+    gTrails:{it:"Sentieri",en:"Trails",es:"Senderos",fr:"Sentiers",de:"Wanderwege"},
+    gTown:{it:"Il centro",en:"Old town",es:"Casco antiguo",fr:"Vieille ville",de:"Altstadt"},
+    contactHost:{it:"Contatta l'host",en:"Contact host",es:"Contactar",fr:"Contacter l'hôte",de:"Gastgeber kontakt"},
+    callHostShort:{it:"Chiama",en:"Call",es:"Llamar",fr:"Appeler",de:"Anrufen"},
+    waHost:{it:"WhatsApp",en:"WhatsApp",es:"WhatsApp",fr:"WhatsApp",de:"WhatsApp"},
+    peekTitle:{it:"Uno sguardo dentro",en:"A peek inside",es:"Un vistazo dentro",fr:"Un aperçu de l'intérieur",de:"Ein Blick hinein"},
+    peekText:{it:"Alcuni scorci della casa. Aggiungi le tue foto e i tuoi video.",en:"A few glimpses of the place. Add your own photos and clips.",es:"Algunos rincones de la casa. Añade tus fotos y clips.",fr:"Quelques aperçus du logement. Ajoutez vos photos et clips.",de:"Ein paar Eindrücke der Wohnung. Fügen Sie Ihre Fotos und Clips ein."},
+    pBedroom:{it:"Camera",en:"Bedroom",es:"Dormitorio",fr:"Chambre",de:"Schlafzimmer"},
+    pLiving:{it:"Soggiorno",en:"Living room",es:"Salón",fr:"Salon",de:"Wohnzimmer"},
+    pKitchen:{it:"Cucina",en:"Kitchen",es:"Cocina",fr:"Cuisine",de:"Küche"},
+    shortClip:{it:"Video breve",en:"Short clip",es:"Clip corto",fr:"Clip court",de:"Kurzes Video"},
+    addPhoto:{it:"aggiungi foto",en:"add photo",es:"añadir foto",fr:"ajouter photo",de:"Foto einfügen"},
+    addVideo:{it:"aggiungi video",en:"add video",es:"añadir vídeo",fr:"ajouter vidéo",de:"Video einfügen"},
+    exploreTitle:{it:"Esplora la Valtellina",en:"Explore Valtellina",es:"Explora Valtellina",fr:"Explorer la Valteline",de:"Valtellina entdecken"},
+    exploreText:{it:"Sentieri, cantine e i nostri posti preferiti, a pochi passi.",en:"Trails, wine cellars and our favourite spots, minutes from the door.",es:"Senderos, bodegas y nuestros lugares favoritos, a pocos pasos.",fr:"Sentiers, caves et nos coins préférés, à deux pas.",de:"Wege, Weinkeller und unsere Lieblingsorte, nur Minuten entfernt."},
+    openMaps:{it:"Apri la mappa",en:"Open map",es:"Abrir mapa",fr:"Ouvrir la carte",de:"Karte öffnen"},
+    emergency:{it:"Emergenze e host",en:"Emergency & host",es:"Emergencias y anfitrión",fr:"Urgences & hôte",de:"Notfall & Gastgeber"},
+    emNum:{it:"Emergenze",en:"Emergency",es:"Emergencias",fr:"Urgences",de:"Notruf"},
+    callHost:{it:"Chiama l'host",en:"Call host",es:"Llamar al anfitrión",fr:"Appeler l'hôte",de:"Gastgeber anrufen"},
+    copy:{it:"Copia",en:"Copy",es:"Copiar",fr:"Copier",de:"Kopieren"},
+    copied:{it:"Copiato",en:"Copied",es:"Copiado",fr:"Copié",de:"Kopiert"},
+    privacyText:{it:"Il codice d'ingresso e il Wi-Fi sono riservati agli ospiti.",en:"Your check-in code and Wi-Fi are private to guests.",es:"Tu código de entrada y el Wi-Fi son privados para los huéspedes.",fr:"Votre code d'entrée et le Wi-Fi sont réservés aux hôtes.",de:"Ihr Zugangscode und WLAN sind nur für Gäste."},
+    unlock:{it:"Sblocca",en:"Unlock",es:"Desbloquear",fr:"Déverrouiller",de:"Freischalten"},
+    unlockedMsg:{it:"Sbloccato per il tuo soggiorno",en:"Unlocked for your stay",es:"Desbloqueado para tu estancia",fr:"Déverrouillé pour votre séjour",de:"Für Ihren Aufenthalt freigeschaltet"},
+    eatTitle:{it:"Dove mangiare",en:"Where to eat",es:"Dónde comer",fr:"Où manger",de:"Wo essen"},
+    eat1:{it:"Enoteca e wine bar con piatti alpini.",en:"Wine bar and enoteca with alpine small plates.",es:"Enoteca y wine bar con platos alpinos.",fr:"Bar à vins et enoteca, petites assiettes alpines.",de:"Weinbar und Enoteca mit alpinen Häppchen."},
+    eat2:{it:"Trattoria valtellinese classica, pizzoccheri e non solo.",en:"Classic Valtellina trattoria, pizzoccheri and more.",es:"Trattoria clásica de Valtellina, pizzoccheri y más.",fr:"Trattoria valtellinaise classique, pizzoccheri et plus.",de:"Klassische Valtellina-Trattoria, Pizzoccheri und mehr."},
+    eat3:{it:"Pizza al forno a legna, amata dai locali.",en:"Wood-fired pizza, a local favourite.",es:"Pizza al horno de leña, favorita local.",fr:"Pizza au feu de bois, un incontournable local.",de:"Holzofenpizza, ein lokaler Favorit."}
+  };
+  const screen=document.getElementById("screen"),toast=document.getElementById("toast");
+  let lang="en";
+  function applyLang(l){
+    lang=l;
+    document.querySelectorAll("[data-t]").forEach(el=>{const k=el.getAttribute("data-t");if(T[k]&&T[k][l])el.textContent=T[k][l];});
+    document.querySelectorAll(".lang").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===l)));
+    document.documentElement.lang=l;
+    screen.classList.remove("swapping");void screen.offsetWidth;screen.classList.add("swapping");
+  }
+  document.querySelectorAll(".lang").forEach(b=>b.addEventListener("click",()=>applyLang(b.dataset.lang)));
+  let tt;
+  document.addEventListener("click",e=>{
+    const btn=e.target.closest(".copy");if(!btn)return;e.preventDefault();
+    if(navigator.clipboard)navigator.clipboard.writeText(btn.dataset.copy).catch(()=>{});
+    toast.textContent=(T.copied[lang]||"Copied");toast.classList.add("show");
+    clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove("show"),1400);
+  });
+  const unlockBtn=document.getElementById("unlockBtn");
+  unlockBtn.addEventListener("click",()=>{
+    screen.classList.add("unlocked");
+    toast.textContent=(T.unlockedMsg[lang]||"Unlocked for your stay");toast.classList.add("show");
+    clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove("show"),1600);
+  });
+
+  function applySeason(s){
+    document.querySelectorAll(".szbtn").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.season===s)));
+    document.querySelectorAll("#acts .act").forEach(a=>{
+      const show=a.dataset.season===s||a.dataset.season==="all";
+      a.classList.toggle("hide",!show);
+    });
+  }
+  document.querySelectorAll(".szbtn").forEach(b=>b.addEventListener("click",()=>applySeason(b.dataset.season)));
+  const m=new Date().getMonth()+1;
+  applySeason((m>=11||m<=3)?"winter":"summer");
+
+  const io=new IntersectionObserver((ents)=>{ents.forEach(en=>{if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}});},{root:screen,threshold:.12});
+  document.querySelectorAll(".reveal").forEach((el,i)=>{el.style.transitionDelay=(i*60)+"ms";io.observe(el);});
+  applyLang("en");
+</script>
