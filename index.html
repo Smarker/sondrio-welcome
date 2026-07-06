@@ -20,16 +20,19 @@
 
     <section class="hero">
       <div class="heromedia reveal">
-        <svg viewBox="0 0 360 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="var(--sky1)"/><stop offset="1" stop-color="var(--sky2)"/></linearGradient></defs>
-          <rect width="360" height="200" fill="url(#sky)"/>
-          <circle cx="292" cy="52" r="26" fill="var(--sun)" opacity=".6"/>
-          <ellipse class="cloud" cx="60" cy="46" rx="34" ry="11" fill="#fff" opacity=".5"/>
-          <path d="M0 200 L0 130 L70 78 L120 116 L175 66 L230 120 L300 82 L360 120 L360 200 Z" fill="var(--m1)"/>
-          <path d="M0 200 L0 154 L60 112 L118 148 L180 100 L250 150 L320 116 L360 150 L360 200 Z" fill="var(--m2)" opacity=".92"/>
-          <path d="M0 200 L0 178 L80 150 L150 176 L220 146 L300 178 L360 152 L360 200 Z" fill="var(--m3)"/>
-        </svg>
+        <video class="herovideo" poster="media/hero-poster.jpg" muted loop playsinline autoplay preload="none"></video>
+        <div class="heromedia-fallback" aria-hidden="true">
+          <svg viewBox="0 0 360 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="var(--sky1)"/><stop offset="1" stop-color="var(--sky2)"/></linearGradient></defs>
+            <rect width="360" height="200" fill="url(#sky)"/>
+            <circle cx="292" cy="52" r="26" fill="var(--sun)" opacity=".6"/>
+            <ellipse class="cloud" cx="60" cy="46" rx="34" ry="11" fill="#fff" opacity=".5"/>
+            <path d="M0 200 L0 130 L70 78 L120 116 L175 66 L230 120 L300 82 L360 120 L360 200 Z" fill="var(--m1)"/>
+            <path d="M0 200 L0 154 L60 112 L118 148 L180 100 L250 150 L320 116 L360 150 L360 200 Z" fill="var(--m2)" opacity=".92"/>
+            <path d="M0 200 L0 178 L80 150 L150 176 L220 146 L300 178 L360 152 L360 200 Z" fill="var(--m3)"/>
+          </svg>
+        </div>
         <span class="loopTag"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span data-t="loopTag">Looped vibe video</span></span>
       </div>
       <div class="heroText reveal">

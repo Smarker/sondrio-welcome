@@ -29,5 +29,9 @@ function initI18n(){
     }));
   initSeasons();
   initUnlock();
+  const v = document.querySelector('.herovideo');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saveData = navigator.connection && navigator.connection.saveData;
+  if (v && (reduce || saveData)) { v.removeAttribute('autoplay'); v.pause?.(); }
 }
 if (typeof document !== 'undefined') initI18n();

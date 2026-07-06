@@ -33,6 +33,9 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .hero{padding:14px 16px 4px}
 .heromedia{position:relative;height:200px;border-radius:20px;overflow:hidden;border:1px solid var(--line)}
 .heromedia svg{position:absolute;inset:0;width:100%;height:100%}
+.herovideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.herovideo:not([src]){display:none}
+.shot{width:100%;height:100%;object-fit:cover;border-radius:inherit}
 .cloud{animation:drift 14s linear infinite}
 @keyframes drift{0%{transform:translateX(-40px)}100%{transform:translateX(430px)}}
 .loopTag{position:absolute;left:12px;bottom:12px;display:inline-flex;align-items:center;gap:7px;
