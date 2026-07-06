@@ -48,6 +48,7 @@
       <div class="privacy reveal">
         <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
         <span class="pt" data-t="privacyText">Your check-in code and Wi-Fi are private to guests.</span>
+        <input id="unlockInput" class="unlockinput" type="text" inputmode="text" autocomplete="off" placeholder="Access phrase" aria-label="Access phrase">
         <button class="unlockbtn" id="unlockBtn" data-t="unlock">Unlock</button>
       </div>
 
@@ -62,7 +63,7 @@
           <span class="ctitle" data-t="arrival">Arrival &amp; departure</span>
         </div>
         <div class="row"><span class="rlabel" data-t="checkinFrom">Check-in from</span><span class="rval">15:00</span></div>
-        <div class="row"><span class="rlabel" data-t="doorCode">Door code</span><span class="rval secret"><span class="mask"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>••••</span><span class="real">4827<button class="copy" data-copy="4827" data-t="copy">Copy</button></span></span></div>
+        <div class="row"><span class="rlabel" data-t="doorCode">Door code</span><span class="rval secret"><span class="mask"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>••••</span><span class="real" data-secret="doorCode"><span class="sval"></span><button class="copy" data-t="copy">Copy</button></span></span></div>
         <div class="row"><span class="rlabel" data-t="checkoutBy">Check-out by</span><span class="rval">12:00</span></div>
         <div class="steps"><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-11"/></svg><span data-t="departSteps">Before you go: bins out, dishwasher on, keys back in the lockbox.</span></div>
       </article>
@@ -79,7 +80,7 @@
           <span class="ctitle" data-t="wifi">Wi-Fi</span>
         </div>
         <div class="row"><span class="rlabel" data-t="network">Network</span><span class="rval">CasaSondrio<button class="copy" data-copy="CasaSondrio" data-t="copy">Copy</button></span></div>
-        <div class="row"><span class="rlabel" data-t="password">Password</span><span class="rval secret"><span class="mask"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>••••••</span><span class="real">valtellina26<button class="copy" data-copy="valtellina26" data-t="copy">Copy</button></span></span></div>
+        <div class="row"><span class="rlabel" data-t="password">Password</span><span class="rval secret"><span class="mask"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>••••••</span><span class="real" data-secret="wifiPassword"><span class="sval"></span><button class="copy" data-t="copy">Copy</button></span></span></div>
       </article>
 
       <article class="card reveal">

@@ -1,5 +1,6 @@
 import { T } from './content.js';
 import { initSeasons } from './seasons.js';
+import { initUnlock } from './unlock.js';
 const AVAILABLE = ['it','en','es','fr','de'];
 
 export function resolveLanguage(navLang, available = AVAILABLE){
@@ -27,5 +28,6 @@ function initI18n(){
       applyLanguage(b.dataset.lang);
     }));
   initSeasons();
+  initUnlock();
 }
 if (typeof document !== 'undefined') initI18n();
