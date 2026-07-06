@@ -36,6 +36,16 @@ function showToast(){
   showToast._t = setTimeout(() => toast.classList.remove('show'), 1400);
 }
 
+function showUnlockedToast(){
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  const lang = document.documentElement.lang || 'en';
+  toast.textContent = (T.unlockedMsg && T.unlockedMsg[lang]) || 'Unlocked';
+  toast.classList.add('show');
+  clearTimeout(showUnlockedToast._t);
+  showUnlockedToast._t = setTimeout(() => toast.classList.remove('show'), 1500);
+}
+
 export function initUnlock(){
   const btn = document.getElementById('unlockBtn');
   const input = document.getElementById('unlockInput');
@@ -57,10 +67,12 @@ export function initUnlock(){
         });
         flow.classList.add('unlocked');
         input.removeAttribute('aria-invalid');
+        showUnlockedToast();
       } catch {
         input.setAttribute('aria-invalid', 'true');
         input.value = '';
-        input.placeholder = 'Try again';
+        const lang = document.documentElement.lang || 'en';
+        input.placeholder = (T.tryAgain && T.tryAgain[lang]) || 'Try again';
       }
     }
     btn.addEventListener('click', attempt);

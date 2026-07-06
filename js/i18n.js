@@ -13,6 +13,10 @@ export function applyLanguage(lang, doc = document){
     const k = el.getAttribute('data-t');
     if (T[k] && T[k][lang]) el.textContent = T[k][lang];
   });
+  doc.querySelectorAll('[data-t-placeholder]').forEach(el => {
+    const k = el.getAttribute('data-t-placeholder');
+    if (T[k] && T[k][lang]) el.placeholder = T[k][lang];
+  });
   doc.querySelectorAll('.lang').forEach(b =>
     b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
   doc.documentElement.lang = lang;

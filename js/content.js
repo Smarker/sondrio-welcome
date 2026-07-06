@@ -84,5 +84,7 @@ export const T = {
   eatTitle:{it:"Dove mangiare",en:"Where to eat",es:"Dónde comer",fr:"Où manger",de:"Wo essen"},
   eat1:{it:"Enoteca e wine bar con piatti alpini.",en:"Wine bar and enoteca with alpine small plates.",es:"Enoteca y wine bar con platos alpinos.",fr:"Bar à vins et enoteca, petites assiettes alpines.",de:"Weinbar und Enoteca mit alpinen Häppchen."},
   eat2:{it:"Trattoria valtellinese classica, pizzoccheri e non solo.",en:"Classic Valtellina trattoria, pizzoccheri and more.",es:"Trattoria clásica de Valtellina, pizzoccheri y más.",fr:"Trattoria valtellinaise classique, pizzoccheri et plus.",de:"Klassische Valtellina-Trattoria, Pizzoccheri und mehr."},
-  eat3:{it:"Pizza al forno a legna, amata dai locali.",en:"Wood-fired pizza, a local favourite.",es:"Pizza al horno de leña, favorita local.",fr:"Pizza au feu de bois, un incontournable local.",de:"Holzofenpizza, ein lokaler Favorit."}
+  eat3:{it:"Pizza al forno a legna, amata dai locali.",en:"Wood-fired pizza, a local favourite.",es:"Pizza al horno de leña, favorita local.",fr:"Pizza au feu de bois, un incontournable local.",de:"Holzofenpizza, ein lokaler Favorit."},
+  accessPhrase:{it:"Frase d'accesso",en:"Access phrase",es:"Frase de acceso",fr:"Phrase d'acces",de:"Zugangsphrase"},
+  tryAgain:{it:"Riprova",en:"Try again",es:"Inténtalo de nuevo",fr:"Réessayez",de:"Erneut versuchen"}
 };
