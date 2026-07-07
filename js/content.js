@@ -1,5 +1,8 @@
 export const T = {
   welcome:{it:"Benvenuti",en:"Welcome",es:"Bienvenidos",fr:"Bienvenue",de:"Willkommen"},
+  greetMorning:{it:"Buongiorno",en:"Good morning",es:"Buenos días",fr:"Bonjour",de:"Guten Morgen"},
+  greetAfternoon:{it:"Buon pomeriggio",en:"Good afternoon",es:"Buenas tardes",fr:"Bon après-midi",de:"Guten Tag"},
+  greetEvening:{it:"Buonasera",en:"Good evening",es:"Buenas noches",fr:"Bonsoir",de:"Guten Abend"},
   heroSub:{it:"Tutto ciò che serve per un soggiorno sereno a Sondrio.",en:"Everything you need for a restful stay in Sondrio.",es:"Todo lo necesario para una estancia tranquila en Sondrio.",fr:"Tout le nécessaire pour un séjour paisible à Sondrio.",de:"Alles für einen erholsamen Aufenthalt in Sondrio."},
   getDirections:{it:"Indicazioni stradali",en:"Get directions",es:"Cómo llegar",fr:"Itinéraire",de:"Route berechnen"},
   loopTag:{it:"Video in loop",en:"Looped vibe video",es:"Vídeo en bucle",fr:"Vidéo en boucle",de:"Loop-Video"},
