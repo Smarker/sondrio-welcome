@@ -1,5 +1,5 @@
 import { T } from './content.js';
-import { initSeasons } from './seasons.js';
+import { initSeasons, applySeason, seasonForMonth } from './seasons.js';
 import { initUnlock } from './unlock.js';
 import { initTimeOfDay } from './timeofday.js';
 import { initQuickAccess } from './quickaccess.js';
@@ -43,6 +43,13 @@ function initI18n(){
   initCheckout();
   initPicks();
   initGuestbook();
+  const nudge = document.getElementById('seasonNudge');
+  if (nudge) nudge.addEventListener('click', () => {
+    const pressed = document.querySelector('.szbtn[aria-pressed="true"]');
+    const current = pressed ? pressed.dataset.season : seasonForMonth(new Date().getMonth() + 1);
+    applySeason(current === 'winter' ? 'summer' : 'winter');
+    document.getElementById('card-things')?.scrollIntoView({ behavior:'smooth', block:'start' });
+  });
   const v = document.querySelector('.herovideo');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const saveData = navigator.connection && navigator.connection.saveData;

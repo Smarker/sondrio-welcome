@@ -225,6 +225,13 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .gbempty{padding:16px;text-align:center;font-family:var(--serif);font-style:italic;color:var(--muted);
   border:1.5px dashed color-mix(in srgb,var(--muted) 45%,var(--card));border-radius:14px;margin:13px 0 4px}
 
+/* ---- warm send-off ---- */
+.sendoff{text-align:center;padding:22px 18px;border-radius:20px;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--g) 10%,var(--card)),var(--card));border:1px solid var(--line)}
+.sotitle{font-family:var(--serif);font-weight:600;font-size:22px;color:var(--ink)}
+.sotext{font-size:14px;line-height:1.55;color:var(--muted);margin:8px 0 0}
+.sendoff .btn{max-width:280px;margin-left:auto;margin-right:auto}
+
 /* ---- season control + activities ---- */
 .seasons{display:inline-flex;gap:4px;background:color-mix(in srgb,var(--muted) 14%,var(--card));border-radius:999px;padding:4px;margin:2px 0 6px}
 .szbtn{border:none;background:transparent;color:var(--muted);font-family:var(--sans);font-size:12.5px;font-weight:700;
