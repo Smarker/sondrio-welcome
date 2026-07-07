@@ -74,6 +74,15 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .directions:active{transform:translateY(0)}
 .directions svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:1.8}
 
+/* ---- quick-access pills ---- */
+.quickbar{display:flex;gap:9px;padding:6px 16px 2px;flex-wrap:wrap}
+.qpill{flex:1 1 0;min-width:96px;display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink);font-family:var(--sans);font-size:12.5px;font-weight:700;
+  padding:10px 12px;border-radius:999px;cursor:pointer;text-decoration:none;transition:transform .18s var(--ease),background .18s,border-color .18s}
+.qpill svg{width:15px;height:15px;stroke:var(--accent);fill:none;stroke-width:1.8}
+.qpill:hover{transform:translateY(-1px);border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+.qpill:active{transform:translateY(0)}
+
 /* ---- welcome note ---- */
 .note{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:17px 18px}
 .note p{margin:0;font-family:var(--serif);font-size:16px;line-height:1.5;font-style:italic;color:var(--ink)}
