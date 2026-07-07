@@ -19,7 +19,7 @@ export function initQuickAccess(){
       const locked = !document.getElementById('app')?.classList.contains('unlocked');
       if (locked){
         const input = document.getElementById('unlockInput');
-        if (input) setTimeout(() => input.focus(), reduce ? 0 : 500);
+        if (input) setTimeout(() => input.focus({ preventScroll: true }), reduce ? 0 : 500);
       }
     });
   });

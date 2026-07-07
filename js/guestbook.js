@@ -8,7 +8,7 @@ export function escapeHtml(s){
 
 export function guestbookHtml(entries, emptyText){
   if (!Array.isArray(entries) || entries.length === 0){
-    return `<div class="gbempty">${escapeHtml(emptyText)}</div>`;
+    return `<div class="gbempty" data-t="gbEmpty">${escapeHtml(emptyText)}</div>`;
   }
   return entries.map(e => `
     <figure class="gbnote">
@@ -29,9 +29,14 @@ export function initGuestbook(){
   }
   const cta = document.querySelector('[data-gb-cta]');
   const host = document.querySelector('[data-host-wa]');
-  if (cta){
-    const num = (host && host.getAttribute('data-host-wa')) || '';
+  const num = (host && host.getAttribute('data-host-wa')) || '';
+  const waHref = () => {
     const msg = encodeURIComponent((T.gbWaMsg && T.gbWaMsg[lang()]) || '');
-    cta.setAttribute('href', num ? `https://wa.me/${num}?text=${msg}` : '#');
+    return num ? `https://wa.me/${num}?text=${msg}` : '#';
+  };
+  if (cta){
+    cta.setAttribute('href', waHref());
+    document.querySelectorAll('.lang').forEach(b =>
+      b.addEventListener('click', () => cta.setAttribute('href', waHref())));
   }
 }

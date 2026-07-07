@@ -33,7 +33,7 @@ export function initCheckout(){
     mount.querySelectorAll('.coitem').forEach(btn => {
       btn.addEventListener('click', () => {
         state = toggleState(state, btn.dataset.co);
-        localStorage.setItem(KEY, JSON.stringify(state));
+        try { localStorage.setItem(KEY, JSON.stringify(state)); } catch {}
         render();
       });
     });
