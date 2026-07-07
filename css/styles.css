@@ -239,11 +239,16 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
   padding:6px 13px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.2s}
 .szbtn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8}
 .szbtn[aria-pressed="true"]{background:var(--card);color:var(--accent);box-shadow:0 2px 6px -2px color-mix(in srgb,var(--ink) 20%,transparent)}
-.act{display:flex;gap:11px;padding:12px 0;border-top:1px solid var(--line)}
+.act{display:flex;align-items:center;gap:13px;padding:13px 0;border-top:1px solid var(--line)}
 .act:first-of-type{border-top:none}
 .act.hide{display:none}
-.aicon{width:34px;height:34px;border-radius:10px;flex:none;display:grid;place-items:center;background:color-mix(in srgb,var(--tint) 15%,var(--card))}
-.aicon svg{width:18px;height:18px;stroke:var(--tint);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+/* activity thumbnail: rounded rectangle showing the icon until a real photo
+   is dropped in (swap the inner <span class="aph">…</span> for
+   <img class="shot" src="media/…" alt="…">, same as the gallery slots) */
+.athumb{width:88px;aspect-ratio:4/3;flex:none;border-radius:13px;overflow:hidden;display:block}
+.aph{display:grid;place-items:center;width:100%;height:100%;border-radius:13px;
+  border:1.5px dashed color-mix(in srgb,var(--tint) 42%,var(--card));background:color-mix(in srgb,var(--tint) 12%,var(--card))}
+.aph svg{width:24px;height:24px;stroke:var(--tint);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .atext{flex:1;min-width:0}
 .atitle{font-weight:600;font-size:14.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .szn{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:999px;

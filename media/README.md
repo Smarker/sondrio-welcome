@@ -40,6 +40,24 @@ is ready, replace the placeholder markup:
 inherits the frame's rounded corners. Do the same for `.tframe` (day-trip cards) and any
 `.band` image bands — swap the placeholder contents for `<img class="shot" ...>`.
 
+## Activity thumbnails (Things to do)
+
+Each activity row in the "Explore Valtellina" card has a rounded-rectangle `.athumb`
+holding an icon inside a dashed `.aph` placeholder. To show a real photo for an activity,
+replace the inner `.aph` span with an image (keep the outer `.athumb` and its `--tint`):
+
+```html
+<!-- before -->
+<span class="athumb" style="--tint:var(--accent)"><span class="aph">...icon svg...</span></span>
+
+<!-- after -->
+<span class="athumb" style="--tint:var(--accent)"><img class="shot" src="media/ski.jpg" alt="Skiing near Bormio"></span>
+```
+
+The image fills the thumbnail and is clipped to its rounded corners. Use your own or
+properly-licensed photos (local files only); leave the icon placeholder for any activity
+you don't have a photo for.
+
 ## Short clips
 
 The "Short clip" slot (`.frame.video`) works the same way as a room photo slot, except the
