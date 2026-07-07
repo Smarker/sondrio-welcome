@@ -56,23 +56,15 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
   background:color-mix(in srgb,#000 42%,transparent);color:#fff;font-size:11.5px;font-weight:600;
   padding:6px 11px;border-radius:999px;backdrop-filter:blur(4px)}
 .loopTag svg{position:static;width:13px;height:13px;fill:#fff}
-.heroText{padding:18px 2px 0}
+.heroText{padding:18px 2px 0;text-align:center}
 .kicker{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:700}
-.timeline{display:flex;align-items:baseline;gap:9px;margin-top:9px}
+.timeline{display:flex;align-items:baseline;justify-content:center;gap:9px;margin-top:9px}
 .greeting{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--ink)}
 .clock{font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--muted);font-weight:600}
 .htitle{font-family:var(--serif);font-weight:600;line-height:1.06;margin:8px 0 7px;font-size:31px;letter-spacing:-.01em;text-wrap:balance}
 .hsub{color:var(--muted);font-size:15px;line-height:1.55;margin:0}
-.loc{margin-top:12px;font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:7px}
+.loc{margin-top:12px;font-size:12.5px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:7px}
 .loc svg{width:14px;height:14px;stroke:var(--g);fill:none;stroke-width:1.7}
-.directions{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;margin-top:14px;color:#fff;border:none;
-  border-radius:14px;padding:14px;font-family:var(--sans);font-size:14px;font-weight:700;letter-spacing:.01em;cursor:pointer;text-decoration:none;
-  background:linear-gradient(180deg,color-mix(in srgb,var(--g) 80%,#fff),var(--g));
-  box-shadow:0 10px 22px -10px color-mix(in srgb,var(--g) 75%,transparent),inset 0 1px 0 rgba(255,255,255,.3);
-  transition:transform .2s var(--ease),box-shadow .2s var(--ease),filter .2s}
-.directions:hover{transform:translateY(-1px);filter:brightness(1.04)}
-.directions:active{transform:translateY(0)}
-.directions svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:1.8}
 
 /* ---- quick-access pills ---- */
 .quickbar{display:flex;gap:9px;padding:6px 16px 2px;flex-wrap:wrap}
@@ -89,7 +81,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .note .sig{margin-top:9px;font-style:normal;font-family:var(--sans);font-size:12.5px;color:var(--muted);font-weight:600}
 
 /* ---- generic card ---- */
-.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 18px 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 18px 16px;scroll-margin-top:64px}
 .chead{display:flex;align-items:center;gap:11px;margin-bottom:12px}
 .cicon{width:38px;height:38px;border-radius:11px;flex:none;display:grid;place-items:center;background:color-mix(in srgb,var(--tint) 15%,var(--card))}
 .cicon svg{width:20px;height:20px;stroke:var(--tint);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
@@ -149,7 +141,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .btn:active{transform:translateY(0)}
 
 /* ---- media placeholders (where photos / videos go) ---- */
-.gallery{display:flex;gap:11px;overflow-x:auto;margin-top:13px;padding-bottom:4px;scrollbar-width:none}
+.gallery{display:flex;align-items:flex-start;gap:11px;overflow-x:auto;margin-top:13px;padding-bottom:4px;scrollbar-width:none}
 .gallery::-webkit-scrollbar{display:none}
 .slot{flex:0 0 200px;display:flex;flex-direction:column;gap:7px}
 .frame{aspect-ratio:4/5;border-radius:14px;display:grid;place-items:center;
@@ -231,7 +223,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 
 /* ---- warm send-off ---- */
 .sendoff{text-align:center;padding:22px 18px;border-radius:20px;
-  background:linear-gradient(180deg,color-mix(in srgb,var(--g) 10%,var(--card)),var(--card));border:1px solid var(--line)}
+  background:color-mix(in srgb,var(--gold) 7%,var(--card));border:1px solid color-mix(in srgb,var(--gold) 22%,var(--line))}
 .sotitle{font-family:var(--serif);font-weight:600;font-size:22px;color:var(--ink)}
 .sotext{font-size:14px;line-height:1.55;color:var(--muted);margin:8px 0 0}
 .sendoff .btn{max-width:280px;margin-left:auto;margin-right:auto}
@@ -257,7 +249,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .reveal{opacity:0;transform:translateY(var(--rise))}
 .reveal.in{opacity:1;transform:none;transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease)}
 .swapping .htitle,.swapping .hsub,.swapping .kicker,.swapping .ctitle,.swapping .rlabel,.swapping .ptext,
-.swapping .chip,.swapping .steps,.swapping .note p,.swapping .btn span,.swapping .copy,.swapping .slotlabel,.swapping .directions span{animation:swap .38s ease}
+.swapping .chip,.swapping .steps,.swapping .note p,.swapping .btn span,.swapping .copy,.swapping .slotlabel{animation:swap .38s ease}
 @keyframes swap{0%{opacity:1}35%{opacity:.25}100%{opacity:1}}
 
 /* ---- toast ---- */
@@ -272,16 +264,14 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 
 /* ---- night mode: button labels ----
    Night --accent/--g are lightened for text-on-card contrast, which leaves the
-   white button labels/icons below the 3:1 floor on the .btn.red/.btn.green/
-   .directions gradients. Swap to dark (night --bg) labels/icons for these
-   buttons only — keeps the existing gradient/lift look, doesn't touch
-   --accent/--g (so text-on-card contrast is unaffected). */
+   white button labels/icons below the 3:1 floor on the .btn.red/.btn.green
+   gradients. Swap to dark (night --bg) labels/icons for these buttons only,
+   keeps the gradient/lift look, doesn't touch --accent/--g (so text-on-card
+   contrast is unaffected). */
 html[data-tod="night"] .btn.red,
-html[data-tod="night"] .btn.green,
-html[data-tod="night"] .directions{color:var(--bg)}
+html[data-tod="night"] .btn.green{color:var(--bg)}
 html[data-tod="night"] .btn.red svg,
-html[data-tod="night"] .btn.green svg,
-html[data-tod="night"] .directions svg{stroke:var(--bg)}
+html[data-tod="night"] .btn.green svg{stroke:var(--bg)}
 
 /* Same problem, same fix: these controls also put white text on solid
    var(--accent). At night that background is the lightened coral, so

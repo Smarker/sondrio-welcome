@@ -142,8 +142,8 @@ Before pointing a guest at this site, replace the following placeholders in `ind
 - [ ] Host WhatsApp number as `https://wa.me/<international-number>` (the "WhatsApp"
       button, currently `href="#"`, international number with no `+`, spaces, or
       leading zeros, e.g. `https://wa.me/390000000000`).
-- [ ] Google Maps URL for directions to the property itself (the "Get directions" link
-      near the hero, currently `href="#"`).
+- [ ] Google Maps URL for directions to the property itself (the "Get directions"
+      quick-access pill under the hero, `data-quick-directions`, currently `href="#"`).
 - [ ] Google Maps URL for each restaurant listed under "Where to eat" (each "Open map"
       link, currently `href="#"`).
 - [ ] Google Maps URL for each day trip (Como, Tirano, Bormio, St. Moritz) and for the

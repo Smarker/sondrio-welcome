@@ -25,8 +25,4 @@ export function initQuickAccess(){
       }
     });
   });
-
-  const heroDir = document.querySelector('.directions');
-  const pillDir = document.querySelector('[data-quick-directions]');
-  if (heroDir && pillDir) pillDir.setAttribute('href', heroDir.getAttribute('href') || '#');
 }
