@@ -155,6 +155,11 @@ Before pointing a guest at this site, replace the following placeholders in `ind
 - [ ] Real photos and video per `media/README.md`: hero video + poster, bedroom/living
       room/kitchen photos, a short clip, the two wide "band" shots, and the three
       "Explore Valtellina" images (vineyards, trails, old town).
+- [ ] Host WhatsApp number in the `data-host-wa` attribute on the host WhatsApp button
+      (powers the guestbook "Leave us a note" link), same international format as the
+      WhatsApp `href` (digits only, no `+`).
+- [ ] Curate `data/guestbook.json` with real guest notes (or leave `[]` for the graceful
+      empty state).
 
 ## Language behavior
 
@@ -171,6 +176,45 @@ is chosen automatically from the current date (`js/seasons.js`: November through
 winter, April through October is summer), and guests can override it with the
 Winter/Summer toggle buttons. Activities tagged for the other season are hidden;
 activities tagged "all" (year-round) always show.
+
+## Time of day, today's pick, checkout checklist, and guestbook
+
+**Day/night styling.** The page reads Sondrio's local time (`Europe/Rome`, via
+`js/timeofday.js`, independent of the guest's own device timezone), sets
+`data-tod="day"`, `data-tod="golden"`, or `data-tod="night"` on `<html>`, and the
+palettes in `css/styles.css` restyle accordingly (golden covers early morning and
+early evening, night covers 21:00 to 06:00). The same script swaps in a localized
+greeting (morning/afternoon/evening, from the `greetMorning`/`greetAfternoon`/
+`greetEvening` keys in `js/content.js`) and shows a live clock, refreshed every
+minute. No configuration needed.
+
+**Today's pick.** `js/picks.js` rotates through a small `PICKS` pool, one pick per
+calendar day (by UTC date, so the pick changes at the same moment for every guest
+regardless of their timezone). Each pool entry is just a pair of existing `T` keys
+(a name and a description) already defined in `js/content.js`. To change what can
+appear, edit the `PICKS` array in `js/picks.js`, either reordering/removing entries
+or adding new ones (add the corresponding keys to `T` first).
+
+**Checkout checklist.** The departure steps are a tappable checklist (bins out,
+dishwasher on, keys in the lockbox). Ticked state is saved per device in
+`localStorage` under the key `sw-checkout`, so it persists across a guest's stay on
+the same phone but is not shared between devices. To change the wording, edit the
+`coItem1`/`coItem2`/`coItem3` keys in `js/content.js`. To change which steps exist,
+edit the `ITEMS` array and `COPY` map in `js/checkout.js` (they must stay in sync).
+
+**Guestbook.** Past guests' notes are curated by hand in `data/guestbook.json`, an
+array of objects with `name`, `note`, and `date` fields, for example:
+
+```json
+{ "name": "Sophie", "note": "So cozy and thoughtfully prepared. Grazie mille!", "date": "2026-06" }
+```
+
+This file is safe to commit (no secrets, just whatever notes you choose to include).
+Leave it as `[]` for a graceful empty state (a "be the first to leave a note"
+message) until you have real notes to add. The "Leave us a note" button builds a
+WhatsApp link using the host's number from the `data-host-wa` attribute on the host
+WhatsApp button in `index.html`, so that attribute must be set for the button to
+work (see the placeholders checklist below).
 
 ## Deploying
 
