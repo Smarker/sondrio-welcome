@@ -3,6 +3,7 @@ import { initSeasons } from './seasons.js';
 import { initUnlock } from './unlock.js';
 import { initTimeOfDay } from './timeofday.js';
 import { initQuickAccess } from './quickaccess.js';
+import { initCheckout } from './checkout.js';
 const AVAILABLE = ['it','en','es','fr','de'];
 
 export function resolveLanguage(navLang, available = AVAILABLE){
@@ -37,6 +38,7 @@ function initI18n(){
   initUnlock();
   initTimeOfDay();
   initQuickAccess();
+  initCheckout();
   const v = document.querySelector('.herovideo');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const saveData = navigator.connection && navigator.connection.saveData;
