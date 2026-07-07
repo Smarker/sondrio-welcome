@@ -72,11 +72,19 @@
           <span class="cicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-6h6v6"/></svg></span>
           <span class="ctitle" data-t="arrival">Arrival &amp; departure</span>
         </div>
-        <div class="row"><span class="rlabel" data-t="checkinFrom">Check-in from</span><span class="rval">15:00</span></div>
-        <div class="row"><span class="rlabel" data-t="doorCode">Door code</span><span class="rval secret"><span class="mask"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>••••</span><span class="real" data-secret="doorCode"><span class="sval"></span><button class="copy" data-t="copy">Copy</button></span></span></div>
-        <div class="row"><span class="rlabel" data-t="checkoutBy">Check-out by</span><span class="rval">12:00</span></div>
-        <div class="cotitle" data-t="coTitle">Before you go</div>
-        <div class="colist" id="checkout"></div>
+        <div class="adtoggle" role="group" aria-label="Arrival or departure">
+          <button class="adbtn" data-ad="arrival" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-6h6v6"/></svg><span data-t="tabArrival">Arrival</span></button>
+          <button class="adbtn" data-ad="departure" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span data-t="tabDeparture">Departure</span></button>
+        </div>
+        <div class="adpane" data-ad-pane="arrival">
+          <div class="row"><span class="rlabel" data-t="checkinFrom">Check-in from</span><span class="rval">15:00</span></div>
+          <div class="row"><span class="rlabel" data-t="doorCode">Door code</span><span class="rval secret"><span class="mask"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>••••</span><span class="real" data-secret="doorCode"><span class="sval"></span><button class="copy" data-t="copy">Copy</button></span></span></div>
+        </div>
+        <div class="adpane" data-ad-pane="departure" hidden>
+          <div class="row"><span class="rlabel" data-t="checkoutBy">Check-out by</span><span class="rval">12:00</span></div>
+          <div class="cotitle" data-t="coTitle">Before you go</div>
+          <div class="colist" id="checkout"></div>
+        </div>
       </article>
 
       <div class="band reveal">

@@ -128,6 +128,14 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 /* ---- "Things to do, by season" sub-label inside Explore Valtellina ---- */
 .ttsub{margin:18px 0 8px;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 
+/* ---- arrival / departure segmented toggle ---- */
+.adtoggle{display:flex;gap:4px;background:color-mix(in srgb,var(--muted) 14%,var(--card));border-radius:999px;padding:4px;margin:2px 0 4px}
+.adbtn{flex:1;border:none;background:transparent;color:var(--muted);font-family:var(--sans);font-size:13px;font-weight:700;
+  padding:8px 12px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:.2s}
+.adbtn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8}
+.adbtn[aria-pressed="true"]{background:var(--card);color:var(--accent);box-shadow:0 3px 8px -3px rgba(0,0,0,.35)}
+.adpane[hidden]{display:none}
+
 /* ---- fancy buttons (gradient + glow + lift) ---- */
 .btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;margin-top:12px;border:none;border-radius:14px;
   padding:14px;font-family:var(--sans);font-size:14px;font-weight:700;letter-spacing:.01em;cursor:pointer;color:#fff;text-decoration:none;

@@ -9,6 +9,8 @@ export const T = {
   welcomeNote:{it:"Siamo felici di ospitarvi. Qui trovate tutto ciò che serve per sentirvi a casa.",en:"We're so glad you're here. Here's everything you need to feel at home.",es:"Nos alegra teneros aquí. Aquí está todo para que os sintáis como en casa.",fr:"Ravis de vous accueillir. Voici tout pour vous sentir chez vous.",de:"Schön, dass Sie da sind. Hier ist alles, damit Sie sich wie zu Hause fühlen."},
   sig:{it:"Con affetto, Stephanie e Julian",en:"With love, Stephanie & Julian",es:"Con cariño, Stephanie y Julian",fr:"Avec toute notre affection, Stephanie & Julian",de:"Herzlich, Stephanie & Julian"},
   arrival:{it:"Arrivo e partenza",en:"Arrival & departure",es:"Llegada y salida",fr:"Arrivée & départ",de:"Ankunft & Abreise"},
+  tabArrival:{it:"Arrivo",en:"Arrival",es:"Llegada",fr:"Arrivée",de:"Ankunft"},
+  tabDeparture:{it:"Partenza",en:"Departure",es:"Salida",fr:"Départ",de:"Abreise"},
   checkinFrom:{it:"Check-in dalle",en:"Check-in from",es:"Entrada desde",fr:"Arrivée dès",de:"Check-in ab"},
   doorCode:{it:"Codice porta",en:"Door code",es:"Código puerta",fr:"Code porte",de:"Türcode"},
   checkoutBy:{it:"Check-out entro",en:"Check-out by",es:"Salida antes de",fr:"Départ avant",de:"Check-out bis"},
