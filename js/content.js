@@ -1,6 +1,4 @@
 export const T = {
-  tpTitle:{it:"La scelta di oggi",en:"Today's pick",es:"La elección de hoy",fr:"Le choix du jour",de:"Heutiger Tipp"},
-  tpLead:{it:"Oggi faremmo così.",en:"Here's what we'd do today.",es:"Esto es lo que haríamos hoy.",fr:"Voici ce qu'on ferait aujourd'hui.",de:"Das würden wir heute machen."},
   welcome:{it:"Benvenuti",en:"Welcome",es:"Bienvenidos",fr:"Bienvenue",de:"Willkommen"},
   greetMorning:{it:"Buongiorno",en:"Good morning",es:"Buenos días",fr:"Bonjour",de:"Guten Morgen"},
   greetAfternoon:{it:"Buon pomeriggio",en:"Good afternoon",es:"Buenas tardes",fr:"Bon après-midi",de:"Guten Tag"},
@@ -50,7 +48,7 @@ export const T = {
   emText:{it:"Il 112 raggiunge ambulanza, vigili del fuoco e polizia da qualsiasi telefono.",en:"112 reaches ambulance, fire and police from any phone.",es:"El 112 conecta con ambulancia, bomberos y policía desde cualquier teléfono.",fr:"Le 112 joint l'ambulance, les pompiers et la police depuis n'importe quel téléphone.",de:"Die 112 erreicht Rettung, Feuerwehr und Polizei von jedem Telefon."},
   emServices:{it:"Numero unico emergenze",en:"Emergency services",es:"Servicios de emergencia",fr:"Services d'urgence",de:"Notdienste"},
   emPharmacy:{it:"Farmacia più vicina",en:"Nearest pharmacy",es:"Farmacia más cercana",fr:"Pharmacie la plus proche",de:"Nächste Apotheke"},
-  ttTitle:{it:"Cose da fare",en:"Things to do",es:"Qué hacer",fr:"À faire",de:"Aktivitäten"},
+  ttSub:{it:"Cose da fare, per stagione",en:"Things to do, by season",es:"Qué hacer, por temporada",fr:"À faire, par saison",de:"Aktivitäten, je Saison"},
   seasonWinter:{it:"Inverno",en:"Winter",es:"Invierno",fr:"Hiver",de:"Winter"},
   seasonSummer:{it:"Estate",en:"Summer",es:"Verano",fr:"Été",de:"Sommer"},
   seasonAll:{it:"Tutto l'anno",en:"Year-round",es:"Todo el año",fr:"Toute l'année",de:"Ganzjährig"},
@@ -103,6 +101,5 @@ export const T = {
   gbLeave:{it:"Lascia un pensiero",en:"Leave us a note",es:"Déjanos una nota",fr:"Laissez-nous un mot",de:"Hinterlassen Sie einen Gruß"},
   gbWaMsg:{it:"Ciao! Vorremmo lasciare un pensiero sul nostro soggiorno: ",en:"Hi! We'd love to leave a note about our stay: ",es:"¡Hola! Nos gustaría dejar una nota sobre nuestra estancia: ",fr:"Bonjour ! Nous aimerions laisser un mot sur notre séjour : ",de:"Hallo! Wir möchten einen Gruß zu unserem Aufenthalt hinterlassen: "},
   soTitle:{it:"A presto",en:"Come back soon",es:"Vuelve pronto",fr:"À bientôt",de:"Bis bald"},
-  soText:{it:"Grazie per essere stati con noi. Ci piacerebbe rivedervi in un'altra stagione.",en:"Thank you for staying with us. We'd love to see you back in another season.",es:"Gracias por quedaros con nosotros. Nos encantaría veros en otra estación.",fr:"Merci d'avoir séjourné chez nous. Au plaisir de vous revoir à une autre saison.",de:"Danke für Ihren Aufenthalt. Wir würden uns freuen, Sie in einer anderen Jahreszeit wiederzusehen."},
-  soCta:{it:"Scopri l'altra stagione",en:"See the other season",es:"Ver la otra estación",fr:"Voir l'autre saison",de:"Andere Jahreszeit ansehen"}
+  soText:{it:"Grazie per essere stati con noi. Ci piacerebbe rivedervi in un'altra stagione.",en:"Thank you for staying with us. We'd love to see you back in another season.",es:"Gracias por quedaros con nosotros. Nos encantaría veros en otra estación.",fr:"Merci d'avoir séjourné chez nous. Au plaisir de vous revoir à une autre saison.",de:"Danke für Ihren Aufenthalt. Wir würden uns freuen, Sie in einer anderen Jahreszeit wiederzusehen."}
 };

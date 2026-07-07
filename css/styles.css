@@ -125,12 +125,8 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
 .chip{font-size:11.5px;font-weight:600;color:var(--g);background:color-mix(in srgb,var(--g) 12%,var(--card));padding:5px 10px;border-radius:999px}
 
-/* ---- today's pick ---- */
-.pickcard{background:linear-gradient(180deg,color-mix(in srgb,var(--gold) 10%,var(--card)),var(--card));
-  border-color:color-mix(in srgb,var(--gold) 30%,var(--line))}
-.pickbody{margin-top:12px}
-.pickname{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.2;color:var(--ink)}
-.pickdesc{font-size:13.5px;color:var(--muted);line-height:1.5;margin-top:5px}
+/* ---- "Things to do, by season" sub-label inside Explore Valtellina ---- */
+.ttsub{margin:18px 0 8px;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 
 /* ---- fancy buttons (gradient + glow + lift) ---- */
 .btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;margin-top:12px;border:none;border-radius:14px;
@@ -147,7 +143,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 /* ---- media placeholders (where photos / videos go) ---- */
 .gallery{display:flex;gap:11px;overflow-x:auto;margin-top:13px;padding-bottom:4px;scrollbar-width:none}
 .gallery::-webkit-scrollbar{display:none}
-.slot{flex:0 0 132px;display:flex;flex-direction:column;gap:7px}
+.slot{flex:0 0 200px;display:flex;flex-direction:column;gap:7px}
 .frame{aspect-ratio:4/5;border-radius:14px;display:grid;place-items:center;
   border:1.5px dashed color-mix(in srgb,var(--muted) 55%,var(--card));background:color-mix(in srgb,var(--g) 5%,var(--card));color:var(--muted)}
 .frame.video{aspect-ratio:9/16;border-style:solid;border-color:color-mix(in srgb,var(--accent) 40%,var(--card));background:color-mix(in srgb,var(--accent) 7%,var(--card))}
@@ -171,12 +167,12 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .dtcar a{color:var(--accent);font-weight:600;text-decoration:none}
 
 /* ---- private (locked) details ---- */
-.privacy{display:flex;align-items:center;gap:11px;background:color-mix(in srgb,var(--accent) 7%,var(--card));
+.privacy{display:flex;align-items:center;flex-wrap:wrap;gap:11px;row-gap:10px;background:color-mix(in srgb,var(--accent) 7%,var(--card));
   border:1px solid color-mix(in srgb,var(--accent) 22%,var(--line));border-radius:15px;padding:12px 14px}
 .privacy svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:1.7;flex:none}
 .privacy .pt{flex:1;font-size:12.5px;color:var(--muted);line-height:1.4}
 .unlockinput{border:1px solid var(--line);background:var(--card);color:var(--ink);font-family:var(--sans);
-  font-size:12.5px;padding:9px 11px;border-radius:10px;width:104px;flex:none}
+  font-size:12.5px;padding:9px 11px;border-radius:10px;width:auto;flex:1 1 150px;min-width:140px}
 .unlockinput:focus{outline:2px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:1px}
 .unlockinput[aria-invalid="true"]{border-color:var(--accent)}
 .unlockbtn{border:none;background:var(--accent);color:#fff;font-family:var(--sans);font-size:12px;font-weight:700;
@@ -261,21 +257,9 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
   font-size:13px;font-weight:600;padding:10px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:.28s;z-index:20}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
-/* ---- tablet ---- */
-@media (min-width:640px) and (max-width:899px){
+/* ---- wider viewports: keep one elegant centered column (no gaps) ---- */
+@media (min-width:640px){
   .phone-flow{max-width:600px}
-  .quickbar{padding-left:0;padding-right:0}
-}
-
-/* ---- desktop widening ---- */
-@media (min-width:900px){
-  .phone-flow{max-width:840px}
-  .hero{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:center}
-  .heroText{padding-top:0}
-  .body{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
-  .body>*{min-width:0}
-  /* full-width sections span both columns */
-  .quickbar,.privacy,.note,.pickcard,.band,.sendoff,.foot{grid-column:1 / -1}
 }
 
 /* ---- night mode: button labels ----

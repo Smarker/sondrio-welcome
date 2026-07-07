@@ -177,7 +177,7 @@ winter, April through October is summer), and guests can override it with the
 Winter/Summer toggle buttons. Activities tagged for the other season are hidden;
 activities tagged "all" (year-round) always show.
 
-## Time of day, today's pick, checkout checklist, and guestbook
+## Time of day, checkout checklist, and guestbook
 
 **Day/night styling.** The page reads Sondrio's local time (`Europe/Rome`, via
 `js/timeofday.js`, independent of the guest's own device timezone), sets
@@ -187,13 +187,6 @@ early evening, night covers 21:00 to 06:00). The same script swaps in a localize
 greeting (morning/afternoon/evening, from the `greetMorning`/`greetAfternoon`/
 `greetEvening` keys in `js/content.js`) and shows a live clock, refreshed every
 minute. No configuration needed.
-
-**Today's pick.** `js/picks.js` rotates through a small `PICKS` pool, one pick per
-calendar day (by UTC date, so the pick changes at the same moment for every guest
-regardless of their timezone). Each pool entry is just a pair of existing `T` keys
-(a name and a description) already defined in `js/content.js`. To change what can
-appear, edit the `PICKS` array in `js/picks.js`, either reordering/removing entries
-or adding new ones (add the corresponding keys to `T` first).
 
 **Checkout checklist.** The departure steps are a tappable checklist (bins out,
 dishwasher on, keys in the lockbox). Ticked state is saved per device in
