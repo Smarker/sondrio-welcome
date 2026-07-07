@@ -1,4 +1,6 @@
 export const T = {
+  tpTitle:{it:"La scelta di oggi",en:"Today's pick",es:"La elección de hoy",fr:"Le choix du jour",de:"Heutiger Tipp"},
+  tpLead:{it:"Oggi faremmo così.",en:"Here's what we'd do today.",es:"Esto es lo que haríamos hoy.",fr:"Voici ce qu'on ferait aujourd'hui.",de:"Das würden wir heute machen."},
   welcome:{it:"Benvenuti",en:"Welcome",es:"Bienvenidos",fr:"Bienvenue",de:"Willkommen"},
   greetMorning:{it:"Buongiorno",en:"Good morning",es:"Buenos días",fr:"Bonjour",de:"Guten Morgen"},
   greetAfternoon:{it:"Buon pomeriggio",en:"Good afternoon",es:"Buenas tardes",fr:"Bon après-midi",de:"Guten Tag"},

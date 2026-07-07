@@ -125,6 +125,13 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
 .chip{font-size:11.5px;font-weight:600;color:var(--g);background:color-mix(in srgb,var(--g) 12%,var(--card));padding:5px 10px;border-radius:999px}
 
+/* ---- today's pick ---- */
+.pickcard{background:linear-gradient(180deg,color-mix(in srgb,var(--gold) 10%,var(--card)),var(--card));
+  border-color:color-mix(in srgb,var(--gold) 30%,var(--line))}
+.pickbody{margin-top:12px}
+.pickname{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.2;color:var(--ink)}
+.pickdesc{font-size:13.5px;color:var(--muted);line-height:1.5;margin-top:5px}
+
 /* ---- fancy buttons (gradient + glow + lift) ---- */
 .btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;margin-top:12px;border:none;border-radius:14px;
   padding:14px;font-family:var(--sans);font-size:14px;font-weight:700;letter-spacing:.01em;cursor:pointer;color:#fff;text-decoration:none;
