@@ -218,4 +218,17 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
   .hero,.privacy,.note,.band{grid-column:1 / -1}
 }
 
+/* ---- night mode: button labels ----
+   Night --accent/--g are lightened for text-on-card contrast, which leaves the
+   white button labels/icons below the 3:1 floor on the .btn.red/.btn.green/
+   .directions gradients. Swap to dark (night --bg) labels/icons for these
+   buttons only — keeps the existing gradient/lift look, doesn't touch
+   --accent/--g (so text-on-card contrast is unaffected). */
+html[data-tod="night"] .btn.red,
+html[data-tod="night"] .btn.green,
+html[data-tod="night"] .directions{color:var(--bg)}
+html[data-tod="night"] .btn.red svg,
+html[data-tod="night"] .btn.green svg,
+html[data-tod="night"] .directions svg{stroke:var(--bg)}
+
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
