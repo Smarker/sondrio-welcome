@@ -57,7 +57,7 @@ function initI18n(){
 
   const io = new IntersectionObserver((ents) => {
     ents.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold:.12 });
-  document.querySelectorAll('.reveal').forEach((el,i) => { el.style.transitionDelay=(i*55)+'ms'; io.observe(el); });
+  }, { threshold:0, rootMargin:'0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 }
 if (typeof document !== 'undefined') initI18n();
