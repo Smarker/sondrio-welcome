@@ -231,4 +231,11 @@ html[data-tod="night"] .btn.red svg,
 html[data-tod="night"] .btn.green svg,
 html[data-tod="night"] .directions svg{stroke:var(--bg)}
 
+/* Same problem, same fix: these controls also put white text on solid
+   var(--accent). At night that background is the lightened coral, so
+   white drops to ~2.48:1 — swap to dark (night --bg) labels here too. */
+html[data-tod="night"] .lang[aria-pressed="true"],
+html[data-tod="night"] .unlockbtn{color:var(--bg)}
+html[data-tod="night"] .copy:hover{color:var(--bg)}
+
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
