@@ -16,12 +16,12 @@
 /* ---- time-of-day palettes (set via html[data-tod] from js/timeofday.js) ---- */
 html{transition:background-color .8s var(--ease)}
 html[data-tod="golden"]{
-  --bg:#F4E6CE; --card:#FBEFDA; --line:#E8D3AE; --muted:#8A7350;
+  --bg:#F4E6CE; --card:#FBEFDA; --line:#E8D3AE; --muted:#76603E; --gold:#815615;
   --sky1:#F3D7A0; --sky2:#F4E6CE; --m1:#D9B06A; --m2:#7C7A45; --m3:#A85A2E; --sun:#E58B3C;
 }
 html[data-tod="night"]{
   --bg:#1C2230; --ink:#EDE7DA; --card:#252C3C; --line:#39435A; --muted:#9AA6BE;
-  --accent:#D9705F; --g:#7FA283; --gold:#E0B15E;
+  --accent:#E58E76; --g:#7FA283; --gold:#E0B15E;
   --sky1:#2A3348; --sky2:#1C2230; --m1:#3C4A66; --m2:#4B5D50; --m3:#2E3A52; --sun:#CBD5E8;
 }
 /* sun becomes a soft moon at night */
