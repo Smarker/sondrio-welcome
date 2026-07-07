@@ -96,5 +96,10 @@ export const T = {
   eat2:{it:"Trattoria valtellinese classica, pizzoccheri e non solo.",en:"Classic Valtellina trattoria, pizzoccheri and more.",es:"Trattoria clásica de Valtellina, pizzoccheri y más.",fr:"Trattoria valtellinaise classique, pizzoccheri et plus.",de:"Klassische Valtellina-Trattoria, Pizzoccheri und mehr."},
   eat3:{it:"Pizza al forno a legna, amata dai locali.",en:"Wood-fired pizza, a local favourite.",es:"Pizza al horno de leña, favorita local.",fr:"Pizza au feu de bois, un incontournable local.",de:"Holzofenpizza, ein lokaler Favorit."},
   accessPhrase:{it:"Frase d'accesso",en:"Access phrase",es:"Frase de acceso",fr:"Phrase d'acces",de:"Zugangsphrase"},
-  tryAgain:{it:"Riprova",en:"Try again",es:"Inténtalo de nuevo",fr:"Réessayez",de:"Erneut versuchen"}
+  tryAgain:{it:"Riprova",en:"Try again",es:"Inténtalo de nuevo",fr:"Réessayez",de:"Erneut versuchen"},
+  gbTitle:{it:"Diario degli ospiti",en:"Guestbook",es:"Libro de visitas",fr:"Livre d'or",de:"Gästebuch"},
+  gbText:{it:"Qualche pensiero di chi è stato qui prima di voi.",en:"A few words from guests who came before you.",es:"Unas palabras de quienes estuvieron antes que vosotros.",fr:"Quelques mots de voyageurs passés avant vous.",de:"Ein paar Worte von Gästen vor Ihnen."},
+  gbEmpty:{it:"Sarete i primi a lasciare un pensiero.",en:"Be the first to leave a note.",es:"Sé el primero en dejar una nota.",fr:"Soyez les premiers à laisser un mot.",de:"Hinterlassen Sie den ersten Gruß."},
+  gbLeave:{it:"Lascia un pensiero",en:"Leave us a note",es:"Déjanos una nota",fr:"Laissez-nous un mot",de:"Hinterlassen Sie einen Gruß"},
+  gbWaMsg:{it:"Ciao! Vorremmo lasciare un pensiero sul nostro soggiorno: ",en:"Hi! We'd love to leave a note about our stay: ",es:"¡Hola! Nos gustaría dejar una nota sobre nuestra estancia: ",fr:"Bonjour ! Nous aimerions laisser un mot sur notre séjour : ",de:"Hallo! Wir möchten einen Gruß zu unserem Aufenthalt hinterlassen: "}
 };

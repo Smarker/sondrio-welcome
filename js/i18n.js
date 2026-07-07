@@ -5,6 +5,7 @@ import { initTimeOfDay } from './timeofday.js';
 import { initQuickAccess } from './quickaccess.js';
 import { initCheckout } from './checkout.js';
 import { initPicks } from './picks.js';
+import { initGuestbook } from './guestbook.js';
 const AVAILABLE = ['it','en','es','fr','de'];
 
 export function resolveLanguage(navLang, available = AVAILABLE){
@@ -41,6 +42,7 @@ function initI18n(){
   initQuickAccess();
   initCheckout();
   initPicks();
+  initGuestbook();
   const v = document.querySelector('.herovideo');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const saveData = navigator.connection && navigator.connection.saveData;
