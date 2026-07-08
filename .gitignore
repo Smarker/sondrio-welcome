@@ -1,2 +1,5 @@
 .superpowers/
 tools/secrets.local.json
+
+# full-res photo originals (web-optimized copies live in media/)
+media/_originals/

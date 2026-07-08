@@ -156,6 +156,8 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .frame.video svg{fill:var(--accent);stroke:none;width:30px;height:30px}
 .slotlabel{font-size:12px;font-weight:600;color:var(--ink);text-align:center}
 .slotsub{font-size:10.5px;color:var(--muted);text-align:center;margin-top:-4px}
+/* real photo in a gallery slot (replaces the .frame placeholder) */
+.slot .shot{width:100%;height:auto;aspect-ratio:4/5;border-radius:14px;display:block;border:1px solid var(--line)}
 
 /* ---- day-trip cards (photo + what-it-is + time) ---- */
 .trips{display:flex;gap:12px;overflow-x:auto;margin-top:13px;padding-bottom:4px;scrollbar-width:none}
@@ -204,6 +206,8 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 /* ---- full-bleed photo band + host portrait ---- */
 .band{border-radius:18px;aspect-ratio:16/10;display:grid;place-items:center;gap:7px;color:var(--muted);
   border:1.5px dashed color-mix(in srgb,var(--muted) 55%,var(--card));background:color-mix(in srgb,var(--gold) 6%,var(--card))}
+/* real photo band (replaces a .band placeholder) */
+.bandshot{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:18px;display:block;border:1px solid var(--line)}
 .band svg{width:30px;height:30px;stroke:currentColor;fill:none;stroke-width:1.5}
 .band .cap{font-size:12px;font-weight:600;color:var(--ink)}
 .band .sub{font-size:10.5px;margin-top:-4px}
