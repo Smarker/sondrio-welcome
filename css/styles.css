@@ -148,7 +148,11 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 /* ---- media placeholders (where photos / videos go) ---- */
 .gallery{display:flex;align-items:flex-start;gap:11px;overflow-x:auto;margin-top:13px;padding-bottom:4px;scrollbar-width:none}
 .gallery::-webkit-scrollbar{display:none}
-.slot{flex:0 0 200px;display:flex;flex-direction:column;gap:7px}
+.slot{position:relative;flex:0 0 200px;display:flex;flex-direction:column;gap:7px}
+.slotbadge{position:absolute;top:8px;left:8px;z-index:1;display:inline-flex;align-items:center;
+  font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:4px 9px;border-radius:999px;
+  color:#fff;background:color-mix(in srgb,var(--ink) 62%,transparent);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.slotbadge.gold{background:color-mix(in srgb,var(--gold) 82%,#3a2400)}
 .frame{aspect-ratio:4/5;border-radius:14px;display:grid;place-items:center;
   border:1.5px dashed color-mix(in srgb,var(--muted) 55%,var(--card));background:color-mix(in srgb,var(--g) 5%,var(--card));color:var(--muted)}
 .frame.video{aspect-ratio:4/5;border-style:solid;border-color:color-mix(in srgb,var(--accent) 40%,var(--card));background:color-mix(in srgb,var(--accent) 7%,var(--card))}
@@ -273,7 +277,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 
 /* ---- wider viewports: keep one elegant centered column (no gaps) ---- */
 @media (min-width:640px){
-  .phone-flow{max-width:600px}
+  .phone-flow{max-width:720px}
 }
 
 /* ---- night mode: button labels ----
