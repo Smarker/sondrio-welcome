@@ -153,6 +153,11 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
   font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:4px 9px;border-radius:999px;
   color:#fff;background:color-mix(in srgb,var(--ink) 62%,transparent);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .slotbadge.gold{background:color-mix(in srgb,var(--gold) 82%,#3a2400)}
+/* "at a glance" spec strip (sleeps / beds / bath) */
+.specs{display:flex;flex-wrap:wrap;gap:8px;margin:13px 0 2px}
+.spec{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--ink);
+  background:color-mix(in srgb,var(--g) 8%,var(--card));border:1px solid var(--line);padding:7px 11px;border-radius:10px}
+.spec svg{width:16px;height:16px;stroke:var(--g);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .frame{aspect-ratio:4/5;border-radius:14px;display:grid;place-items:center;
   border:1.5px dashed color-mix(in srgb,var(--muted) 55%,var(--card));background:color-mix(in srgb,var(--g) 5%,var(--card));color:var(--muted)}
 .frame.video{aspect-ratio:4/5;border-style:solid;border-color:color-mix(in srgb,var(--accent) 40%,var(--card));background:color-mix(in srgb,var(--accent) 7%,var(--card))}
