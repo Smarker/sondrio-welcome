@@ -117,6 +117,16 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .ptext{font-size:14px;line-height:1.55;color:var(--muted);margin:2px 0 0}
 .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
 .chip{font-size:11.5px;font-weight:600;color:var(--g);background:color-mix(in srgb,var(--g) 12%,var(--card));padding:5px 10px;border-radius:999px}
+/* included: EV standout + grouped everyday amenities */
+.evfeature{display:flex;align-items:center;gap:12px;margin:2px 0 16px;padding:12px 14px;border-radius:14px;
+  background:color-mix(in srgb,var(--g) 9%,var(--card));border:1px solid color-mix(in srgb,var(--g) 26%,var(--line))}
+.evfeature svg{width:23px;height:23px;stroke:var(--g);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.evname{font-weight:700;font-size:14px;color:var(--ink)}
+.evsub{font-size:12.5px;color:var(--muted);margin-top:1px}
+.amgroup{margin-top:14px}
+.amglabel{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.amglabel svg{width:14px;height:14px;stroke:var(--g);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.amgroup .chips{margin-top:0}
 
 /* ---- "Things to do, by season" sub-label inside Explore Valtellina ---- */
 .ttrow{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin:18px 0 10px}
@@ -148,11 +158,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 /* ---- media placeholders (where photos / videos go) ---- */
 .gallery{display:flex;align-items:flex-start;gap:11px;overflow-x:auto;margin-top:13px;padding-bottom:4px;scrollbar-width:none}
 .gallery::-webkit-scrollbar{display:none}
-.slot{position:relative;flex:0 0 200px;display:flex;flex-direction:column;gap:7px}
-.slotbadge{position:absolute;top:8px;left:8px;z-index:1;display:inline-flex;align-items:center;
-  font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:4px 9px;border-radius:999px;
-  color:#fff;background:color-mix(in srgb,var(--ink) 62%,transparent);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
-.slotbadge.gold{background:color-mix(in srgb,var(--gold) 82%,#3a2400)}
+.slot{flex:0 0 200px;display:flex;flex-direction:column;gap:7px}
 /* "at a glance" spec strip (sleeps / beds / bath) */
 .specs{display:flex;flex-wrap:wrap;gap:8px;margin:13px 0 2px}
 .spec{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--ink);
