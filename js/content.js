@@ -85,7 +85,7 @@ export const T = {
   pBathroom:{it:"Bagno",en:"Bathroom",es:"Baño",fr:"Salle de bain",de:"Badezimmer"},
   pSteam:{it:"Doccia a vapore",en:"Steam shower",es:"Ducha de vapor",fr:"Douche vapeur",de:"Dampfdusche"},
   pOffice:{it:"Studio",en:"Office",es:"Despacho",fr:"Bureau",de:"Arbeitszimmer"},
-  badgeSofaBed:{it:"Divano letto",en:"Sofa bed",es:"Sofá cama",fr:"Canapé-lit",de:"Schlafsofa"},
+  pOfficeSofa:{it:"Studio · divano letto",en:"Office · sofa bed",es:"Despacho · sofá cama",fr:"Bureau · canapé-lit",de:"Arbeitszimmer · Schlafsofa"},
   specSleeps:{it:"4 posti letto",en:"Sleeps 4",es:"Para 4 personas",fr:"4 couchages",de:"4 Schlafplätze"},
   specBeds:{it:"Matrimoniale + divano letto",en:"Queen + sofa bed",es:"Cama de matrimonio + sofá cama",fr:"Lit double + canapé-lit",de:"Doppelbett + Schlafsofa"},
   specBath:{it:"1 bagno, doccia a vapore",en:"1 bathroom, steam shower",es:"1 baño, ducha de vapor",fr:"1 salle de bain, douche vapeur",de:"1 Bad, Dampfdusche"},
