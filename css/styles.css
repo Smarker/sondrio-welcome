@@ -174,19 +174,26 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 /* real photo in a gallery slot (replaces the .frame placeholder) */
 .slot .shot{width:100%;height:auto;aspect-ratio:4/5;border-radius:14px;display:block;border:1px solid var(--line)}
 
-/* ---- "A peek inside" mosaic gallery (editorial photo collage) ---- */
-/* mobile + base: swipe strip with the room caption overlaid on each photo */
-.mosaic .slot{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
-.mosaic .slot .shot{width:100%;height:100%;border:none;border-radius:0}
-.mosaic .slotlabel{position:absolute;left:0;right:0;bottom:0;margin:0;padding:22px 12px 9px;
-  text-align:left;color:#fff;font-weight:700;font-size:12.5px;letter-spacing:.01em;
-  background:linear-gradient(to top,color-mix(in srgb,#000 62%,transparent),color-mix(in srgb,#000 8%,transparent) 55%,transparent)}
-/* wide screens: asymmetric grid, Bedroom as the large feature tile */
+/* ---- "A peek inside" collage: key rooms big, minor rooms small, captions on photos ---- */
+.gallery.mosaic{display:grid;gap:8px;margin-top:13px;overflow:visible;padding-bottom:0;
+  grid-template-columns:1fr 1fr;grid-auto-rows:118px;
+  grid-template-areas:"bed bed" "bed bed" "kit kit" "kit kit" "off off" "off off" "liv liv" "liv liv" "sof bath" "steam laundry"}
+.mosaic .slot{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line);
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.mosaic .slot .shot{width:100%;height:100%;object-fit:cover;border:none;border-radius:0;display:block}
+.mosaic .slotlabel{position:absolute;left:0;right:0;bottom:0;margin:0;padding:20px 11px 8px;z-index:1;text-align:left;
+  color:#fff;font-weight:700;font-size:12px;letter-spacing:.01em;text-shadow:0 1px 2px rgba(0,0,0,.35);
+  background:linear-gradient(to top,color-mix(in srgb,#000 58%,transparent),transparent)}
 @media (min-width:720px){
-  .gallery.mosaic{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:150px;gap:10px;overflow:visible;padding-bottom:0}
-  .mosaic .slot{flex:none}
-  .mosaic .slot .shot{aspect-ratio:auto}
-  .mosaic .slot:nth-child(1){grid-column:span 2;grid-row:span 2}
+  .gallery.mosaic{gap:10px;grid-template-columns:repeat(4,1fr);grid-auto-rows:128px;
+    grid-template-areas:
+      "bed bed kit kit"
+      "bed bed kit kit"
+      "off off liv liv"
+      "off off liv liv"
+      "sof bath steam laundry"}
+  .mosaic .slotlabel{font-size:12.5px}
+  .mosaic .slot:hover{transform:scale(1.02);box-shadow:0 14px 30px -14px color-mix(in srgb,var(--ink) 42%,transparent);z-index:2}
 }
 
 /* ---- day-trip cards (photo + what-it-is + time) ---- */

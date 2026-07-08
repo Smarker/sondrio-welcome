@@ -87,7 +87,7 @@ export const T = {
   pLiving:{it:"Soggiorno",en:"Living room",es:"Salón",fr:"Salon",de:"Wohnzimmer"},
   pKitchen:{it:"Cucina",en:"Kitchen",es:"Cocina",fr:"Cuisine",de:"Küche"},
   pBathroom:{it:"Bagno",en:"Bathroom",es:"Baño",fr:"Salle de bain",de:"Badezimmer"},
-  pBathSteam:{it:"Bagno · doccia a vapore",en:"Bathroom · steam shower",es:"Baño · ducha de vapor",fr:"Salle de bain · douche vapeur",de:"Bad · Dampfdusche"},
+  pSteam:{it:"Doccia a vapore",en:"Steam shower",es:"Ducha de vapor",fr:"Douche vapeur",de:"Dampfdusche"},
   pOffice:{it:"Studio",en:"Office",es:"Despacho",fr:"Bureau",de:"Arbeitszimmer"},
   pOfficeSofa:{it:"Studio · divano letto",en:"Office · sofa bed",es:"Despacho · sofá cama",fr:"Bureau · canapé-lit",de:"Arbeitszimmer · Schlafsofa"},
   specSleeps:{it:"4 posti letto",en:"Sleeps 4",es:"Para 4 personas",fr:"4 couchages",de:"4 Schlafplätze"},
