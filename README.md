@@ -134,6 +134,8 @@ only the encrypted `data/secrets.enc.json` is ever committed.
 Before pointing a guest at this site, replace the following placeholders in `index.html`
 (and set the real secrets as described above):
 
+- [ ] Check-in and check-out dates in `data/stay.json` (see **Guest journey navigation**
+      below).
 - [ ] Door code and Wi-Fi password and network name (secrets flow above; network name
       `CasaSondrio` in `index.html` is a placeholder, edit the `.rval` text directly).
 - [ ] The unlock passphrase itself, chosen when running `node tools/encrypt.mjs`.
@@ -160,6 +162,42 @@ Before pointing a guest at this site, replace the following placeholders in `ind
       WhatsApp `href` (digits only, no `+`).
 - [ ] Curate `data/guestbook.json` with real guest notes (or leave `[]` for the graceful
       empty state).
+
+## Guest journey navigation
+
+The site adapts to where a guest is in their trip using check-in and check-out
+dates in `data/stay.json`:
+
+```json
+{
+  "checkIn": "2026-07-15",
+  "checkOut": "2026-07-20"
+}
+```
+
+**Update these dates before each booking.** Dates use Sondrio local time
+(`Europe/Rome`). The journey module (`js/journey.js`) picks a phase
+automatically:
+
+| Phase | When |
+|-------|------|
+| **Discover** | Before check-in day |
+| **Getting here** | Check-in day |
+| **Your stay** | Between check-in and checkout |
+| **Checkout** | Checkout day |
+| **After** | After checkout (guestbook focus, nav shows Discover) |
+
+The active phase highlights relevant cards (via CSS reordering), updates the
+hero subtitle, and shows the utility quick bar (Door / Wi-Fi / Directions) on
+arrival and checkout days only. Guests can tap any phase pill to override; the
+override is stored in `sessionStorage` under `sw-journey` and clears when the
+date-based phase changes.
+
+You can also deep-link a phase in Airbnb messages, for example
+`https://your-site/?view=arrive` or `#stay`.
+
+If `stay.json` is missing or invalid, the site defaults to the **Your stay**
+phase so it remains usable between guests.
 
 ## Language behavior
 

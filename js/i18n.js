@@ -6,6 +6,8 @@ import { initQuickAccess } from './quickaccess.js';
 import { initCheckout } from './checkout.js';
 import { initArrival } from './arrival.js';
 import { initGuestbook } from './guestbook.js';
+import { initJourney, fetchStayConfig } from './journey.js';
+import { initSections } from './sections.js';
 const AVAILABLE = ['it','en','es','fr','de'];
 
 export function resolveLanguage(navLang, available = AVAILABLE){
@@ -43,6 +45,8 @@ function initI18n(){
   initCheckout();
   initArrival();
   initGuestbook();
+  initSections();
+  fetchStayConfig().then(stay => initJourney(stay));
   const v = document.querySelector('.herovideo');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const saveData = navigator.connection && navigator.connection.saveData;

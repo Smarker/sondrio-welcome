@@ -14,7 +14,7 @@
   --ease:cubic-bezier(.2,.7,.2,1); --dur:.45s; --rise:16px;
 }
 /* ---- time-of-day palettes (set via html[data-tod] from js/timeofday.js) ---- */
-html{transition:background-color .8s var(--ease)}
+html{transition:background-color .8s var(--ease);scroll-behavior:smooth}
 html[data-tod="golden"]{
   --bg:#F4E6CE; --card:#FBEFDA; --line:#E8D3AE; --muted:#76603E; --gold:#815615;
   --sky1:#F3D7A0; --sky2:#F4E6CE; --m1:#D9B06A; --m2:#7C7A45; --m3:#A85A2E; --sun:#E58B3C;
@@ -66,6 +66,29 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .loc{margin-top:12px;font-size:12.5px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:7px}
 .loc svg{width:14px;height:14px;stroke:var(--g);fill:none;stroke-width:1.7}
 
+/* ---- journey phase navigation ---- */
+.journeybar{display:flex;gap:6px;padding:8px 16px 4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.journeybar::-webkit-scrollbar{display:none}
+.jpill{flex:1 0 auto;min-width:0;border:1px solid var(--line);background:var(--card);color:var(--muted);
+  font-family:var(--sans);font-size:11.5px;font-weight:700;padding:9px 10px;border-radius:999px;cursor:pointer;
+  transition:transform .18s var(--ease),background .18s,border-color .18s,color .18s;white-space:nowrap}
+.jpill:hover{color:var(--ink);border-color:color-mix(in srgb,var(--accent) 35%,var(--line))}
+.jpill[aria-pressed="true"]{background:var(--g);color:#fff;border-color:var(--g)}
+.journeytip{display:flex;align-items:center;gap:8px;margin:0 16px;padding:10px 12px;
+  background:color-mix(in srgb,var(--g) 10%,var(--card));border:1px solid var(--line);border-radius:14px;font-size:13px;color:var(--ink)}
+.journeytip[hidden]{display:none!important}
+.journeytip-btn{flex:1;border:none;background:transparent;padding:0;margin:0;font:inherit;color:inherit;
+  text-align:left;cursor:pointer;line-height:1.45}
+.journeytip-x{flex:none;border:none;background:transparent;color:var(--muted);font-size:18px;line-height:1;
+  padding:2px 4px;cursor:pointer;border-radius:6px}
+.journeytip-x:hover{color:var(--ink)}
+
+/* quick-access pills: show on arrival and checkout phases only */
+html[data-journey="welcome"] .quickbar,
+html[data-journey="stay"] .quickbar{display:none}
+html[data-journey="arrive"] .quickbar,
+html[data-journey="leave"] .quickbar{display:flex}
+
 /* ---- quick-access pills ---- */
 .quickbar{display:flex;gap:9px;padding:6px 16px 2px;flex-wrap:wrap}
 .qpill{flex:1 1 0;min-width:96px;display:inline-flex;align-items:center;justify-content:center;gap:7px;
@@ -76,12 +99,12 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .qpill:active{transform:translateY(0)}
 
 /* ---- welcome note ---- */
-.note{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:17px 18px}
+.note{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:17px 18px;scroll-margin-top:120px}
 .note p{margin:0;font-family:var(--serif);font-size:16px;line-height:1.5;font-style:italic;color:var(--ink)}
 .note .sig{margin-top:9px;font-style:normal;font-family:var(--sans);font-size:12.5px;color:var(--muted);font-weight:600}
 
 /* ---- generic card ---- */
-.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 18px 16px;scroll-margin-top:64px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 18px 16px;scroll-margin-top:120px}
 .chead{display:flex;align-items:center;flex-wrap:wrap;gap:11px;row-gap:9px;margin-bottom:12px}
 .chead .adtoggle{margin:0 0 0 auto}
 .cicon{width:38px;height:38px;border-radius:11px;flex:none;display:grid;place-items:center;background:color-mix(in srgb,var(--tint) 15%,var(--card))}
@@ -178,9 +201,9 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .gallery.mosaic{display:grid;gap:8px;margin-top:13px;overflow:visible;padding-bottom:0;
   grid-template-columns:1fr 1fr;grid-auto-rows:118px;
   grid-template-areas:"bed bed" "bed bed" "kit kit" "kit kit" "off off" "off off" "liv liv" "liv liv" "sof bath" "steam laundry"}
-.mosaic .slot{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line);
-  transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
-.mosaic .slot .shot{width:100%;height:100%;object-fit:cover;border:none;border-radius:0;display:block}
+.mosaic .slot{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.mosaic .slot .shot{width:100%;height:100%;object-fit:cover;border:none;border-radius:0;display:block;
+  transition:transform .35s var(--ease)}
 .mosaic .slotlabel{position:absolute;left:0;right:0;bottom:0;margin:0;padding:20px 11px 8px;z-index:1;text-align:left;
   color:#fff;font-weight:700;font-size:12px;letter-spacing:.01em;text-shadow:0 1px 2px rgba(0,0,0,.35);
   background:linear-gradient(to top,color-mix(in srgb,#000 58%,transparent),transparent)}
@@ -193,7 +216,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
       "off off liv liv"
       "sof bath steam laundry"}
   .mosaic .slotlabel{font-size:12.5px}
-  .mosaic .slot:hover{transform:scale(1.02);box-shadow:0 14px 30px -14px color-mix(in srgb,var(--ink) 42%,transparent);z-index:2}
+  .mosaic .slot:hover .shot{transform:scale(1.06)}
 }
 
 /* ---- day-trip cards (photo + what-it-is + time) ---- */
@@ -308,6 +331,20 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
   font-size:13px;font-weight:600;padding:10px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:.28s;z-index:20}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
+/* ---- floating "Sections" jump menu ---- */
+.sectionsnav{position:fixed;right:16px;z-index:30;bottom:calc(18px + env(safe-area-inset-bottom));
+  display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.sectionsbtn{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:var(--sans);
+  background:var(--accent);color:#fff;font-size:13px;font-weight:700;letter-spacing:.02em;padding:11px 16px;border-radius:999px;
+  box-shadow:0 10px 24px -8px color-mix(in srgb,var(--ink) 55%,transparent);transition:transform .18s var(--ease),filter .18s}
+.sectionsbtn svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round}
+.sectionsbtn:hover{transform:translateY(-1px);filter:brightness(1.05)}
+.sectionsmenu{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:6px;
+  min-width:200px;max-height:60vh;overflow:auto;box-shadow:0 18px 40px -14px color-mix(in srgb,var(--ink) 55%,transparent)}
+.sectionsmenu[hidden]{display:none}
+.sectionsmenu a{display:block;padding:10px 13px;border-radius:10px;color:var(--ink);text-decoration:none;font-size:13.5px;font-weight:600;transition:background .15s}
+.sectionsmenu a:hover{background:color-mix(in srgb,var(--accent) 10%,var(--card))}
+
 /* ---- wider viewports: keep one elegant centered column (no gaps) ---- */
 @media (min-width:640px){
   .phone-flow{max-width:720px}
@@ -328,7 +365,23 @@ html[data-tod="night"] .btn.green svg{stroke:var(--bg)}
    var(--accent). At night that background is the lightened coral, so
    white drops to ~2.48:1 — swap to dark (night --bg) labels here too. */
 html[data-tod="night"] .lang[aria-pressed="true"],
-html[data-tod="night"] .unlockbtn{color:var(--bg)}
+html[data-tod="night"] .unlockbtn,
+html[data-tod="night"] .sectionsbtn{color:var(--bg)}
+html[data-tod="night"] .sectionsbtn svg{stroke:var(--bg)}
 html[data-tod="night"] .copy:hover{color:var(--bg)}
+html[data-tod="night"] .jpill[aria-pressed="true"]{color:var(--bg)}
 
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+/* ---- journey phase card ordering + emphasis ---- */
+.body > [data-journey]{order:0}
+html[data-journey="welcome"] [data-journey~="welcome"]{order:-30}
+html[data-journey="arrive"] [data-journey~="arrive"]{order:-30}
+html[data-journey="stay"] [data-journey~="stay"]{order:-30}
+html[data-journey="leave"] [data-journey~="leave"]{order:-30}
+html[data-journey="welcome"] .card[data-journey~="welcome"],
+html[data-journey="arrive"] .card[data-journey~="arrive"],
+html[data-journey="stay"] .card[data-journey~="stay"],
+html[data-journey="leave"] .card[data-journey~="leave"]{
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--g) 22%,var(--line)),0 8px 22px -12px color-mix(in srgb,var(--g) 16%,transparent)}
+.privacy.pre-arrival{opacity:.92}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
