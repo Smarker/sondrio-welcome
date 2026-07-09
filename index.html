@@ -39,10 +39,10 @@
         <div class="timeline"><span class="greeting" data-greeting data-t="greetEvening">Good evening</span><span class="clock" data-clock aria-hidden="true"></span></div>
         <div class="htitle">Sondrio Stay</div>
         <p class="hsub" data-hero-sub data-t="heroSub">Everything you need for a restful stay in Sondrio.</p>
-        <div class="loc">
+        <a class="loc" href="#" data-quick-directions>
           <svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
           Sondrio · Valtellina, Italy
-        </div>
+        </a>
       </div>
     </section>
 
@@ -58,21 +58,8 @@
       <button type="button" class="journeytip-x" data-tip-dismiss aria-label="Dismiss">&times;</button>
     </p>
 
-    <nav class="quickbar reveal" aria-label="Quick access">
-      <button class="qpill" data-quick="door"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span data-t="doorCode">Door code</span></button>
-      <button class="qpill" data-quick="wifi"><svg viewBox="0 0 24 24"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/></svg><span data-t="wifi">Wi-Fi</span></button>
-      <a class="qpill" href="#" data-quick-directions><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="getDirections">Directions</span></a>
-    </nav>
-
     <div class="body">
-      <div class="privacy reveal" data-journey="arrive">
-        <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
-        <span class="pt" data-t="privacyText">Your check-in code and Wi-Fi are private to guests.</span>
-        <input id="unlockInput" class="unlockinput" type="text" inputmode="text" autocomplete="off" placeholder="Access phrase" data-t-placeholder="accessPhrase" aria-label="Access phrase">
-        <button class="unlockbtn" id="unlockBtn" data-t="unlock">Unlock</button>
-      </div>
-
-      <div class="note reveal" data-journey="welcome arrive stay">
+      <div class="note reveal" data-journey="welcome arrive stay" id="welcome-note">
         <p data-t="welcomeNote">We're so glad you're here. Here's everything you need to feel at home.</p>
         <div class="sig" data-t="sig">With love, Stephanie &amp; Julian</div>
       </div>
@@ -88,7 +75,7 @@
         </div>
         <div class="adpane" data-ad-pane="arrival">
           <div class="row"><span class="rlabel" data-t="checkinFrom">Check-in from</span><span class="rval">15:00</span></div>
-          <div class="row"><span class="rlabel" data-t="doorCode">Door code</span><span class="rval secret"><span class="mask"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>••••</span><span class="real" data-secret="doorCode"><span class="sval"></span><button class="copy" data-t="copy">Copy</button></span></span></div>
+          <a class="btn green" href="#" data-quick-directions><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="getDirections">Get directions</span></a>
         </div>
         <div class="adpane" data-ad-pane="departure" hidden>
           <div class="row"><span class="rlabel" data-t="checkoutBy">Check-out by</span><span class="rval">12:00</span></div>
@@ -98,15 +85,6 @@
       </article>
 
       <img class="bandshot reveal" data-journey="welcome stay" src="media/living_room_light.jpg" alt="The living room" loading="lazy">
-
-      <article class="card reveal" id="card-wifi" data-journey="arrive stay leave">
-        <div class="chead">
-          <span class="cicon" style="--tint:var(--accent)"><svg viewBox="0 0 24 24"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/></svg></span>
-          <span class="ctitle" data-t="wifi">Wi-Fi</span>
-        </div>
-        <div class="row"><span class="rlabel" data-t="network">Network</span><span class="rval">CasaSondrio<button class="copy" data-copy="CasaSondrio" data-t="copy">Copy</button></span></div>
-        <div class="row"><span class="rlabel" data-t="password">Password</span><span class="rval secret"><span class="mask"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>••••••</span><span class="real" data-secret="wifiPassword"><span class="sval"></span><button class="copy" data-t="copy">Copy</button></span></span></div>
-      </article>
 
       <article class="card reveal" id="card-amenities" data-journey="stay">
         <div class="chead">
@@ -131,7 +109,7 @@
         </div>
       </article>
 
-      <article class="card reveal" id="card-peek" data-journey="welcome stay">
+      <article class="card peekcard reveal" id="card-peek" data-journey="welcome stay">
         <div class="chead">
           <span class="cicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></span>
           <span class="ctitle" data-t="peekTitle">A peek inside</span>
@@ -281,7 +259,7 @@
         </div>
       </article>
 
-      <article class="card reveal" id="card-guestbook" data-journey="welcome after">
+      <article class="card reveal" id="card-guestbook" data-journey="welcome after leave">
         <div class="chead">
           <span class="cicon" style="--tint:var(--gold)"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-3 2Z"/><path d="M8 7h7M8 11h7"/></svg></span>
           <span class="ctitle" data-t="gbTitle">Guestbook</span>
@@ -315,7 +293,7 @@
         <div class="row"><span class="rlabel" data-t="emPharmacy">Nearest pharmacy</span><span class="rval">5 min</span></div>
       </article>
 
-      <div class="sendoff reveal" data-journey="leave after">
+      <div class="sendoff reveal" id="sendoff" data-journey="leave after">
         <div class="sotitle" data-t="soTitle">Come back soon</div>
         <p class="sotext" data-t="soText">Thank you for staying with us. We'd love to see you back in another season.</p>
       </div>
@@ -325,15 +303,15 @@
 
     <nav class="sectionsnav" aria-label="Jump to section">
       <div class="sectionsmenu" id="sectionsMenu" hidden>
-        <a href="#card-arrival" data-t="tabArrival">Arrival</a>
-        <a href="#card-wifi" data-t="wifi">Wi-Fi</a>
-        <a href="#card-peek" data-t="peekTitle">A peek inside</a>
-        <a href="#card-explore" data-t="exploreTitle">Explore Valtellina</a>
-        <a href="#card-eat" data-t="eatTitle">Where to eat</a>
-        <a href="#card-daytrips" data-t="dtTitle">Day trips</a>
-        <a href="#card-guestbook" data-t="gbTitle">Guestbook</a>
-        <a href="#card-hosts" data-t="navHosts">Your hosts</a>
-        <a href="#card-emergency" data-t="emTitle">Emergency</a>
+        <a href="#card-arrival" data-section="arrival" data-t="tabArrival">Arrival</a>
+        <a href="#card-peek" data-section="peek" data-t="peekTitle">A peek inside</a>
+        <a href="#card-explore" data-section="explore" data-t="exploreTitle">Explore Valtellina</a>
+        <a href="#card-eat" data-section="eat" data-t="eatTitle">Where to eat</a>
+        <a href="#card-daytrips" data-section="daytrips" data-t="dtTitle">Day trips</a>
+        <a href="#card-guestbook" data-section="guestbook" data-t="gbTitle">Guestbook</a>
+        <a href="#card-hosts" data-section="hosts" data-t="navHosts">Your hosts</a>
+        <a href="#card-emergency" data-section="emergency" data-t="emTitle">Emergency</a>
+        <a href="#sendoff" data-section="sendoff" data-t="soTitle" hidden>Come back soon</a>
       </div>
       <button class="sectionsbtn" id="sectionsToggle" aria-expanded="false" aria-controls="sectionsMenu">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>

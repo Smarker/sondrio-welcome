@@ -1,8 +1,6 @@
 import { T } from './content.js';
 import { initSeasons } from './seasons.js';
-import { initUnlock } from './unlock.js';
 import { initTimeOfDay } from './timeofday.js';
-import { initQuickAccess } from './quickaccess.js';
 import { initCheckout } from './checkout.js';
 import { initArrival } from './arrival.js';
 import { initGuestbook } from './guestbook.js';
@@ -39,9 +37,7 @@ function initI18n(){
       applyLanguage(b.dataset.lang);
     }));
   initSeasons();
-  initUnlock();
   initTimeOfDay();
-  initQuickAccess();
   initCheckout();
   initArrival();
   initGuestbook();

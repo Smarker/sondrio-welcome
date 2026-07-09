@@ -84,61 +84,19 @@ Full details are in `media/README.md`. Summary:
   to `media/` and either link a poster image out to it or embed a local, muted, looping
   `<video class="shot">`.
 
-## Setting private details (door code, Wi-Fi password)
+## Door code and Wi-Fi
 
-The door code and Wi-Fi password are never committed to git in plaintext. They are
-encrypted client-side into `data/secrets.enc.json`, the only artifact that gets committed,
-and guests decrypt them in the browser after entering a passphrase you share separately.
-
-To set or rotate the real values:
-
-1. Copy the example file to a local, gitignored file (only needs to be done once):
-
-   ```bash
-   cp tools/secrets.local.example.json tools/secrets.local.json
-   ```
-
-   Edit `tools/secrets.local.json` with the real values:
-
-   ```json
-   { "doorCode": "1234", "wifiPassword": "correct-horse-battery" }
-   ```
-
-   `tools/secrets.local.json` is listed in `.gitignore` and will never be committed.
-   `tools/secrets.local.example.json` (with dummy placeholder values) is the only one of
-   the two that is tracked in git.
-
-2. Generate the encrypted, committed artifact by running:
-
-   ```bash
-   node tools/encrypt.mjs "<passphrase>"
-   ```
-
-   This reads `tools/secrets.local.json`, encrypts it with the passphrase you pass on the
-   command line, and (re)writes `data/secrets.enc.json`. That file contains only
-   ciphertext (salt, IV, and encrypted bytes), nothing readable. It is safe, and required,
-   to commit `data/secrets.enc.json`.
-
-3. Share the passphrase with each guest privately, for example in the Airbnb message
-   thread or a WhatsApp message, never printed next to the QR code or posted anywhere
-   near the door. On the site, guests enter the passphrase once to unlock the door code
-   and Wi-Fi password for their stay.
-
-To rotate the passphrase or the underlying secrets (e.g. a new door code each season),
-just edit `tools/secrets.local.json` and/or choose a new passphrase, then re-run step 2 and
-commit the new `data/secrets.enc.json`. The real plaintext values never enter git history;
-only the encrypted `data/secrets.enc.json` is ever committed.
+These are shared with guests through Airbnb (the message thread / check-in guide), not on
+this site, so there is no secrets or unlock machinery to configure here. If you ever want
+them back on the page, they used to live in an encrypted, passphrase-unlocked card; see the
+git history before this was removed.
 
 ## Filling in placeholders before going live
 
-Before pointing a guest at this site, replace the following placeholders in `index.html`
-(and set the real secrets as described above):
+Before pointing a guest at this site, replace the following placeholders in `index.html`:
 
 - [ ] Check-in and check-out dates in `data/stay.json` (see **Guest journey navigation**
       below).
-- [ ] Door code and Wi-Fi password and network name (secrets flow above; network name
-      `CasaSondrio` in `index.html` is a placeholder, edit the `.rval` text directly).
-- [ ] The unlock passphrase itself, chosen when running `node tools/encrypt.mjs`.
 - [ ] Host phone number as a `tel:` link (the "Call" button, currently `href="#"`), e.g.
       `href="tel:+390000000000"`.
 - [ ] Host WhatsApp number as `https://wa.me/<international-number>` (the "WhatsApp"

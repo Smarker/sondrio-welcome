@@ -2,15 +2,16 @@ import { T } from './content.js';
 import { showPane } from './arrival.js';
 import { sondrioNow } from './timeofday.js';
 import { scrollToTarget } from './quickaccess.js';
+import { applySectionsMenu } from './sections.js';
 
 export const JOURNEY_STORAGE = 'sw-journey';
 export const JOURNEY_PHASE_KEY = 'sw-journey-phase-key';
 export const TIP_DISMISSED_KEY = 'sw-journey-tip-dismissed';
 
 export const PHASE_TARGETS = {
-  welcome: '#card-peek',
+  welcome: '#card-daytrips',
   arrive: '#card-arrival',
-  stay: '#card-explore',
+  stay: '#card-peek',
   leave: '#card-arrival',
   after: '#card-guestbook',
 };
@@ -73,26 +74,27 @@ export function tipTargetForHour(h){
   return '#card-eat';
 }
 
-export function applyJourney(doc, phase, options = {}){
-  const nav = navPhaseFor(phase);
-  doc.documentElement.setAttribute('data-journey', nav);
+export function applyJourney(doc, viewPhase, options = {}){
+  const computed = options.computed ?? viewPhase;
+  const journey = navPhaseFor(computed);
+  doc.documentElement.setAttribute('data-journey', journey);
 
   const lang = doc.documentElement.lang || 'en';
 
   const heroSub = doc.querySelector('[data-hero-sub]');
   if (heroSub){
-    const key = heroSubKeyForPhase(phase);
+    const key = heroSubKeyForPhase(computed);
     heroSub.setAttribute('data-t', key);
     if (T[key] && T[key][lang]) heroSub.textContent = T[key][lang];
   }
 
   doc.querySelectorAll('.jpill').forEach(p =>
-    p.setAttribute('aria-pressed', String(p.dataset.journey === nav)));
+    p.setAttribute('aria-pressed', String(p.dataset.journey === journey)));
 
   const privacy = doc.querySelector('.privacy');
   const privacyText = doc.querySelector('.privacy .pt');
   if (privacy && privacyText){
-    const preArrival = phase === 'welcome';
+    const preArrival = computed === 'welcome';
     privacy.classList.toggle('pre-arrival', preArrival);
     const key = preArrival ? 'privacyPreArrival' : 'privacyText';
     privacyText.setAttribute('data-t', key);
@@ -101,8 +103,8 @@ export function applyJourney(doc, phase, options = {}){
 
   const arrivalRoot = doc.getElementById('card-arrival');
   if (arrivalRoot){
-    if (phase === 'leave') showPane(arrivalRoot, 'departure');
-    else if (phase === 'arrive') showPane(arrivalRoot, 'arrival');
+    if (computed === 'leave') showPane(arrivalRoot, 'departure');
+    else if (computed === 'arrive') showPane(arrivalRoot, 'arrival');
   }
 
   const tipEl = doc.querySelector('[data-journey-tip]');
@@ -110,7 +112,7 @@ export function applyJourney(doc, phase, options = {}){
   if (tipEl && tipText){
     const dismissed = typeof sessionStorage !== 'undefined' &&
       sessionStorage.getItem(TIP_DISMISSED_KEY);
-    if (phase === 'stay' && !dismissed){
+    if (computed === 'stay' && !dismissed){
       const { hour } = sondrioNow();
       const tipKey = tipKeyForHour(hour);
       tipEl.hidden = false;
@@ -121,6 +123,8 @@ export function applyJourney(doc, phase, options = {}){
       tipEl.hidden = true;
     }
   }
+
+  applySectionsMenu(doc, computed);
 }
 
 export function getUrlPhase(){
@@ -176,17 +180,17 @@ export function initJourney(stay){
     sessionStorage.setItem(JOURNEY_STORAGE, urlPhase);
   }
 
-  let activePhase = phase;
-  applyJourney(document, activePhase, { stay });
+  let viewPhase = phase;
+  applyJourney(document, viewPhase, { stay, computed });
 
   document.querySelectorAll('.jpill').forEach(pill => {
     pill.addEventListener('click', () => {
-      activePhase = pill.dataset.journey;
+      viewPhase = pill.dataset.journey;
       if (typeof sessionStorage !== 'undefined'){
-        sessionStorage.setItem(JOURNEY_STORAGE, activePhase);
+        sessionStorage.setItem(JOURNEY_STORAGE, viewPhase);
       }
-      applyJourney(document, activePhase, { stay });
-      scrollToPhaseTarget(document, activePhase);
+      applyJourney(document, viewPhase, { stay, computed });
+      scrollToPhaseTarget(document, viewPhase);
     });
   });
 
@@ -205,8 +209,8 @@ export function initJourney(stay){
 
   document.querySelectorAll('.lang').forEach(b =>
     b.addEventListener('click', () => {
-      applyJourney(document, activePhase, { stay });
+      applyJourney(document, viewPhase, { stay, computed });
     }));
 
-  return { phase: activePhase, computed };
+  return { phase: viewPhase, computed };
 }

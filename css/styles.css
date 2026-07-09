@@ -197,27 +197,15 @@ html[data-journey="leave"] .quickbar{display:flex}
 /* real photo in a gallery slot (replaces the .frame placeholder) */
 .slot .shot{width:100%;height:auto;aspect-ratio:4/5;border-radius:14px;display:block;border:1px solid var(--line)}
 
-/* ---- "A peek inside" collage: key rooms big, minor rooms small, captions on photos ---- */
-.gallery.mosaic{display:grid;gap:8px;margin-top:13px;overflow:visible;padding-bottom:0;
-  grid-template-columns:1fr 1fr;grid-auto-rows:118px;
-  grid-template-areas:"bed bed" "bed bed" "kit kit" "kit kit" "off off" "off off" "liv liv" "liv liv" "sof bath" "steam laundry"}
-.mosaic .slot{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
-.mosaic .slot .shot{width:100%;height:100%;object-fit:cover;border:none;border-radius:0;display:block;
-  transition:transform .35s var(--ease)}
-.mosaic .slotlabel{position:absolute;left:0;right:0;bottom:0;margin:0;padding:20px 11px 8px;z-index:1;text-align:left;
-  color:#fff;font-weight:700;font-size:12px;letter-spacing:.01em;text-shadow:0 1px 2px rgba(0,0,0,.35);
-  background:linear-gradient(to top,color-mix(in srgb,#000 58%,transparent),transparent)}
-@media (min-width:720px){
-  .gallery.mosaic{gap:10px;grid-template-columns:repeat(4,1fr);grid-auto-rows:128px;
-    grid-template-areas:
-      "bed bed kit kit"
-      "bed bed kit kit"
-      "off off liv liv"
-      "off off liv liv"
-      "sof bath steam laundry"}
-  .mosaic .slotlabel{font-size:12.5px}
-  .mosaic .slot:hover .shot{transform:scale(1.06)}
-}
+/* ---- "A peek inside" horizontal carousel: swipe photos, label on each ---- */
+.gallery.mosaic{display:flex;gap:10px;margin-top:13px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.gallery.mosaic::-webkit-scrollbar{display:none}
+.mosaic .slot{flex:0 0 210px;display:block;position:relative;min-width:0;gap:0;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.mosaic .slot .shot{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;border:none;border-radius:0;transition:transform .35s var(--ease)}
+.mosaic .slotlabel{position:absolute;left:0;right:0;bottom:0;margin:0;padding:22px 11px 8px;z-index:1;text-align:left;
+  color:#fff;font-weight:700;font-size:12.5px;letter-spacing:.01em;text-shadow:0 1px 2px rgba(0,0,0,.35);
+  background:linear-gradient(to top,color-mix(in srgb,#000 60%,transparent),transparent)}
+.mosaic .slot:hover .shot{transform:scale(1.05)}
 
 /* ---- day-trip cards (photo + what-it-is + time) ---- */
 .trips{display:flex;gap:12px;overflow-x:auto;margin-top:13px;padding-bottom:4px;scrollbar-width:none}
@@ -371,17 +359,8 @@ html[data-tod="night"] .sectionsbtn svg{stroke:var(--bg)}
 html[data-tod="night"] .copy:hover{color:var(--bg)}
 html[data-tod="night"] .jpill[aria-pressed="true"]{color:var(--bg)}
 
-/* ---- journey phase card ordering + emphasis ---- */
-.body > [data-journey]{order:0}
-html[data-journey="welcome"] [data-journey~="welcome"]{order:-30}
-html[data-journey="arrive"] [data-journey~="arrive"]{order:-30}
-html[data-journey="stay"] [data-journey~="stay"]{order:-30}
-html[data-journey="leave"] [data-journey~="leave"]{order:-30}
-html[data-journey="welcome"] .card[data-journey~="welcome"],
-html[data-journey="arrive"] .card[data-journey~="arrive"],
-html[data-journey="stay"] .card[data-journey~="stay"],
-html[data-journey="leave"] .card[data-journey~="leave"]{
-  box-shadow:0 0 0 1px color-mix(in srgb,var(--g) 22%,var(--line)),0 8px 22px -12px color-mix(in srgb,var(--g) 16%,transparent)}
+/* ---- journey phase (date-based) ---- */
+html[data-journey="leave"] .note{display:none}
 .privacy.pre-arrival{opacity:.92}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}

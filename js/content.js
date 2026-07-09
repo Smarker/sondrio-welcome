@@ -71,6 +71,7 @@ export const T = {
   emTitle:{it:"Emergenze",en:"Emergency",es:"Emergencias",fr:"Urgences",de:"Notfall"},
   sections:{it:"Sezioni",en:"Sections",es:"Secciones",fr:"Sections",de:"Bereiche"},
   navHosts:{it:"I vostri host",en:"Your hosts",es:"Anfitriones",fr:"Vos hôtes",de:"Gastgeber"},
+  hostNames:{it:"Stephanie & Julian",en:"Stephanie & Julian",es:"Stephanie & Julian",fr:"Stephanie & Julian",de:"Stephanie & Julian"},
   emText:{it:"Il 112 raggiunge ambulanza, vigili del fuoco e polizia da qualsiasi telefono.",en:"112 reaches ambulance, fire and police from any phone.",es:"El 112 conecta con ambulancia, bomberos y policía desde cualquier teléfono.",fr:"Le 112 joint l'ambulance, les pompiers et la police depuis n'importe quel téléphone.",de:"Die 112 erreicht Rettung, Feuerwehr und Polizei von jedem Telefon."},
   emServices:{it:"Numero unico emergenze",en:"Emergency services",es:"Servicios de emergencia",fr:"Services d'urgence",de:"Notdienste"},
   emPharmacy:{it:"Farmacia più vicina",en:"Nearest pharmacy",es:"Farmacia más cercana",fr:"Pharmacie la plus proche",de:"Nächste Apotheke"},
