@@ -1,8 +1,8 @@
 import { T } from './content.js';
 
 const KEY = 'sw-checkout';
-const ITEMS = ['bins','dishwasher','keys']; // ids map to coItem1/2/3 copy
-const COPY = { bins:'coItem1', dishwasher:'coItem2', keys:'coItem3' };
+const ITEMS = ['dishwasher','keys']; // ids map to coItem2/3 copy
+const COPY = { dishwasher:'coItem2', keys:'coItem3' };
 
 export function loadState(storage){
   try { return JSON.parse(storage.getItem(KEY)) || {}; }

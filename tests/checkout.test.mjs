@@ -3,15 +3,15 @@ import assert from 'node:assert/strict';
 import { toggleState, isComplete, loadState } from '../js/checkout.js';
 
 test('toggle sets an unset id to true', () => {
-  assert.deepEqual(toggleState({}, 'bins'), { bins: true });
+  assert.deepEqual(toggleState({}, 'dishwasher'), { dishwasher: true });
 });
 test('toggle flips a set id to false', () => {
-  assert.deepEqual(toggleState({ bins: true }, 'bins'), { bins: false });
+  assert.deepEqual(toggleState({ dishwasher: true }, 'dishwasher'), { dishwasher: false });
 });
 test('toggle does not mutate input', () => {
-  const s = { bins: true };
-  toggleState(s, 'bins');
-  assert.deepEqual(s, { bins: true });
+  const s = { dishwasher: true };
+  toggleState(s, 'dishwasher');
+  assert.deepEqual(s, { dishwasher: true });
 });
 test('isComplete true only when all ids true', () => {
   assert.equal(isComplete({ a: true, b: true }, ['a','b']), true);

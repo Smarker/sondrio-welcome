@@ -31,7 +31,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 
 /* ---- page layout wrapper (no phone frame in the real site) ---- */
 .phone-flow{max-width:480px;margin:0 auto;padding-bottom:56px;padding-bottom:calc(56px + env(safe-area-inset-bottom))}
-.body{padding:18px 16px 40px;display:flex;flex-direction:column;gap:14px}
+.body{padding:10px 16px 40px;display:flex;flex-direction:column;gap:14px}
 
 /* ---- language switcher ---- */
 .langbar{position:sticky;top:0;z-index:5;display:flex;gap:6px;justify-content:center;
@@ -75,7 +75,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
   transition:transform .18s var(--ease),background .18s,border-color .18s,color .18s;white-space:nowrap}
 .jpill:hover{color:var(--ink);border-color:color-mix(in srgb,var(--g) 40%,var(--line))}
 .jpill[aria-pressed="true"]{background:var(--g);color:#fff;border-color:var(--g)}
-.journeytip{display:flex;align-items:center;gap:8px;margin:0 16px;padding:10px 12px;
+.journeytip{display:flex;align-items:center;gap:8px;margin:12px 16px 0;padding:10px 12px;
   background:color-mix(in srgb,var(--g) 10%,var(--card));border:1px solid var(--line);border-radius:14px;font-size:13px;color:var(--ink)}
 .journeytip[hidden]{display:none!important}
 .journeytip-btn{flex:1;border:none;background:transparent;padding:0;margin:0;font:inherit;color:inherit;
@@ -192,9 +192,12 @@ html[data-journey="leave"] #sendoff{order:6}
 /* ---- media placeholders (where photos / videos go) ---- */
 .gallery{display:flex;align-items:flex-start;gap:11px;overflow-x:auto;margin-top:13px;padding-bottom:4px;scrollbar-width:none}
 .gallery::-webkit-scrollbar{display:none}
-#card-explore > .gallery{justify-content:stretch;overflow-x:visible;gap:10px}
-#card-explore > .gallery .slot{flex:1 1 0;min-width:0;max-width:none}
-#card-explore > .gallery .slot .shot{aspect-ratio:5/4;object-fit:cover}
+#card-explore > .gallery{flex-direction:column;justify-content:stretch;overflow-x:visible;gap:12px}
+#card-explore > .gallery .slot{flex:none;width:100%;min-width:0;max-width:none}
+#card-explore > .gallery .slot .shot{aspect-ratio:16/10;object-fit:cover}
+#card-explore > .gallery .slot--cap .slotcap{padding:36px 14px 12px}
+#card-explore > .gallery .slot--cap .slotlabel{font-size:14px}
+#card-explore > .gallery .slot--cap .slotdesc{font-size:12.5px;line-height:1.4}
 .slot{flex:0 0 200px;display:flex;flex-direction:column;gap:7px}
 .slot--cap{position:relative;gap:0;text-decoration:none;color:inherit;border-radius:14px;overflow:hidden;
   border:1px solid var(--line);outline:none}
@@ -272,9 +275,15 @@ html[data-journey="leave"] #sendoff{order:6}
 .peeklightbox-nav[hidden]{display:none}
 
 /* ---- day-trip cards (photo + what-it-is + time) ---- */
-.trips{display:flex;align-items:flex-start;gap:12px;overflow-x:auto;margin-top:13px;padding-bottom:4px;scrollbar-width:none}
-.trips::-webkit-scrollbar{display:none}
-.trip{flex:0 0 184px;display:flex;flex-direction:column;gap:8px}
+.trips-wrap{position:relative;margin-top:13px}
+.trips-wrap::after{content:"";position:absolute;top:0;right:0;bottom:10px;width:40px;z-index:1;
+  background:linear-gradient(to right,transparent,var(--card));pointer-events:none}
+.trips{display:flex;align-items:flex-start;gap:12px;overflow-x:auto;margin-top:0;
+  padding:0 28px 10px 0;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--g) 45%,var(--line)) transparent}
+.trips::-webkit-scrollbar{height:4px}
+.trips::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--g) 45%,var(--line));border-radius:999px}
+.trip{flex:0 0 168px;display:flex;flex-direction:column;gap:8px;scroll-snap-align:start}
 .tframe{aspect-ratio:4/3;flex:none;border-radius:14px;display:grid;place-items:center;color:var(--muted);
   border:1.5px dashed color-mix(in srgb,var(--muted) 55%,var(--card));background:color-mix(in srgb,var(--g) 5%,var(--card))}
 .tframe svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.5}
@@ -470,6 +479,12 @@ html[data-tod="night"] .eatall[aria-pressed="true"]{color:var(--bg)}
 /* ---- wider viewports: keep one elegant centered column (no gaps) ---- */
 @media (min-width:640px){
   .phone-flow{max-width:720px}
+  #card-explore > .gallery{flex-direction:row;gap:10px}
+  #card-explore > .gallery .slot{flex:1 1 0;width:auto}
+  #card-explore > .gallery .slot .shot{aspect-ratio:5/4}
+  #card-explore > .gallery .slot--cap .slotcap{padding:28px 11px 10px}
+  #card-explore > .gallery .slot--cap .slotlabel{font-size:12.5px}
+  #card-explore > .gallery .slot--cap .slotdesc{font-size:11.5px;line-height:1.35}
 }
 
 /* ---- night mode: button labels ----

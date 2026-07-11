@@ -48,7 +48,7 @@
     </section>
 
     <nav class="journeybar" aria-label="Your trip">
-      <button class="jpill" type="button" data-journey="welcome" aria-pressed="false"><span data-t="jWelcome">Prepare for your arrival</span></button>
+      <button class="jpill" type="button" data-journey="welcome" aria-pressed="false"><span data-t="jWelcome">Prepare</span></button>
       <button class="jpill" type="button" data-journey="arrive" aria-pressed="false"><span data-t="jArrive">Getting here</span></button>
       <button class="jpill" type="button" data-journey="stay" aria-pressed="false"><span data-t="jStay">Plan Excursions</span></button>
       <button class="jpill" type="button" data-journey="leave" aria-pressed="false"><span data-t="jLeave">Checkout</span></button>
@@ -107,7 +107,7 @@
 
       <article class="card" id="card-arrival" data-journey="arrive leave">
         <div class="chead">
-          <span class="ctitle" data-t="arrival">Arrival &amp; departure</span>
+          <span class="ctitle" data-t="tabArrival">Arrival</span>
           <div class="adtoggle" role="group" aria-label="Arrival or departure">
             <button class="adbtn" data-ad="arrival" aria-pressed="true"><span data-t="tabArrival">Arrival</span></button>
             <button class="adbtn" data-ad="departure" aria-pressed="false"><span data-t="tabDeparture">Departure</span></button>
@@ -144,10 +144,6 @@
           <div class="cotitle" data-t="coTitle">Before you go</div>
           <div class="colist" id="checkout"></div>
           <div class="cotitle" data-t="gtkTitle">Good to know</div>
-          <div class="ghblock">
-            <h3 class="ghlabel" data-t="gtkBinsT">Bins &amp; recycling</h3>
-            <p class="ghtext" data-t="gtkBinsD">Which bins go out and where they go — details coming soon.</p>
-          </div>
           <div class="ghblock">
             <h3 class="ghlabel" data-t="gtkKeysT">Keys &amp; lockbox</h3>
             <p class="ghtext" data-t="gtkKeysD">Where to leave the keys — details coming soon.</p>
@@ -321,6 +317,7 @@
           <span class="ctitle" data-t="dtTitle">Day trips</span>
         </div>
         <p class="ptext" data-t="dtText">Some of our favourite escapes, all within easy reach.</p>
+        <div class="trips-wrap">
         <div class="trips">
           <div class="trip">
             <img class="shot" src="media/lake_como.jpg" alt="Lake Como" loading="lazy">
@@ -346,6 +343,7 @@
             <div class="tdesc" data-t="dtStMoritzD">Glamorous Swiss alpine resort over the border.</div>
             <div class="ttime"><svg viewBox="0 0 24 24"><path d="M3 12h18M5 12l3-5h8l3 5M7 12v3M17 12v3"/><circle cx="8" cy="17" r="1.4"/><circle cx="16" cy="17" r="1.4"/></svg>~2 h</div>
           </div>
+        </div>
         </div>
         <div class="berncall">
           <img class="berncall-shot" src="media/bernina_express.jpg" alt="Bernina Express" loading="lazy">

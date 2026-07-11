@@ -136,11 +136,11 @@ automatically:
 
 | Phase | When |
 |-------|------|
-| **Prepare for your arrival** | Before check-in day |
+| **Prepare** | Before check-in day |
 | **Getting here** | Check-in day |
 | **Plan Excursions** | Between check-in and checkout |
 | **Checkout** | Checkout day |
-| **After** | After checkout (guestbook focus, nav shows Prepare for your arrival) |
+| **After** | After checkout (guestbook focus, nav shows Prepare) |
 
 The active phase highlights relevant cards (via CSS reordering), updates the
 hero subtitle, and shows the utility quick bar (Door / Wi-Fi / Directions) on
@@ -181,12 +181,12 @@ greeting (morning/afternoon/evening, from the `greetMorning`/`greetAfternoon`/
 `greetEvening` keys in `js/content.js`) and shows a live clock, refreshed every
 minute. No configuration needed.
 
-**Checkout checklist.** The departure steps are a tappable checklist (bins out,
-dishwasher on, keys in the lockbox). Ticked state is saved per device in
-`localStorage` under the key `sw-checkout`, so it persists across a guest's stay on
-the same phone but is not shared between devices. To change the wording, edit the
-`coItem1`/`coItem2`/`coItem3` keys in `js/content.js`. To change which steps exist,
-edit the `ITEMS` array and `COPY` map in `js/checkout.js` (they must stay in sync).
+**Checkout checklist.** The departure steps are a tappable checklist (dishwasher
+on, keys in the lockbox). Ticked state is saved per device in `localStorage`
+under the key `sw-checkout`, so it persists across a guest's stay on the same
+phone but is not shared between devices. To change the wording, edit the
+`coItem2`/`coItem3` keys in `js/content.js`. To change which steps exist, edit
+the `ITEMS` array and `COPY` map in `js/checkout.js` (they must stay in sync).
 
 **Guestbook.** Past guests' notes are curated by hand in `data/guestbook.json`, an
 array of objects with `name`, `note`, and `date` fields, for example:
