@@ -7,6 +7,9 @@ import {
   resolvePhase,
   navPhaseFor,
   heroSubKeyForPhase,
+  welcomeNoteKeyForPhase,
+  visibleForPhase,
+  formatStayDates,
   tipKeyForHour,
   tipTargetForHour,
 } from '../js/journey.js';
@@ -55,6 +58,39 @@ test('navPhaseFor maps after to welcome', () =>
 test('heroSubKeyForPhase returns phase-specific keys', () => {
   assert.equal(heroSubKeyForPhase('arrive'), 'heroSubArrive');
   assert.equal(heroSubKeyForPhase('after'), 'heroSubAfter');
+});
+
+test('welcomeNoteKeyForPhase uses pre-arrival copy on welcome', () => {
+  assert.equal(welcomeNoteKeyForPhase('welcome'), 'welcomeNoteWelcome');
+  assert.equal(welcomeNoteKeyForPhase('stay'), 'welcomeNote');
+  assert.equal(welcomeNoteKeyForPhase('arrive'), 'welcomeNote');
+});
+
+test('visibleForPhase respects data-journey lists', () => {
+  const peek = { getAttribute: () => 'welcome stay' };
+  const eat = { getAttribute: () => 'stay' };
+  assert.equal(visibleForPhase(peek, 'welcome'), true);
+  assert.equal(visibleForPhase(peek, 'stay'), true);
+  assert.equal(visibleForPhase(peek, 'leave'), false);
+  assert.equal(visibleForPhase(eat, 'welcome'), false);
+  assert.equal(visibleForPhase({ getAttribute: () => '' }, 'welcome'), true);
+});
+
+test('formatStayDates compacts same-month stays', () => {
+  assert.equal(formatStayDates({ checkIn: '2026-07-08', checkOut: '2026-07-12' }, 'en'), '8–12 July');
+  assert.equal(formatStayDates({ checkIn: '2026-07-08', checkOut: '2026-07-12' }, 'it'), '8–12 luglio');
+});
+
+test('formatStayDates spells out cross-month stays', () => {
+  assert.equal(
+    formatStayDates({ checkIn: '2026-06-28', checkOut: '2026-07-02' }, 'en'),
+    '28 June – 2 July',
+  );
+});
+
+test('formatStayDates returns empty string without a stay', () => {
+  assert.equal(formatStayDates(null, 'en'), '');
+  assert.equal(formatStayDates({}, 'en'), '');
 });
 
 test('tipKeyForHour covers day parts', () => {

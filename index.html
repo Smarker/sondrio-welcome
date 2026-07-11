@@ -36,9 +36,10 @@
         <span class="loopTag"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span data-t="loopTag">Looped vibe video</span></span>
       </div>
       <div class="heroText reveal">
-        <div class="timeline"><span class="greeting" data-greeting data-t="greetEvening">Good evening</span><span class="clock" data-clock aria-hidden="true"></span></div>
+        <div class="timeline"><span class="greeting" data-greeting data-t="greetEvening">Good evening</span></div>
         <div class="htitle">Sondrio Stay</div>
         <p class="hsub" data-hero-sub data-t="heroSub">Everything you need for a restful stay in Sondrio.</p>
+        <p class="staydates" data-stay-dates hidden></p>
         <a class="loc" href="#" data-quick-directions>
           <svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
           Sondrio · Valtellina, Italy
@@ -46,27 +47,66 @@
       </div>
     </section>
 
-    <nav class="journeybar reveal" aria-label="Your trip">
-      <button class="jpill" type="button" data-journey="welcome" aria-pressed="false"><span data-t="jWelcome">Discover</span></button>
+    <nav class="journeybar" aria-label="Your trip">
+      <button class="jpill" type="button" data-journey="welcome" aria-pressed="false"><span data-t="jWelcome">Prepare for your arrival</span></button>
       <button class="jpill" type="button" data-journey="arrive" aria-pressed="false"><span data-t="jArrive">Getting here</span></button>
-      <button class="jpill" type="button" data-journey="stay" aria-pressed="false"><span data-t="jStay">Your stay</span></button>
+      <button class="jpill" type="button" data-journey="stay" aria-pressed="false"><span data-t="jStay">Plan Excursions</span></button>
       <button class="jpill" type="button" data-journey="leave" aria-pressed="false"><span data-t="jLeave">Checkout</span></button>
     </nav>
 
-    <p class="journeytip reveal" data-journey-tip hidden>
+    <p class="journeytip" data-journey-tip hidden>
       <button type="button" class="journeytip-btn"><span data-journey-tip-text data-t="jTipMorning">Good morning! Day trips are within easy reach.</span></button>
       <button type="button" class="journeytip-x" data-tip-dismiss aria-label="Dismiss">&times;</button>
     </p>
 
     <div class="body">
-      <div class="note reveal" data-journey="welcome arrive stay" id="welcome-note">
-        <p data-t="welcomeNote">We're so glad you're here. Here's everything you need to feel at home.</p>
-        <div class="sig" data-t="sig">With love, Stephanie &amp; Julian</div>
+      <div class="note" data-journey="welcome arrive stay" id="welcome-note">
+        <div class="noterow">
+          <span class="portrait"><img class="shot" src="media/steph_and_julian_2.jpg" alt="Stephanie and Julian" loading="lazy"></span>
+          <div class="notebody">
+            <p data-t="welcomeNoteWelcome">We can't wait to host you. Here's a preview of what's waiting.</p>
+            <div class="sig" data-t="sig">With love, Stephanie &amp; Julian</div>
+          </div>
+        </div>
       </div>
 
-      <article class="card reveal" id="card-arrival" data-journey="arrive leave">
+      <article class="card" id="card-gettinghere" data-journey="welcome arrive">
         <div class="chead">
-          <span class="cicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-6h6v6"/></svg></span>
+          <span class="ctitle" data-t="ghTitle">Getting here</span>
+        </div>
+        <p class="ptext" data-t="ghText">How to reach Sondrio and find the apartment — we'll fill in our exact tips soon.</p>
+        <div class="ghblock">
+          <h3 class="ghlabel" data-t="ghTrainTitle">By train from Milan</h3>
+          <p class="ghtext" data-t="ghTrainText">Step-by-step directions coming soon — Milano Centrale → Sondrio (~2 h), then a short walk or taxi.</p>
+        </div>
+        <div class="ghblock">
+          <h3 class="ghlabel" data-t="ghCarTitle">By car &amp; parking</h3>
+          <p class="ghtext" data-t="ghCarText">Driving directions and your reserved parking spot — details and photos coming soon.</p>
+          <div class="arriveshots">
+            <div class="arriveslot">
+              <img class="shot" src="media/walking_bridge.jpg" alt="Bridge approach" loading="lazy">
+              <div class="slotlabel" data-t="ghBridgePhoto">Bridge approach</div>
+            </div>
+            <div class="arriveslot">
+              <div class="frame"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div>
+              <div class="slotlabel" data-t="ghParkingPhoto">Parking spot</div>
+              <div class="slotsub" data-t="addPhoto">add photo</div>
+            </div>
+          </div>
+        </div>
+        <div class="ghblock">
+          <h3 class="ghlabel" data-t="ghBuildingTitle">At the building</h3>
+          <p class="ghtext" data-t="ghBuildingText">What to expect at the entrance — photos and instructions coming soon.</p>
+        </div>
+        <div class="ghblock">
+          <h3 class="ghlabel" data-t="ghAirTitle">From the airports</h3>
+          <p class="ghtext" data-t="ghAirText">Malpensa, Linate or Bergamo — our route tips coming soon.</p>
+        </div>
+        <a class="btn green" href="#" data-quick-directions><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="getDirections">Get directions</span></a>
+      </article>
+
+      <article class="card" id="card-arrival" data-journey="arrive leave">
+        <div class="chead">
           <span class="ctitle" data-t="arrival">Arrival &amp; departure</span>
           <div class="adtoggle" role="group" aria-label="Arrival or departure">
             <button class="adbtn" data-ad="arrival" aria-pressed="true"><span data-t="tabArrival">Arrival</span></button>
@@ -75,43 +115,58 @@
         </div>
         <div class="adpane" data-ad-pane="arrival">
           <div class="row"><span class="rlabel" data-t="checkinFrom">Check-in from</span><span class="rval">15:00</span></div>
+          <div class="ghblock">
+            <h3 class="ghlabel" data-t="arrDoorPhoto">Front door</h3>
+            <div class="arriveslot arriveslot--wide">
+              <div class="frame"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div>
+              <div class="slotsub" data-t="addPhoto">add photo</div>
+            </div>
+          </div>
+          <div class="ghblock">
+            <h3 class="ghlabel" data-t="arrEntryTitle">Building entry</h3>
+            <p class="ghtext" data-t="arrEntryText">How to get inside — we'll add your exact buzzer, floor, and unit details.</p>
+            <div class="row"><span class="rlabel" data-t="arrBuzzer">Buzzer / intercom</span><span class="rval ph" data-t="arrBuzzerPh">Name on the buzzer</span></div>
+            <div class="row"><span class="rlabel" data-t="arrFloor">Floor</span><span class="rval ph" data-t="arrFloorPh">e.g. 2nd</span></div>
+            <div class="row"><span class="rlabel" data-t="arrUnit">Unit / apartment</span><span class="rval ph" data-t="arrUnitPh">Apartment number</span></div>
+          </div>
+          <div class="ghblock">
+            <h3 class="ghlabel" data-t="arrParkingTitle">Where to park</h3>
+            <p class="ghtext" data-t="arrParkingText">Your reserved parking spot — details coming soon.</p>
+            <div class="evnote">
+              <svg viewBox="0 0 24 24"><path d="M7 21V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v16"/><path d="M4 21h13"/><path d="M15 9h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0v-7l-2-2"/><path d="m9 8 2 4h-2l2 4"/></svg>
+              <p data-t="arrEvParkingText">22 kW EV charger right outside — park here for easy overnight charging.</p>
+            </div>
+          </div>
           <a class="btn green" href="#" data-quick-directions><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="getDirections">Get directions</span></a>
         </div>
         <div class="adpane" data-ad-pane="departure" hidden>
           <div class="row"><span class="rlabel" data-t="checkoutBy">Check-out by</span><span class="rval">12:00</span></div>
           <div class="cotitle" data-t="coTitle">Before you go</div>
           <div class="colist" id="checkout"></div>
+          <div class="cotitle" data-t="gtkTitle">Good to know</div>
+          <div class="ghblock">
+            <h3 class="ghlabel" data-t="gtkBinsT">Bins &amp; recycling</h3>
+            <p class="ghtext" data-t="gtkBinsD">Which bins go out and where they go — details coming soon.</p>
+          </div>
+          <div class="ghblock">
+            <h3 class="ghlabel" data-t="gtkKeysT">Keys &amp; lockbox</h3>
+            <p class="ghtext" data-t="gtkKeysD">Where to leave the keys — details coming soon.</p>
+          </div>
+          <div class="ghblock">
+            <h3 class="ghlabel" data-t="gtkBedsT">Beds &amp; linens</h3>
+            <p class="ghtext" data-t="gtkBedsD">Leave the beds as they are — we'll take care of the linens.</p>
+          </div>
+          <div class="ghblock">
+            <h3 class="ghlabel" data-t="gtkLateT">Running late or have luggage?</h3>
+            <p class="ghtext" data-t="gtkLateD">Message us — we'll do our best to help.</p>
+          </div>
         </div>
       </article>
 
-      <img class="bandshot reveal" data-journey="welcome stay" src="media/living_room_light.jpg" alt="The living room" loading="lazy">
+      <img class="bandshot" id="band-living" data-journey="welcome" src="media/living_room_light.jpg" alt="The living room" loading="lazy">
 
-      <article class="card reveal" id="card-amenities" data-journey="stay">
+      <article class="card peekcard" id="card-peek" data-journey="welcome">
         <div class="chead">
-          <span class="cicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-6h6v6"/></svg></span>
-          <span class="ctitle" data-t="inclTitle">Everything's here</span>
-        </div>
-        <div class="evfeature">
-          <svg viewBox="0 0 24 24"><path d="M7 21V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v16"/><path d="M4 21h13"/><path d="M15 9h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0v-7l-2-2"/><path d="m9 8 2 4h-2l2 4"/></svg>
-          <div><div class="evname" data-t="evName">EV charger</div><div class="evsub" data-t="evSub">22 kW, right outside the door</div></div>
-        </div>
-        <div class="amgroup">
-          <div class="amglabel"><svg viewBox="0 0 24 24"><path d="M5 11h14v1a7 7 0 0 1-14 0v-1Z"/><path d="M8 11V6M12 11V5M16 11V6"/></svg><span data-t="amKitchen">Kitchen</span></div>
-          <div class="chips"><span class="chip" data-t="cStove">Gas stove</span><span class="chip" data-t="cOven">Oven</span><span class="chip" data-t="cDish">Dishwasher</span><span class="chip" data-t="cMicro">Microwave</span><span class="chip" data-t="c1">Coffee</span></div>
-        </div>
-        <div class="amgroup">
-          <div class="amglabel"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M8 6h.01"/></svg><span data-t="amLaundry">Laundry</span></div>
-          <div class="chips"><span class="chip" data-t="c2">Washer</span><span class="chip" data-t="c5">Dryer</span><span class="chip" data-t="c3">Fresh linens</span></div>
-        </div>
-        <div class="amgroup">
-          <div class="amglabel"><svg viewBox="0 0 24 24"><path d="M4 14c2-2 4-2 6 0s4 2 6 0 4-2 4-2M4 19c2-2 4-2 6 0s4 2 6 0 4-2 4-2M12 3v6"/></svg><span data-t="amComfort">Comfort</span></div>
-          <div class="chips"><span class="chip" data-t="c4">Heating</span><span class="chip" data-t="cBidet">Bidet</span></div>
-        </div>
-      </article>
-
-      <article class="card peekcard reveal" id="card-peek" data-journey="welcome stay">
-        <div class="chead">
-          <span class="cicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></span>
           <span class="ctitle" data-t="peekTitle">A peek inside</span>
         </div>
         <p class="ptext" data-t="peekText">A few glimpses of the place.</p>
@@ -129,163 +184,430 @@
           <div class="slot" style="grid-area:bath"><img class="shot" src="media/bathroom.jpg" alt="Bathroom" loading="lazy"><span class="slotlabel" data-t="pBathroom">Bathroom</span></div>
           <div class="slot" style="grid-area:steam"><img class="shot" src="media/steam_shower.jpg" alt="Steam shower" loading="lazy"><span class="slotlabel" data-t="pSteam">Steam shower</span></div>
           <div class="slot" style="grid-area:laundry"><img class="shot" src="media/laundry_room.jpg" alt="Laundry room" loading="lazy"><span class="slotlabel" data-t="pLaundry">Laundry</span></div>
+          <div class="slot"><img class="shot" src="media/foyer.jpg" alt="Entryway" loading="lazy"><span class="slotlabel" data-t="pFoyer">Entryway</span></div>
         </div>
       </article>
 
-      <div class="band reveal" data-journey="welcome stay">
-        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg>
-        <span class="cap" data-t="bandVibe">A vibe shot of the valley and the light</span>
-        <span class="sub" data-t="addPhoto">add photo</span>
-      </div>
-
-      <article class="card reveal" id="card-neighbourhood" data-journey="welcome stay">
+      <article class="card" id="card-amenities" data-journey="welcome">
         <div class="chead">
-          <span class="cicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><path d="M13 4v7l6 3M6 20l3-8 4 2 2-5"/><circle cx="6" cy="20" r="0"/></svg></span>
-          <span class="ctitle" data-t="nbTitle">The neighbourhood</span>
+          <span class="ctitle" data-t="inclTitle">Everything's here</span>
         </div>
-        <p class="ptext" data-t="nbText">Everything's a few minutes on foot.</p>
-        <div class="row"><span class="rlabel" data-t="nbTrain">Train to Milan</span><span class="rval">7 min</span></div>
-        <div class="row"><span class="rlabel" data-t="nbGrocery">Grocery</span><span class="rval">5 min</span></div>
-        <div class="row"><span class="rlabel" data-t="nbPiazza">Main piazza</span><span class="rval">5 min</span></div>
-        <div class="row"><span class="rlabel" data-t="nbFood">Restaurants</span><span class="rval">5 min</span></div>
+        <div class="evfeature">
+          <svg viewBox="0 0 24 24"><path d="M7 21V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v16"/><path d="M4 21h13"/><path d="M15 9h2a2 2 0 0 1 2 2v5a1.5 1.5 0 0 0 3 0v-7l-2-2"/><path d="m9 8 2 4h-2l2 4"/></svg>
+          <div><div class="evname" data-t="evName">EV charger</div><div class="evsub" data-t="evSub">22 kW, right outside the door</div></div>
+        </div>
+        <div class="amgroup">
+          <div class="amglabel"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1"/><path d="M8 20h8M12 16v4"/><path d="M7 8h4v4H7z"/></svg><span data-t="amWorkspace">Workspace</span></div>
+          <p class="amitems" data-t="amWorkspaceItems">Fast, reliable Wi-Fi that handles video calls. Desk and monitor in the office.</p>
+          <p class="amitems" data-t="amWorkspaceQuiet">No quiet hours. Quiet most of the day; at night you may hear muted sounds from piazza concerts or events.</p>
+        </div>
+        <div class="amgroup">
+          <div class="amglabel"><svg viewBox="0 0 24 24"><path d="M5 11h14v1a7 7 0 0 1-14 0v-1Z"/><path d="M8 11V6M12 11V5M16 11V6"/></svg><span data-t="amKitchen">Kitchen</span></div>
+          <p class="amitems" data-t="amKitchenItems">Gas stove, oven, dishwasher, microwave, coffee</p>
+        </div>
+        <div class="amgroup">
+          <div class="amglabel"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M8 6h.01"/></svg><span data-t="amLaundry">Laundry</span></div>
+          <p class="amitems" data-t="amLaundryItems">Washer, dryer, fresh linens</p>
+        </div>
+        <div class="amgroup">
+          <div class="amglabel"><svg viewBox="0 0 24 24"><path d="M4 14c2-2 4-2 6 0s4 2 6 0 4-2 4-2M4 19c2-2 4-2 6 0s4 2 6 0 4-2 4-2M12 3v6"/></svg><span data-t="amComfort">Comfort</span></div>
+          <p class="amitems" data-t="amComfortItems">Heating, bidet, 2 yoga mats</p>
+        </div>
       </article>
 
-      <article class="card reveal" id="card-eat" data-journey="stay">
+      <article class="card" id="card-neighbourhood" data-journey="welcome stay">
         <div class="chead">
-          <span class="cicon" style="--tint:var(--accent)"><svg viewBox="0 0 24 24"><path d="M5 3v8a3 3 0 0 0 6 0V3M8 3v18M17 3c-1.5 1-2 3-2 6s.5 4 2 4v8"/></svg></span>
+          <span class="ctitle" data-t="nbTitle">Essentials within walking distance</span>
+        </div>
+        <p class="ptext" data-t="nbText">Start at the piazza. Groceries and the train are a few minutes farther.</p>
+        <div class="berncall kitcall piazzacall">
+          <img class="berncall-shot" src="media/piazza_winter.jpg" alt="Piazza Garibaldi" loading="lazy">
+          <div class="berncall-body">
+            <div class="berncall-title">Piazza Garibaldi <span class="ptime" data-t="nbPiazzaTime">5 min walk</span></div>
+            <p class="berncall-desc" data-t="nbPiazzaDesc">The town centre. Cafés, shops, gelato, and the place to sit outside and peoplewatch. Almost everything you need starts here.</p>
+            <a class="tlink" href="https://www.google.com/maps/dir/?api=1&amp;destination=Piazza+Garibaldi,+Sondrio&amp;travelmode=walking" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="nbPiazzaLink">Walk there</span></a>
+          </div>
+        </div>
+        <div class="ttsub nbsub" data-t="nbAlso">Also nearby</div>
+        <div class="erow">
+          <div class="ecol">
+            <span class="elabel">Sondrio station</span>
+            <span class="ehint" data-t="nbTrainNote">Trains to Milan (~2 h)</span>
+          </div>
+          <span class="etime">7 min</span>
+          <a class="epin" href="https://www.google.com/maps/dir/?api=1&amp;destination=Stazione+di+Sondrio&amp;travelmode=walking" target="_blank" rel="noopener"><span class="vh" data-t="openMaps">Open map</span><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></a>
+        </div>
+        <div class="erow">
+          <div class="ecol">
+            <span class="elabel">Iperal</span>
+            <span class="ehint" data-t="nbGrocery">Grocery</span>
+          </div>
+          <span class="etime">5 min</span>
+          <a class="epin" href="https://www.google.com/maps/dir/?api=1&amp;destination=Iperal,+Sondrio&amp;travelmode=walking" target="_blank" rel="noopener"><span class="vh" data-t="openMaps">Open map</span><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></a>
+        </div>
+      </article>
+
+      <article class="card" id="card-eat" data-journey="stay">
+        <div class="chead">
           <span class="ctitle" data-t="eatTitle">Where to eat</span>
         </div>
-        <div class="eat">
-          <div style="flex:1">
-            <div class="ename">Il Tabernario · Enoteca delle Alpi</div>
-            <div class="edesc" data-t="eat1">Wine bar and enoteca with alpine small plates.</div>
-            <a class="emap" href="#"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="openMaps">Open map</span></a>
+        <p class="ptext" data-t="eatText">Our favourites in and around Sondrio.</p>
+        <!-- "Show all" prefers your Google My Maps: create one at google.com/maps/d/
+             (add your restaurant pins), Share → "Embed on my site", copy the mid=…
+             value from the embed URL, and paste it into data-mymap below.
+             Until then it falls back to a walking route across the places. -->
+        <div class="eatmap" data-mymap="">
+          <iframe title="Map of our favourite places to eat" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+        <button type="button" class="eatall" data-eat-all aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M4 6v14l6-3 6 3 4-2V4l-4 2-6-3-6 3Z"/><path d="M10 3v14M16 6v14"/></svg><span data-t="eatShowAll">Show all on map</span></button>
+        <div class="eatgroup">
+          <h3 class="eatgroup-title" data-t="eatGroupCoffee">Coffee &amp; sweets</h3>
+          <div class="eat" data-map-q="Pasticceria Gelateria La Milanese, Sondrio" tabindex="0">
+            <div style="flex:1">
+              <div class="ename">Pasticceria Gelateria La Milanese</div>
+              <div class="edesc" data-t="eat5">Our usual — coffee and a pastry, then peoplewatching outside on the piazza.</div>
+              <div class="enote" data-t="eatNote5">On Piazza Garibaldi. Hours can change — tap Open map.</div>
+              <a class="emap" href="https://maps.app.goo.gl/N8YoAenvsvmcfksm8" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="openMaps">Open map</span></a>
+            </div>
+          </div>
+          <div class="eat" data-map-q="Gelateria Cremeria 1882 Coffee Shop, Sondrio" tabindex="0">
+            <div style="flex:1">
+              <div class="ename">Cremeria 1882</div>
+              <div class="edesc" data-t="eat6">Really good gelato. Worth the stop.</div>
+              <div class="enote" data-t="eatNote6">Via Cesare Battisti. Hours can change — tap Open map.</div>
+              <a class="emap" href="https://maps.app.goo.gl/yRTRiFk3gpTgjksTA" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="openMaps">Open map</span></a>
+            </div>
           </div>
         </div>
-        <div class="eat">
-          <div style="flex:1">
-            <div class="ename">Trattoria Olmo</div>
-            <div class="edesc" data-t="eat2">Classic Valtellina trattoria, pizzoccheri and more.</div>
-            <a class="emap" href="#"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="openMaps">Open map</span></a>
+        <div class="eatgroup">
+          <h3 class="eatgroup-title" data-t="eatGroupDinner">Dinner</h3>
+          <div class="eat" data-map-q="Ristorante Trippi, Montagna in Valtellina" tabindex="0">
+            <div style="flex:1">
+              <div class="ename">Trippi</div>
+              <div class="edesc" data-t="eat4">For a dressier night, reserve at Trippi (just outside town).</div>
+              <div class="enote" data-t="eatNote4">Closed Thu and Sun. Reserve ahead. Hours can change — tap Open map.</div>
+              <a class="emap" href="https://www.google.com/maps/search/?api=1&amp;query=Ristorante+Trippi,+Montagna+in+Valtellina" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="openMaps">Open map</span></a>
+            </div>
           </div>
-        </div>
-        <div class="eat">
-          <div style="flex:1">
-            <div class="ename">Pizzeria Vesuvio</div>
-            <div class="edesc" data-t="eat3">Wood-fired pizza, a local favourite.</div>
-            <a class="emap" href="#"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="openMaps">Open map</span></a>
+          <div class="eat" data-map-q="Il Tabernario Enoteca delle Alpi, Sondrio" tabindex="0">
+            <div style="flex:1">
+              <div class="ename">Il Tabernario · Enoteca delle Alpi</div>
+              <div class="edesc" data-t="eat1">Wine and small plates. Our pick for a relaxed evening.</div>
+              <div class="enote" data-t="eatNote1">Mon–Thu 17:30–24:00 · Fri–Sat until 1:00 · closed Sun. Hours can change — tap Open map.</div>
+              <a class="emap" href="https://www.google.com/maps/search/?api=1&amp;query=Il+Tabernario+Enoteca+delle+Alpi,+Sondrio" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="openMaps">Open map</span></a>
+            </div>
+          </div>
+          <div class="eat" data-map-q="Trattoria Olmo, Sondrio" tabindex="0">
+            <div style="flex:1">
+              <div class="ename">Trattoria Olmo</div>
+              <div class="edesc" data-t="eat2">Classic Valtellina trattoria, pizzoccheri and more.</div>
+              <div class="enote" data-t="eatNote2">Open daily for lunch and dinner (typically 12–14 / 19–22). Hours can change — tap Open map.</div>
+              <a class="emap" href="https://www.google.com/maps/search/?api=1&amp;query=Trattoria+Olmo,+Sondrio" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="openMaps">Open map</span></a>
+            </div>
+          </div>
+          <div class="eat" data-map-q="Pizzeria Vesuvio, Sondrio" tabindex="0">
+            <div style="flex:1">
+              <div class="ename">Pizzeria Vesuvio</div>
+              <div class="edesc" data-t="eat3">Wood-fired pizza, a local favourite.</div>
+              <div class="enote" data-t="eatNote3">Mon 18:30–23:30 · Wed–Sun 18:30–00:00 · closed Tue. Hours can change — tap Open map.</div>
+              <a class="emap" href="https://www.google.com/maps/search/?api=1&amp;query=Pizzeria+Vesuvio,+Sondrio" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="openMaps">Open map</span></a>
+            </div>
           </div>
         </div>
       </article>
 
-      <article class="card reveal" id="card-daytrips" data-journey="welcome stay">
+      <article class="card" id="card-daytrips" data-journey="welcome stay">
         <div class="chead">
-          <span class="cicon" style="--tint:var(--gold)"><svg viewBox="0 0 24 24"><path d="M3 12h18M3 12l4-7h10l4 7M6 12v4M18 12v4"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg></span>
           <span class="ctitle" data-t="dtTitle">Day trips</span>
         </div>
         <p class="ptext" data-t="dtText">Some of our favourite escapes, all within easy reach.</p>
         <div class="trips">
           <div class="trip">
-            <div class="tframe"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div>
+            <img class="shot" src="media/lake_como.jpg" alt="Lake Como" loading="lazy">
             <div class="tname">Lake Como</div>
             <div class="tdesc" data-t="dtComoD">Iconic lakeside towns, villas and gardens.</div>
             <div class="ttime"><svg viewBox="0 0 24 24"><path d="M3 12h18M5 12l3-5h8l3 5M7 12v3M17 12v3"/><circle cx="8" cy="17" r="1.4"/><circle cx="16" cy="17" r="1.4"/></svg>~1 h 15</div>
           </div>
           <div class="trip">
-            <div class="tframe"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div>
+            <img class="shot" src="media/tirano.jpg" alt="Tirano" loading="lazy">
             <div class="tname">Tirano</div>
             <div class="tdesc" data-t="dtTiranoD">Where the scenic Bernina Express begins.</div>
-            <div class="ttime"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="12" rx="2"/><path d="M5 10h14M8 20l-2 2M16 20l2 2"/></svg>~30 min</div>
+            <a class="tlink" href="https://www.trenord.it/en/routes-and-timetables/journey/our-lines/sondrio-tirano-regional-line/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="12" rx="2"/><path d="M5 10h14M8 20l-2 2M16 20l2 2"/></svg>~30 min · <span data-t="dtTiranoTrain">Train times</span></a>
           </div>
           <div class="trip">
-            <div class="tframe"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div>
+            <img class="shot" src="media/bormio_ski.jpg" alt="Bormio ski slopes" loading="lazy">
             <div class="tname">Bormio</div>
             <div class="tdesc" data-t="dtBormioD">Alpine ski town with historic thermal spas.</div>
             <div class="ttime"><svg viewBox="0 0 24 24"><path d="M3 12h18M5 12l3-5h8l3 5M7 12v3M17 12v3"/><circle cx="8" cy="17" r="1.4"/><circle cx="16" cy="17" r="1.4"/></svg>~1 h</div>
           </div>
           <div class="trip">
-            <div class="tframe"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div>
+            <img class="shot" src="media/st_moritz.jpg" alt="St. Moritz" loading="lazy">
             <div class="tname">St. Moritz</div>
             <div class="tdesc" data-t="dtStMoritzD">Glamorous Swiss alpine resort over the border.</div>
             <div class="ttime"><svg viewBox="0 0 24 24"><path d="M3 12h18M5 12l3-5h8l3 5M7 12v3M17 12v3"/><circle cx="8" cy="17" r="1.4"/><circle cx="16" cy="17" r="1.4"/></svg>~2 h</div>
           </div>
         </div>
+        <div class="berncall">
+          <img class="berncall-shot" src="media/bernina_express.jpg" alt="Bernina Express" loading="lazy">
+          <div class="berncall-body">
+            <div class="berncall-title" data-t="bernTitle">Bernina Express</div>
+            <p class="berncall-desc" data-t="bernDesc">UNESCO alpine railway from Tirano to St. Moritz — the scenic way over the border.</p>
+            <a class="tlink" href="https://tickets.rhb.ch/en/routing/bernina-express" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 9a2 2 0 0 0 0 6v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3a2 2 0 0 1 0-6V6a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1Z"/><path d="M14 5v2M14 11v2M14 17v2"/></svg><span data-t="bernTickets">Bernina tickets</span></a>
+          </div>
+        </div>
         <p class="dtcar"><span data-t="dtCar">Renting a car? Hertz and Avis both have offices in Sondrio.</span> <a href="https://www.hertz.com/us/en/location/italy/sondrio" data-t="dtCarLink">Hertz Sondrio</a></p>
       </article>
 
-      <article class="card reveal" id="card-explore" data-journey="welcome stay">
+      <article class="card" id="card-explore" data-journey="welcome stay">
         <div class="chead">
-          <span class="cicon" style="--tint:var(--g)"><svg viewBox="0 0 24 24"><path d="M4 6v14l6-3 6 3 4-2V4l-4 2-6-3-6 3Z"/><path d="M10 3v14M16 6v14"/></svg></span>
           <span class="ctitle" data-t="exploreTitle">Explore Valtellina</span>
         </div>
         <p class="ptext" data-t="exploreText">Trails, wine cellars and our favourite spots, minutes from the door.</p>
-        <div class="gallery">
-          <div class="slot"><div class="frame"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div><div class="slotlabel" data-t="gVineyards">Vineyards</div><div class="slotsub" data-t="addPhoto">add photo</div></div>
-          <div class="slot"><div class="frame"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div><div class="slotlabel" data-t="gTrails">Trails</div><div class="slotsub" data-t="addPhoto">add photo</div></div>
-          <div class="slot"><div class="frame"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="9" cy="10" r="1.4"/></svg></div><div class="slotlabel" data-t="gTown">Old town</div><div class="slotsub" data-t="addPhoto">add photo</div></div>
+        <div class="berncall kitcall">
+          <img class="berncall-shot" src="media/walking_bridge.jpg" alt="Valtellina" loading="lazy">
+          <div class="berncall-body">
+            <div class="berncall-title" data-t="kitTitle">Valtellina press kit</div>
+            <p class="berncall-desc" data-t="kitDesc">The official tourism board guide: nature, wellness, food, culture, and getting around. A great deeper dive beyond our picks.</p>
+            <a class="tlink" href="https://www.valtellina.it/flex/files/1/c/e/D.3639a130f853aafabfd3/press_kit_valtellina_web.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg><span data-t="kitLink">Open the press kit (PDF)</span></a>
+          </div>
         </div>
-        <div class="ttrow">
+        <div class="gallery">
+          <div class="slot slot--cap" tabindex="0">
+            <img class="shot" src="media/vineyards.jpg" alt="Vineyards" loading="lazy">
+            <div class="slotcap">
+              <div class="slotlabel" data-t="gVineyards">Vineyards</div>
+              <div class="slotdesc" data-t="gVineyardsD">Terraced Nebbiolo slopes above the valley — lovely for a run too.</div>
+            </div>
+          </div>
+          <a class="slot slot--cap" href="https://www.alltrails.com/poi/italy/lombardy/monte-rolla" target="_blank" rel="noopener">
+            <img class="shot" src="media/monte_rolla.jpg" alt="Monte Rolla" loading="lazy">
+            <div class="slotcap">
+              <div class="slotlabel" data-t="gTrails">Monte Rolla</div>
+              <div class="slotdesc" data-t="gTrailsD">A local peak near Castione Andevenno — trail and valley views.</div>
+            </div>
+          </a>
+          <div class="slot slot--cap" tabindex="0">
+            <img class="shot" src="media/sondrio_old_town.jpg" alt="Sondrio old town" loading="lazy">
+            <div class="slotcap">
+              <div class="slotlabel" data-t="gTown">Old town</div>
+              <div class="slotdesc" data-t="gTownD">Lanes and squares in the heart of Sondrio.</div>
+            </div>
+          </div>
+        </div>
+        <div class="ttrow" id="season-acts">
         <div class="ttsub" data-t="ttSub">Things to do, by season</div>
         <div class="seasons" role="group" aria-label="Season">
           <button class="szbtn" data-season="winter" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M12 2v20M4 7l16 10M20 7 4 17M2.5 12h19"/></svg><span data-t="seasonWinter">Winter</span></button>
-          <button class="szbtn" data-season="summer" aria-pressed="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M5 5l1.7 1.7M17.3 17.3 19 19M19 5l-1.7 1.7M6.7 17.3 5 19"/></svg><span data-t="seasonSummer">Summer</span></button>
+          <button class="szbtn" data-season="summer" aria-pressed="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M5 5l1.7 1.7M17.3 17.3 19 19M19 5l-1.7 1.7M6.7 17.3 5 19"/></svg><span data-t="seasonSummer">Summer</span></button>
         </div>
         </div>
         <div id="acts">
           <div class="act" data-season="winter">
-            <span class="athumb" style="--tint:var(--accent)"><span class="aph"><svg viewBox="0 0 24 24"><path d="M3 20 9 8l4 7 2-3 6 8Z"/></svg></span></span>
-            <div class="atext"><div class="atitle"><span data-t="actSki">Ski Bormio &amp; Santa Caterina</span><span class="szn" data-t="seasonWinter">Winter</span></div><div class="adesc" data-t="actSkiD">World-class pistes and the Stelvio, about an hour away.</div></div>
+            <span class="athumb" style="--tint:var(--accent)"><img class="shot" src="media/bormio_ski.jpg" alt="Bormio ski slopes" loading="lazy"></span>
+            <div class="atext"><div class="atitle"><span data-t="actSki">Ski Bormio</span><span class="szn" data-t="seasonWinter">Winter</span></div><div class="adesc" data-t="actSkiD">One of Europe's biggest vertical drops — 1,800 m summit-to-base, the Olympic Stelvio run and a funslope. About an hour away. Many people finish the day at the thermal baths.</div>
+              <details class="actdetails">
+                <summary data-t="actDetails">Details</summary>
+              <div class="ameta">
+                <div class="aitem"><span class="alabel" data-t="actDiff">Difficulty</span><span class="aval" data-t="actSkiDiff">All levels</span></div>
+                <div class="aitem"><span class="alabel" data-t="actGear">Gear / rentals</span><span class="aval" data-t="actSkiGear">Rossignol rental at the cableway base. Book online for 10% off.</span></div>
+                <div class="aitem"><span class="alabel" data-t="actBeginner">Beginner path</span><span class="aval" data-t="actSkiBeginner">Funslope and easy valley runs.</span></div>
+              </div>
+              </details>
+              <div class="alinks">
+                <a href="https://www.bormioski.eu/en/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3 4 20h16L12 3Z"/><path d="M12 14v3"/></svg><span data-t="skiLink">Bormio Ski</span></a>
+                <a href="https://www.bormioski.eu/en/ski-rental/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3 4 20h16L12 3Z"/><path d="M12 14v3"/></svg><span data-t="skiRentalLink">Bormio ski rental</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="act" data-season="winter">
+            <span class="athumb" style="--tint:var(--g)"><span class="aph"><svg viewBox="0 0 24 24"><path d="M4 18c2-4 4-6 8-6s6 2 8 6"/><path d="M6 14c1.5-2.5 3-3.5 6-3.5S16.5 11.5 18 14"/><path d="M3 20h3M18 20h3"/></svg></span></span>
+            <div class="atext"><div class="atitle"><span data-t="actXc">Cross-country skiing in Valdidentro</span><span class="szn" data-t="seasonWinter">Winter</span></div><div class="adesc" data-t="actXcD">The free Viola trail, 10 km — easy, quiet, through forests and mountain cabins. A calmer alternative to downhill. About an hour away.</div>
+              <details class="actdetails">
+                <summary data-t="actDetails">Details</summary>
+              <div class="ameta">
+                <div class="aitem"><span class="alabel" data-t="actDiff">Difficulty</span><span class="aval" data-t="actXcDiff">Easy</span></div>
+                <div class="aitem"><span class="alabel" data-t="actGear">Gear / rentals</span><span class="aval ph" data-t="actXcGear">Rentals near the trail — details coming soon.</span></div>
+                <div class="aitem"><span class="alabel" data-t="actBeginner">Beginner path</span><span class="aval" data-t="actXcBeginner">The Viola trail is the gentle intro.</span></div>
+              </div>
+              </details>
+              <div class="alinks">
+                <a href="https://www.bormio.eu/en/activities-and-attractions/ski-winter-outdoor/cross-country-skiing" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3 4 20h16L12 3Z"/><path d="M12 14v3"/></svg><span data-t="xcLink">Bormio cross-country</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="act" data-season="winter">
+            <span class="athumb" style="--tint:var(--g)"><span class="aph"><svg viewBox="0 0 24 24"><path d="M12 2v20M4 7l16 10M20 7 4 17M2.5 12h19"/></svg></span></span>
+            <div class="atext"><div class="atitle"><span data-t="actSnowshoe">Snowshoeing in Valfurva</span><span class="szn" data-t="seasonWinter">Winter</span></div><div class="adesc" data-t="actSnowshoeD">Routes for all abilities in Stelvio National Park — an easy winter hike with big views. About an hour away.</div>
+              <details class="actdetails">
+                <summary data-t="actDetails">Details</summary>
+              <div class="ameta">
+                <div class="aitem"><span class="alabel" data-t="actDiff">Difficulty</span><span class="aval" data-t="actSnowshoeDiff">Easy · all abilities</span></div>
+                <div class="aitem"><span class="alabel" data-t="actGear">Gear / rentals</span><span class="aval ph" data-t="actSnowshoeGear">Snowshoe rentals — details coming soon.</span></div>
+                <div class="aitem"><span class="alabel" data-t="actBeginner">Beginner path</span><span class="aval" data-t="actSnowshoeBeginner">Gentle park routes for first-timers.</span></div>
+              </div>
+              </details>
+              <div class="alinks">
+                <a href="https://www.valtellina.it/en/tourist-activities/snowshoeing/valfurva" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 19 12 4l8 15H4Z"/><path d="M9 14h6"/></svg><span data-t="snowshoeLink">Valfurva snowshoeing</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="act" data-season="winter">
+            <span class="athumb" style="--tint:var(--gold)"><span class="aph"><svg viewBox="0 0 24 24"><circle cx="11" cy="8" r="3.2"/><path d="M5 20v-1.5a6 6 0 0 1 12 0V20"/><path d="M16.5 6.5c1.2-.8 2.8-.7 3.8.4"/><path d="M18 11.5c1.4.2 2.6 1.2 3 2.5"/></svg></span></span>
+            <div class="atext"><div class="atitle"><span data-t="actHusky">Husky sledding</span><span class="szn" data-t="seasonWinter">Winter</span></div><div class="adesc" data-t="actHuskyD">Drive a sled pulled by Alaskan huskies in Arnoga (Valdidentro), between Bormio and Livigno. About an hour away.</div>
+              <details class="actdetails">
+                <summary data-t="actDetails">Details</summary>
+              <div class="ameta">
+                <div class="aitem"><span class="alabel" data-t="actDiff">Difficulty</span><span class="aval" data-t="actHuskyDiff">Easy · guided</span></div>
+                <div class="aitem"><span class="alabel" data-t="actGear">Gear / rentals</span><span class="aval" data-t="actHuskyGear">Included with the outing.</span></div>
+                <div class="aitem"><span class="alabel" data-t="actBeginner">Beginner path</span><span class="aval" data-t="actHuskyBeginner">Guided from the start — no experience needed.</span></div>
+              </div>
+              </details>
+              <div class="alinks">
+                <a href="https://www.huskyvillage.it/en/winter-excursions/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3 4 20h16L12 3Z"/><path d="M12 14v3"/></svg><span data-t="huskyLink">Husky Village</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="act" data-season="winter">
+            <span class="athumb" style="--tint:var(--accent)"><img class="shot" src="media/piazza_winter.jpg" alt="Piazza Garibaldi in winter" loading="lazy"></span>
+            <div class="atext"><div class="atitle"><span data-t="actSkate">Ice skating in Piazza Garibaldi</span><span class="szn" data-t="seasonWinter">Winter</span></div><div class="adesc" data-t="actSkateD">Seasonal rink in the centre of Sondrio — usually late November to early January (dates change each year). A few minutes' walk.</div>
+              <details class="actdetails">
+                <summary data-t="actDetails">Details</summary>
+              <div class="ameta">
+                <div class="aitem"><span class="alabel" data-t="actDiff">Difficulty</span><span class="aval" data-t="actSkateDiff">Easy</span></div>
+                <div class="aitem"><span class="alabel" data-t="actGear">Gear / rentals</span><span class="aval" data-t="actSkateGear">Skate hire at the rink. About €8 admission (€5 with your own skates). Prices change each year.</span></div>
+                <div class="aitem"><span class="alabel" data-t="actBeginner">Beginner path</span><span class="aval" data-t="actSkateBeginner">Open rink — fine for first-timers.</span></div>
+              </div>
+              </details>
+              <div class="alinks">
+                <a href="https://www.visitasondrio.it/site/home/eventi/pattinaggio_ghiaccio_2025.html" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3 4 20h16L12 3Z"/><path d="M12 14v3"/></svg><span data-t="skateLink">Piazza Garibaldi rink</span></a>
+              </div>
+            </div>
           </div>
           <div class="act" data-season="summer">
-            <span class="athumb" style="--tint:var(--g)"><span class="aph"><svg viewBox="0 0 24 24"><circle cx="13" cy="4" r="1.6"/><path d="M11 21l1.6-6 3 2 1.4 4M12.6 15 11 10l4-1 2 3 3 1"/></svg></span></span>
-            <div class="atext"><div class="atitle"><span data-t="actHike">Hike the valley trails</span><span class="szn" data-t="seasonSummer">Summer</span></div><div class="adesc" data-t="actHikeD">Dozens of marked trails, from gentle valley walks to alpine routes.</div></div>
+            <span class="athumb" style="--tint:var(--g)"><img class="shot" src="media/diavolezza.jpg" alt="Diavolezza" loading="lazy"></span>
+            <div class="atext"><div class="atitle"><span data-t="actDiavolezza">Via ferrata at Diavolezza</span><span class="szn" data-t="seasonSummer">Summer</span></div><div class="adesc" data-t="actDiavolezzaD">Piz Trovat I (K1–3) and II (K5–6) — rope bridge, glacier views, 300 m of climbing from the Diavolezza station. About 2 h away.</div>
+              <details class="actdetails">
+                <summary data-t="actDetails">Details</summary>
+              <div class="ameta">
+                <div class="aitem"><span class="alabel" data-t="actDiff">Difficulty</span><span class="aval" data-t="actDiavolezzaDiff">K1–3 (I) · K5–6 (II)</span></div>
+                <div class="aitem"><span class="alabel" data-t="actGear">Gear / rentals</span><span class="aval" data-t="actDiavolezzaGear">Harness and via-ferrata kit for rent. Call early to confirm availability. Bring your own if you can.</span></div>
+                <div class="aitem"><span class="alabel" data-t="actBeginner">Beginner path</span><span class="aval" data-t="actDiavolezzaBeginner">Start with Piz Trovat I (K1–3).</span></div>
+              </div>
+              </details>
+              <div class="alinks">
+                <a href="https://www.corvatsch-diavolezza.ch/en/experiences/climbing-on-piz-trovat-a-devilishly-fun-adventure" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3 4 20h16L12 3Z"/><path d="M12 14v3"/></svg><span data-t="diavolezzaLink">Diavolezza ferratas</span></a>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=Sport+Hub,+Castione+Andevenno" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="sportHubLink">Sport Hub</span></a>
+              </div>
+            </div>
           </div>
           <div class="act" data-season="summer">
-            <span class="athumb" style="--tint:var(--accent)"><span class="aph"><svg viewBox="0 0 24 24"><path d="M6 21V4l9 3-3 3 3 3-9 2"/></svg></span></span>
-            <div class="atext"><div class="atitle"><span data-t="actClimb">Rock climbing &amp; via ferrata</span><span class="szn" data-t="seasonSummer">Summer</span></div><div class="adesc" data-t="actClimbD">Crags and via ferrata routes across the valley.</div></div>
+            <span class="athumb" style="--tint:var(--g)"><img class="shot" src="media/val_di_mello.jpg" alt="Val di Mello" loading="lazy"></span>
+            <div class="atext"><div class="atitle"><span data-t="actHike">Hike in Val Masino</span><span class="szn" data-t="seasonSummer">Summer</span></div><div class="adesc" data-t="actHikeD">Valle di Mello classic: San Martino to Alpe Pioda on a flat valley-floor path through granite meadows and stream crossings. Fine for younger hikers. About 45 min by car.</div>
+              <details class="actdetails">
+                <summary data-t="actDetails">Details</summary>
+              <div class="ameta">
+                <div class="aitem"><span class="alabel" data-t="actDiff">Difficulty</span><span class="aval" data-t="actHikeDiff">Easy · flat</span></div>
+                <div class="aitem"><span class="alabel" data-t="actGear">Gear / rentals</span><span class="aval" data-t="actHikeGear">Hiking shoes; poles optional.</span></div>
+                <div class="aitem"><span class="alabel" data-t="actBeginner">Beginner path</span><span class="aval" data-t="actHikeBeginner">Flat valley floor. Fine for younger hikers too.</span></div>
+              </div>
+              </details>
+              <div class="alinks">
+                <a href="https://www.alltrails.com/trail/italy/lombardy/san-martino-alpe-pioda-via-valle-di-mello" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 19 12 4l8 15H4Z"/><path d="M9 14h6"/></svg><span data-t="hikeLink">Valle di Mello trail</span></a>
+              </div>
+            </div>
           </div>
           <div class="act" data-season="summer">
-            <span class="athumb" style="--tint:var(--gold)"><span class="aph"><svg viewBox="0 0 24 24"><path d="M8 3h8l-1 6a3 3 0 0 1-6 0ZM12 15v5M9 21h6"/></svg></span></span>
-            <div class="atext"><div class="atitle"><span data-t="actWine">Valtellina wine tasting</span><span class="szn" data-t="seasonSummer">Summer</span></div><div class="adesc" data-t="actWineD">Nebbiolo reds and terraced cellars, minutes away.</div></div>
+            <span class="athumb" style="--tint:var(--g)"><img class="shot" src="media/lagazzuolo.jpg" alt="Lago Lagazzuolo" loading="lazy"></span>
+            <div class="atext"><div class="atitle"><span data-t="actLagazzuolo">Lago Lagazzuolo hike</span><span class="szn" data-t="seasonSummer">Summer</span></div><div class="adesc" data-t="actLagazzuoloD">Steep out-and-back from San Giuseppe in Valmalenco to a turquoise alpine lake. About 5 km, 620 m gain, 3–3.5 hours. Worth it for the colour of the water. About 40 min by car.</div>
+              <details class="actdetails">
+                <summary data-t="actDetails">Details</summary>
+              <div class="ameta">
+                <div class="aitem"><span class="alabel" data-t="actDiff">Difficulty</span><span class="aval" data-t="actLagazzuoloDiff">Hard · steep</span></div>
+                <div class="aitem"><span class="alabel" data-t="actGear">Gear / rentals</span><span class="aval" data-t="actLagazzuoloGear">Hiking shoes; poles helpful on the descent.</span></div>
+                <div class="aitem"><span class="alabel" data-t="actBeginner">Beginner path</span><span class="aval" data-t="actLagazzuoloBeginner">Better after an easier valley walk, or take it slow.</span></div>
+              </div>
+              </details>
+              <div class="alinks">
+                <a href="https://www.alltrails.com/trail/italy/lombardy/san-giuseppe-lago-lagazzuolo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 19 12 4l8 15H4Z"/><path d="M9 14h6"/></svg><span data-t="lagazzuoloLink">Lago Lagazzuolo trail</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="act" data-season="summer">
+            <span class="athumb" style="--tint:var(--accent)"><img class="shot" src="media/sasso_di_remenno.jpg" alt="Sasso Remenno" loading="lazy"></span>
+            <div class="atext"><div class="atitle"><span data-t="actClimb">Rock climbing at Sasso Remenno</span><span class="szn" data-t="seasonSummer">Summer</span></div><div class="adesc" data-t="actClimbD">Europe's largest granite monolith in Val Masino — dozens of routes from beginner slabs to steep 9a. About 45 min by car.</div>
+              <details class="actdetails">
+                <summary data-t="actDetails">Details</summary>
+              <div class="ameta">
+                <div class="aitem"><span class="alabel" data-t="actDiff">Difficulty</span><span class="aval" data-t="actClimbDiff">Beginner to 9a</span></div>
+                <div class="aitem"><span class="alabel" data-t="actGear">Gear / rentals</span><span class="aval" data-t="actClimbGear">Bring your own climbing gear if you can. Sport Hub in Castione has plenty of outdoor gear if you forgot something.</span></div>
+                <div class="aitem"><span class="alabel" data-t="actBeginner">Beginner path</span><span class="aval" data-t="actClimbBeginner">Start on the lower slabs.</span></div>
+              </div>
+              </details>
+              <div class="alinks">
+                <a href="https://www.valmasino.info/en/schede/sasso-di-remenno/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3 4 20h16L12 3Z"/><path d="M12 14v3"/></svg><span data-t="climbLink">Sasso Remenno</span></a>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=Sport+Hub,+Castione+Andevenno" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="sportHubLink">Sport Hub</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="act" data-season="summer">
+            <span class="athumb" style="--tint:var(--gold)"><img class="shot" src="media/wine_trail.jpg" alt="Wine trail" loading="lazy"></span>
+            <div class="atext"><div class="atitle"><span data-t="actWine">Valtellina wine tasting</span><span class="szn" data-t="seasonSummer">Summer</span></div><div class="adesc" data-t="actWineD">Italy's largest terraced vineyard area — DOC and DOCG Nebbiolo along the Wine Road and Via dei Terrazzamenti, with cellar-door tastings near Sondrio. The trail is also lovely for a run or walk.</div>
+              <div class="alinks">
+                <a href="https://www.valtellina.it/en/tourist-activities/wine-and-food-experiences" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3 4 20h16L12 3Z"/><path d="M12 14v3"/></svg><span data-t="wineLink">Valtellina wine &amp; food</span></a>
+              </div>
+            </div>
           </div>
           <div class="act" data-season="all">
-            <span class="athumb" style="--tint:var(--g)"><span class="aph"><svg viewBox="0 0 24 24"><path d="M4 14c2-2 4-2 6 0s4 2 6 0 4-2 4-2M4 19c2-2 4-2 6 0s4 2 6 0 4-2 4-2M12 3v6"/></svg></span></span>
-            <div class="atext"><div class="atitle"><span data-t="actTerme">Bormio thermal baths</span><span class="szn" data-t="seasonAll">Year-round</span></div><div class="adesc" data-t="actTermeD">Bagni Vecchi and Bagni Nuovi, historic and modern spas.</div></div>
+            <span class="athumb" style="--tint:var(--accent)"><span class="aph"><svg viewBox="0 0 24 24"><circle cx="6" cy="17" r="2.2"/><circle cx="17" cy="17" r="2.2"/><path d="M6 17h5l2.5-6H19"/><path d="M9.5 11 8 17"/></svg></span></span>
+            <div class="atext"><div class="atitle"><span data-t="actSentiero">Sentiero Valtellina</span><span class="szn" data-t="seasonAll">Year-round</span></div><div class="adesc" data-t="actSentieroD">The valley cycle-and-run path along the Adda, about 114 km from Colico to Bormio. The Sondrio stretch is flat and easy to hop onto. Great for a run or a bike ride.</div>
+              <details class="actdetails">
+                <summary data-t="actDetails">Details</summary>
+              <div class="ameta">
+                <div class="aitem"><span class="alabel" data-t="actDiff">Difficulty</span><span class="aval" data-t="actSentieroDiff">Easy · flat</span></div>
+                <div class="aitem"><span class="alabel" data-t="actGear">Gear / rentals</span><span class="aval" data-t="actSentieroGear">Running shoes or a bike. Sport Hub in Castione if you need anything.</span></div>
+                <div class="aitem"><span class="alabel" data-t="actBeginner">Beginner path</span><span class="aval" data-t="actSentieroBeginner">Hop on near Sondrio and go as far as you like. Open year-round on the local stretch (watch for ice in winter). The Via dei Terrazzamenti wine trail above town is another great run.</span></div>
+              </div>
+              </details>
+              <div class="alinks">
+                <a href="https://www.valtellina.it/en/bike/cycling-tourism/routes/sentiero-valtellina" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3 4 20h16L12 3Z"/><path d="M12 14v3"/></svg><span data-t="sentieroLink">Sentiero Valtellina</span></a>
+                <a href="https://maps.app.goo.gl/qMSw7tTYXXJ6P5HS9" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg><span data-t="sentieroMapLink">Open map</span></a>
+              </div>
+            </div>
           </div>
           <div class="act" data-season="all">
-            <span class="athumb" style="--tint:var(--accent)"><span class="aph"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="12" rx="2"/><path d="M5 10h14M8 20l-2 2M16 20l2 2"/><circle cx="9" cy="13" r="1"/><circle cx="15" cy="13" r="1"/></svg></span></span>
-            <div class="atext"><div class="atitle"><span data-t="actBernina">Bernina Express</span><span class="szn" data-t="seasonAll">Year-round</span></div><div class="adesc" data-t="actBerninaD">UNESCO alpine railway to St. Moritz, boarding at Tirano.</div></div>
+            <span class="athumb" style="--tint:var(--g)"><img class="shot" src="media/bagni_vecchi.jpg" alt="Bagni Vecchi" loading="lazy"></span>
+            <div class="atext"><div class="atitle"><span data-t="actTerme">Bormio thermal baths</span><span class="szn" data-t="seasonAll">Year-round</span></div><div class="adesc" data-t="actTermeD">Three spas fed by nine hot springs — Roman-era Bagni Vecchi, Art Nouveau Bagni Nuovi, and Bormio Terme in town. About an hour away. A favourite after a day on the slopes.</div>
+              <details class="actdetails">
+                <summary data-t="actDetails">Details</summary>
+              <div class="ameta">
+                <div class="aitem"><span class="alabel" data-t="actGear">Gear / rentals</span><span class="aval" data-t="actTermeGear">Bathrobe, towel and sandals included (no rental fee).</span></div>
+              </div>
+              </details>
+              <div class="alinks">
+                <a href="https://www.bormio.eu/en/activities-and-attractions/wellness" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 3 4 20h16L12 3Z"/><path d="M12 14v3"/></svg><span data-t="termeLink">Bormio wellness</span></a>
+              </div>
+            </div>
           </div>
         </div>
       </article>
 
-      <article class="card reveal" id="card-guestbook" data-journey="welcome after leave">
-        <div class="chead">
-          <span class="cicon" style="--tint:var(--gold)"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-3 2Z"/><path d="M8 7h7M8 11h7"/></svg></span>
-          <span class="ctitle" data-t="gbTitle">Guestbook</span>
-        </div>
-        <p class="ptext" data-t="gbText">A few words from guests who came before you.</p>
-        <div id="guestbook" class="gbwall"></div>
-        <a class="btn green" data-gb-cta href="#"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-3 2Z"/></svg><span data-t="gbLeave">Leave us a note</span></a>
-      </article>
-
-      <article class="card reveal" id="card-hosts" data-journey="leave stay">
+      <article class="card" id="card-hosts" data-journey="welcome stay leave">
         <div class="hostrow">
-          <span class="portrait"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
+          <span class="portrait"><img class="shot" src="media/steph_and_julian.jpg" alt="Stephanie and Julian" loading="lazy"></span>
           <div>
             <div class="hostnames">Stephanie &amp; Julian</div>
             <div class="hostsub" data-t="hostsSub">Your hosts · reply within minutes</div>
           </div>
         </div>
+        <p class="ptext hostabout" data-t="hostsAbout">Julian lived in Sondrio for a year or two when he was three, so the valley still feels like home. He speaks English, Italian and French fluently, and is conversational in Spanish. Stephanie is an avid rock climber who got Julian into climbing.</p>
         <div class="btnrow">
-          <a class="btn red" href="#"><svg viewBox="0 0 24 24"><path d="M6 3h3l2 5-2 1.5a11 11 0 0 0 5 5L20 12l1 3v3a2 2 0 0 1-2 2A16 16 0 0 1 4 6a2 2 0 0 1 2-3Z"/></svg><span data-t="callHostShort">Call</span></a>
-          <a class="btn green" href="#" data-host-wa=""><svg viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.2 1.1-1.7 1.2-.4.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6s.6-1.8.9-2.1c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.7 1.7c.1.1.1.3 0 .5l-.3.5-.3.3c-.1.1-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.7 1.1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.6-.1l1.6.8c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/></svg><span data-t="waHost">WhatsApp</span></a>
+          <a class="btn green" href="tel:+14403171717"><svg viewBox="0 0 24 24"><path d="M6 3h3l2 5-2 1.5a11 11 0 0 0 5 5L20 12l1 3v3a2 2 0 0 1-2 2A16 16 0 0 1 4 6a2 2 0 0 1 2-3Z"/></svg><span data-t="callHostShort">Call</span></a>
+          <a class="btn red" href="https://wa.me/14403171717" data-host-wa="14403171717"><svg viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.2 1.1-1.7 1.2-.4.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6s.6-1.8.9-2.1c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.7 1.7c.1.1.1.3 0 .5l-.3.5-.3.3c-.1.1-.3.3-.1.6.1.3.7 1.1 1.4 1.7.9.8 1.7 1.1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.6-.1l1.6.8c.3.1.4.2.5.3.1.2.1.7-.1 1.3Z"/></svg><span data-t="waHost">WhatsApp</span></a>
         </div>
       </article>
 
-      <article class="card reveal" id="card-emergency" data-journey="arrive stay leave">
+      <article class="card" id="card-emergency" data-journey="arrive stay leave">
         <div class="chead">
-          <span class="cicon" style="--tint:var(--accent)"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.7 7-11a7 7 0 0 0-14 0c0 5.3 7 11 7 11Z"/><path d="M9.5 10.5 11.5 12.5 15 9"/></svg></span>
           <span class="ctitle" data-t="emTitle">Emergency</span>
         </div>
         <p class="ptext" data-t="emText">112 reaches ambulance, fire and police from any phone.</p>
@@ -293,31 +615,27 @@
         <div class="row"><span class="rlabel" data-t="emPharmacy">Nearest pharmacy</span><span class="rval">5 min</span></div>
       </article>
 
-      <div class="sendoff reveal" id="sendoff" data-journey="leave after">
+      <article class="card" id="card-guestbook" data-journey="welcome stay after leave">
+        <div class="chead">
+          <span class="ctitle" data-t="gbTitle">Guestbook</span>
+        </div>
+        <p class="ptext" data-t="gbText">A few words from guests who came before you.</p>
+        <div id="guestbook" class="gbwall"></div>
+        <a class="btn green" data-gb-cta href="#"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-3 2Z"/></svg><span data-t="gbLeave">Leave us a note</span></a>
+      </article>
+
+      <a class="reviewnudge" href="#" data-review-link data-journey="leave after" id="review-nudge">
+        <span data-t="reviewNudge">Enjoyed your stay? A review helps future guests find us.</span>
+      </a>
+
+      <div class="sendoff" id="sendoff" data-journey="leave after">
         <div class="sotitle" data-t="soTitle">Come back soon</div>
         <p class="sotext" data-t="soText">Thank you for staying with us. We'd love to see you back in another season.</p>
+        <button type="button" class="btn green" id="seasonNudge"><svg viewBox="0 0 24 24"><path d="M12 2v20M4 7l16 10M20 7 4 17M2.5 12h19"/></svg><span data-t="soCta">See the other season</span></button>
       </div>
 
       <div class="foot">Sondrio Stay · Valtellina</div>
     </div>
-
-    <nav class="sectionsnav" aria-label="Jump to section">
-      <div class="sectionsmenu" id="sectionsMenu" hidden>
-        <a href="#card-arrival" data-section="arrival" data-t="tabArrival">Arrival</a>
-        <a href="#card-peek" data-section="peek" data-t="peekTitle">A peek inside</a>
-        <a href="#card-explore" data-section="explore" data-t="exploreTitle">Explore Valtellina</a>
-        <a href="#card-eat" data-section="eat" data-t="eatTitle">Where to eat</a>
-        <a href="#card-daytrips" data-section="daytrips" data-t="dtTitle">Day trips</a>
-        <a href="#card-guestbook" data-section="guestbook" data-t="gbTitle">Guestbook</a>
-        <a href="#card-hosts" data-section="hosts" data-t="navHosts">Your hosts</a>
-        <a href="#card-emergency" data-section="emergency" data-t="emTitle">Emergency</a>
-        <a href="#sendoff" data-section="sendoff" data-t="soTitle" hidden>Come back soon</a>
-      </div>
-      <button class="sectionsbtn" id="sectionsToggle" aria-expanded="false" aria-controls="sectionsMenu">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        <span data-t="sections">Sections</span>
-      </button>
-    </nav>
 
   </main>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>

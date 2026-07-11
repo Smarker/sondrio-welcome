@@ -2,19 +2,9 @@ import { T } from './content.js';
 import { showPane } from './arrival.js';
 import { sondrioNow } from './timeofday.js';
 import { scrollToTarget } from './quickaccess.js';
-import { applySectionsMenu } from './sections.js';
-
 export const JOURNEY_STORAGE = 'sw-journey';
 export const JOURNEY_PHASE_KEY = 'sw-journey-phase-key';
 export const TIP_DISMISSED_KEY = 'sw-journey-tip-dismissed';
-
-export const PHASE_TARGETS = {
-  welcome: '#card-daytrips',
-  arrive: '#card-arrival',
-  stay: '#card-peek',
-  leave: '#card-arrival',
-  after: '#card-guestbook',
-};
 
 const NAV_PHASES = ['welcome', 'arrive', 'stay', 'leave'];
 
@@ -62,6 +52,28 @@ export function heroSubKeyForPhase(phase){
   return keys[phase] || 'heroSub';
 }
 
+export function welcomeNoteKeyForPhase(phase){
+  return phase === 'welcome' ? 'welcomeNoteWelcome' : 'welcomeNote';
+}
+
+export function formatStayDates(stay, lang = 'en'){
+  if (!stay || !stay.checkIn || !stay.checkOut) return '';
+  const locale = lang === 'en' ? 'en-GB' : lang; // day-first everywhere
+  const day = s => new Date(`${s}T12:00:00`);
+  const dayMonth = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long' });
+  if (stay.checkIn.slice(0, 7) === stay.checkOut.slice(0, 7)){
+    const dayOnly = new Intl.DateTimeFormat(locale, { day: 'numeric' });
+    return `${dayOnly.format(day(stay.checkIn))}–${dayMonth.format(day(stay.checkOut))}`;
+  }
+  return `${dayMonth.format(day(stay.checkIn))} – ${dayMonth.format(day(stay.checkOut))}`;
+}
+
+export function visibleForPhase(el, phase){
+  const allowed = (el.getAttribute('data-journey') || '').split(/\s+/).filter(Boolean);
+  if (!allowed.length) return true;
+  return allowed.includes(phase);
+}
+
 export function tipKeyForHour(h){
   if (h >= 5 && h < 12) return 'jTipMorning';
   if (h >= 12 && h < 18) return 'jTipDay';
@@ -74,37 +86,46 @@ export function tipTargetForHour(h){
   return '#card-eat';
 }
 
-export function applyJourney(doc, viewPhase, options = {}){
-  const computed = options.computed ?? viewPhase;
-  const journey = navPhaseFor(computed);
+export function applyJourney(doc, phase, options = {}){
+  const journey = navPhaseFor(phase);
   doc.documentElement.setAttribute('data-journey', journey);
 
   const lang = doc.documentElement.lang || 'en';
 
   const heroSub = doc.querySelector('[data-hero-sub]');
   if (heroSub){
-    const key = heroSubKeyForPhase(computed);
+    const key = heroSubKeyForPhase(phase);
     heroSub.setAttribute('data-t', key);
     if (T[key] && T[key][lang]) heroSub.textContent = T[key][lang];
   }
 
+  const stayDates = doc.querySelector('[data-stay-dates]');
+  if (stayDates){
+    const dates = formatStayDates(options.stay, lang);
+    stayDates.hidden = !dates;
+    if (dates) stayDates.textContent = `${(T.stayDatesLabel && T.stayDatesLabel[lang]) || ''} · ${dates}`;
+  }
+
+  const welcomeNote = doc.querySelector('#welcome-note p');
+  if (welcomeNote){
+    const key = welcomeNoteKeyForPhase(phase);
+    welcomeNote.setAttribute('data-t', key);
+    if (T[key] && T[key][lang]) welcomeNote.textContent = T[key][lang];
+  }
+
+  // .jpill buttons use data-journey as their target phase, not a visibility
+  // list — leave them out of the phase filter or the nav hides itself.
+  doc.querySelectorAll('[data-journey]:not(.jpill)').forEach(el => {
+    el.hidden = !visibleForPhase(el, phase);
+  });
+
   doc.querySelectorAll('.jpill').forEach(p =>
     p.setAttribute('aria-pressed', String(p.dataset.journey === journey)));
 
-  const privacy = doc.querySelector('.privacy');
-  const privacyText = doc.querySelector('.privacy .pt');
-  if (privacy && privacyText){
-    const preArrival = computed === 'welcome';
-    privacy.classList.toggle('pre-arrival', preArrival);
-    const key = preArrival ? 'privacyPreArrival' : 'privacyText';
-    privacyText.setAttribute('data-t', key);
-    if (T[key] && T[key][lang]) privacyText.textContent = T[key][lang];
-  }
-
   const arrivalRoot = doc.getElementById('card-arrival');
   if (arrivalRoot){
-    if (computed === 'leave') showPane(arrivalRoot, 'departure');
-    else if (computed === 'arrive') showPane(arrivalRoot, 'arrival');
+    if (phase === 'leave') showPane(arrivalRoot, 'departure');
+    else if (phase === 'arrive') showPane(arrivalRoot, 'arrival');
   }
 
   const tipEl = doc.querySelector('[data-journey-tip]');
@@ -112,7 +133,7 @@ export function applyJourney(doc, viewPhase, options = {}){
   if (tipEl && tipText){
     const dismissed = typeof sessionStorage !== 'undefined' &&
       sessionStorage.getItem(TIP_DISMISSED_KEY);
-    if (computed === 'stay' && !dismissed){
+    if (phase === 'stay' && !dismissed){
       const { hour } = sondrioNow();
       const tipKey = tipKeyForHour(hour);
       tipEl.hidden = false;
@@ -123,8 +144,6 @@ export function applyJourney(doc, viewPhase, options = {}){
       tipEl.hidden = true;
     }
   }
-
-  applySectionsMenu(doc, computed);
 }
 
 export function getUrlPhase(){
@@ -144,17 +163,6 @@ export async function fetchStayConfig(){
   } catch {
     return null;
   }
-}
-
-export function scrollToPhaseTarget(doc, phase){
-  const selector = PHASE_TARGETS[phase] || PHASE_TARGETS.stay;
-  scrollToTarget(doc, selector, {
-    beforeScroll(){
-      if (phase !== 'arrive' && phase !== 'leave') return;
-      const root = doc.getElementById('card-arrival');
-      if (root) showPane(root, phase === 'leave' ? 'departure' : 'arrival');
-    },
-  });
 }
 
 export function initJourney(stay){
@@ -181,17 +189,19 @@ export function initJourney(stay){
   }
 
   let viewPhase = phase;
-  applyJourney(document, viewPhase, { stay, computed });
+  applyJourney(document, viewPhase, { stay });
+
+  function setViewPhase(next){
+    if (!NAV_PHASES.includes(next)) return;
+    viewPhase = next;
+    if (typeof sessionStorage !== 'undefined'){
+      sessionStorage.setItem(JOURNEY_STORAGE, viewPhase);
+    }
+    applyJourney(document, viewPhase, { stay });
+  }
 
   document.querySelectorAll('.jpill').forEach(pill => {
-    pill.addEventListener('click', () => {
-      viewPhase = pill.dataset.journey;
-      if (typeof sessionStorage !== 'undefined'){
-        sessionStorage.setItem(JOURNEY_STORAGE, viewPhase);
-      }
-      applyJourney(document, viewPhase, { stay, computed });
-      scrollToPhaseTarget(document, viewPhase);
-    });
+    pill.addEventListener('click', () => setViewPhase(pill.dataset.journey));
   });
 
   const tipEl = document.querySelector('[data-journey-tip]');
@@ -209,8 +219,14 @@ export function initJourney(stay){
 
   document.querySelectorAll('.lang').forEach(b =>
     b.addEventListener('click', () => {
-      applyJourney(document, viewPhase, { stay, computed });
+      applyJourney(document, viewPhase, { stay });
     }));
 
-  return { phase: viewPhase, computed };
+  // Used by send-off "See the other season" and similar deep links.
+  document.addEventListener('sw:journey', e => {
+    const next = e.detail?.phase;
+    if (next) setViewPhase(next);
+  });
+
+  return { phase: viewPhase, computed, setViewPhase };
 }

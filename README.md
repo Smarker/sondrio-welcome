@@ -97,11 +97,9 @@ Before pointing a guest at this site, replace the following placeholders in `ind
 
 - [ ] Check-in and check-out dates in `data/stay.json` (see **Guest journey navigation**
       below).
-- [ ] Host phone number as a `tel:` link (the "Call" button, currently `href="#"`), e.g.
-      `href="tel:+390000000000"`.
-- [ ] Host WhatsApp number as `https://wa.me/<international-number>` (the "WhatsApp"
-      button, currently `href="#"`, international number with no `+`, spaces, or
-      leading zeros, e.g. `https://wa.me/390000000000`).
+- [x] Host phone number as a `tel:` link (the "Call" button).
+- [x] Host WhatsApp number as `https://wa.me/<international-number>` (the "WhatsApp"
+      button; international digits only, no `+`).
 - [ ] Google Maps URL for directions to the property itself (the "Get directions"
       quick-access pill under the hero, `data-quick-directions`, currently `href="#"`).
 - [ ] Google Maps URL for each restaurant listed under "Where to eat" (each "Open map"
@@ -115,11 +113,10 @@ Before pointing a guest at this site, replace the following placeholders in `ind
 - [ ] Real photos and video per `media/README.md`: hero video + poster, bedroom/living
       room/kitchen photos, a short clip, the two wide "band" shots, and the three
       "Explore Valtellina" images (vineyards, trails, old town).
-- [ ] Host WhatsApp number in the `data-host-wa` attribute on the host WhatsApp button
-      (powers the guestbook "Leave us a note" link), same international format as the
-      WhatsApp `href` (digits only, no `+`).
-- [ ] Curate `data/guestbook.json` with real guest notes (or leave `[]` for the graceful
-      empty state).
+- [x] Host WhatsApp number in the `data-host-wa` attribute on the host WhatsApp button
+      (powers the guestbook "Leave us a note" link).
+- [ ] Activity gear/rental details still marked as placeholders (italic "coming soon"
+      lines under XC and snowshoe).
 
 ## Guest journey navigation
 
@@ -139,11 +136,11 @@ automatically:
 
 | Phase | When |
 |-------|------|
-| **Discover** | Before check-in day |
+| **Prepare for your arrival** | Before check-in day |
 | **Getting here** | Check-in day |
-| **Your stay** | Between check-in and checkout |
+| **Plan Excursions** | Between check-in and checkout |
 | **Checkout** | Checkout day |
-| **After** | After checkout (guestbook focus, nav shows Discover) |
+| **After** | After checkout (guestbook focus, nav shows Prepare for your arrival) |
 
 The active phase highlights relevant cards (via CSS reordering), updates the
 hero subtitle, and shows the utility quick bar (Door / Wi-Fi / Directions) on
@@ -154,7 +151,7 @@ date-based phase changes.
 You can also deep-link a phase in Airbnb messages, for example
 `https://your-site/?view=arrive` or `#stay`.
 
-If `stay.json` is missing or invalid, the site defaults to the **Your stay**
+If `stay.json` is missing or invalid, the site defaults to the **Plan Excursions**
 phase so it remains usable between guests.
 
 ## Language behavior

@@ -6,14 +6,24 @@ export function escapeHtml(s){
     .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
-export function guestbookHtml(entries, emptyText){
+// "2026-05" → "May 2026" (localized); anything else passes through as-is.
+export function formatGbDate(date, lang = 'en'){
+  const m = /^(\d{4})-(\d{2})$/.exec(String(date || ''));
+  if (!m) return String(date || '');
+  const month = Number(m[2]);
+  if (month < 1 || month > 12) return String(date);
+  return new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric' })
+    .format(new Date(Number(m[1]), month - 1, 1));
+}
+
+export function guestbookHtml(entries, emptyText, lang = 'en'){
   if (!Array.isArray(entries) || entries.length === 0){
     return `<div class="gbempty" data-t="gbEmpty">${escapeHtml(emptyText)}</div>`;
   }
   return entries.map(e => `
     <figure class="gbnote">
       <blockquote>${escapeHtml(e.note || '')}</blockquote>
-      <figcaption><span class="gbname">${escapeHtml(e.name || '')}</span>${e.date ? `<span class="gbdate">${escapeHtml(e.date)}</span>` : ''}</figcaption>
+      <figcaption><span class="gbname">${escapeHtml(e.name || '')}</span>${e.date ? `<span class="gbdate">${escapeHtml(formatGbDate(e.date, lang))}</span>` : ''}</figcaption>
     </figure>`).join('');
 }
 
@@ -25,7 +35,12 @@ export function initGuestbook(){
     fetch('data/guestbook.json')
       .then(r => r.ok ? r.json() : [])
       .catch(() => [])
-      .then(entries => { wall.innerHTML = guestbookHtml(entries, emptyText()); });
+      .then(entries => {
+        const render = () => { wall.innerHTML = guestbookHtml(entries, emptyText(), lang()); };
+        render();
+        document.querySelectorAll('.lang').forEach(b =>
+          b.addEventListener('click', render));
+      });
   }
   const cta = document.querySelector('[data-gb-cta]');
   const host = document.querySelector('[data-host-wa]');

@@ -23,7 +23,7 @@ export function sondrioNow(date = new Date()){
 }
 
 export function applyTimeOfDay(doc = document, date = new Date()){
-  const { hour, minute } = sondrioNow(date);
+  const { hour } = sondrioNow(date);
   doc.documentElement.setAttribute('data-tod', phaseForHour(hour));
 
   const lang = doc.documentElement.lang || 'en';
@@ -32,10 +32,6 @@ export function applyTimeOfDay(doc = document, date = new Date()){
     const key = greetingKeyForHour(hour);
     greetEl.setAttribute('data-t', key); // so language switches re-translate it
     if (T[key] && T[key][lang]) greetEl.textContent = T[key][lang];
-  }
-  const clockEl = doc.querySelector('[data-clock]');
-  if (clockEl){
-    clockEl.textContent = String(hour).padStart(2,'0') + ':' + String(minute).padStart(2,'0');
   }
 }
 

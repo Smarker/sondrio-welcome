@@ -4,8 +4,9 @@ import { initTimeOfDay } from './timeofday.js';
 import { initCheckout } from './checkout.js';
 import { initArrival } from './arrival.js';
 import { initGuestbook } from './guestbook.js';
+import { initPeekLightbox } from './peeklightbox.js';
+import { initEatMap } from './eatmap.js';
 import { initJourney, fetchStayConfig } from './journey.js';
-import { initSections } from './sections.js';
 const AVAILABLE = ['it','en','es','fr','de'];
 
 export function resolveLanguage(navLang, available = AVAILABLE){
@@ -25,6 +26,12 @@ export function applyLanguage(lang, doc = document){
   doc.querySelectorAll('.lang').forEach(b =>
     b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
   doc.documentElement.lang = lang;
+  const closeBtn = doc.querySelector('.peeklightbox-close');
+  if (closeBtn && T.closePhoto?.[lang]) closeBtn.setAttribute('aria-label', T.closePhoto[lang]);
+  const prevBtn = doc.querySelector('.peeklightbox-prev');
+  if (prevBtn && T.prevPhoto?.[lang]) prevBtn.setAttribute('aria-label', T.prevPhoto[lang]);
+  const nextBtn = doc.querySelector('.peeklightbox-next');
+  if (nextBtn && T.nextPhoto?.[lang]) nextBtn.setAttribute('aria-label', T.nextPhoto[lang]);
 }
 
 function initI18n(){
@@ -41,7 +48,9 @@ function initI18n(){
   initCheckout();
   initArrival();
   initGuestbook();
-  initSections();
+  initPeekLightbox();
+  initEatMap();
+  applyLanguage(lang);
   fetchStayConfig().then(stay => initJourney(stay));
   const v = document.querySelector('.herovideo');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
