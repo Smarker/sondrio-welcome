@@ -26,12 +26,13 @@ html[data-tod="night"]{
 }
 /* sun becomes a soft moon at night */
 html[data-tod="night"] .heromedia-fallback circle[fill="var(--sun)"]{opacity:.85}
-*{box-sizing:border-box} html,body{margin:0}
+*{box-sizing:border-box} html,body{margin:0;overflow-x:clip;max-width:100%}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5}
 
 /* ---- page layout wrapper (no phone frame in the real site) ---- */
-.phone-flow{max-width:480px;margin:0 auto;padding-bottom:56px;padding-bottom:calc(56px + env(safe-area-inset-bottom))}
-.body{padding:10px 16px 40px;display:flex;flex-direction:column;gap:14px}
+.phone-flow{max-width:480px;margin:0 auto;padding-bottom:56px;padding-bottom:calc(56px + env(safe-area-inset-bottom));
+  width:100%;overflow-x:clip}
+.body{padding:10px 16px 40px;display:flex;flex-direction:column;gap:14px;min-width:0;max-width:100%}
 
 /* ---- language switcher ---- */
 .langbar{position:sticky;top:0;z-index:5;display:flex;gap:6px;justify-content:center;
@@ -85,7 +86,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1
 .journeytip-x:hover{color:var(--ink)}
 
 /* ---- welcome note ---- */
-.note{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:17px 18px;scroll-margin-top:120px}
+.note{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:17px 18px;scroll-margin-top:120px;min-width:0;max-width:100%}
 .noterow{display:flex;align-items:flex-start;gap:14px}
 .note .portrait{width:92px;height:86px;border-radius:999px}
 .note .portrait .shot{object-fit:cover;object-position:22% 32%}
@@ -128,7 +129,7 @@ html[data-journey="leave"] #review-nudge{order:5}
 html[data-journey="leave"] #sendoff{order:6}
 
 /* ---- generic card ---- */
-.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 18px 16px;scroll-margin-top:120px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 18px 16px;scroll-margin-top:120px;min-width:0;max-width:100%}
 .chead{display:flex;align-items:center;flex-wrap:wrap;gap:11px;row-gap:9px;margin-bottom:12px}
 .chead .adtoggle{margin:0 0 0 auto}
 .ctitle{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.2}
@@ -231,15 +232,15 @@ html[data-journey="leave"] #sendoff{order:6}
 .slot .shot{width:100%;height:auto;aspect-ratio:4/5;border-radius:14px;display:block;border:1px solid var(--line)}
 
 /* ---- "A peek inside" horizontal carousel: swipe photos, label on each ---- */
-.mosaic-wrap{position:relative;margin-top:13px}
+.mosaic-wrap{position:relative;margin-top:13px;min-width:0;max-width:100%;overflow:hidden}
 .mosaic-wrap::after{content:"";position:absolute;top:0;right:0;bottom:10px;width:40px;z-index:1;
   background:linear-gradient(to right,transparent,var(--card));pointer-events:none}
 .gallery.mosaic{display:flex;gap:10px;margin-top:0;overflow-x:auto;padding:0 28px 10px 0;
-  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;min-width:0;max-width:100%;
   scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--g) 45%,var(--line)) transparent}
 .gallery.mosaic::-webkit-scrollbar{height:4px}
 .gallery.mosaic::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--g) 45%,var(--line));border-radius:999px}
-.mosaic .slot{flex:0 0 min(78vw,280px);display:block;position:relative;min-width:0;gap:0;border-radius:12px;overflow:hidden;border:1px solid var(--line);scroll-snap-align:start}
+.mosaic .slot{flex:0 0 min(82%,280px);display:block;position:relative;min-width:0;gap:0;border-radius:12px;overflow:hidden;border:1px solid var(--line);scroll-snap-align:start}
 .mosaic .slot .shot{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;border:none;border-radius:0}
 .mosaic .slotlabel{position:absolute;left:0;right:0;bottom:0;margin:0;padding:22px 11px 8px;z-index:1;text-align:left;
   color:#fff;font-weight:700;font-size:12.5px;letter-spacing:.01em;text-shadow:0 1px 2px rgba(0,0,0,.35);
@@ -281,11 +282,11 @@ html[data-journey="leave"] #sendoff{order:6}
 .peeklightbox-nav[hidden]{display:none}
 
 /* ---- day-trip cards (photo + what-it-is + time) ---- */
-.trips-wrap{position:relative;margin-top:13px}
+.trips-wrap{position:relative;margin-top:13px;min-width:0;max-width:100%;overflow:hidden}
 .trips-wrap::after{content:"";position:absolute;top:0;right:0;bottom:10px;width:40px;z-index:1;
   background:linear-gradient(to right,transparent,var(--card));pointer-events:none}
 .trips{display:flex;align-items:flex-start;gap:12px;overflow-x:auto;margin-top:0;
-  padding:0 28px 10px 0;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  padding:0 28px 10px 0;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;min-width:0;max-width:100%;
   scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--g) 45%,var(--line)) transparent}
 .trips::-webkit-scrollbar{height:4px}
 .trips::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--g) 45%,var(--line));border-radius:999px}
