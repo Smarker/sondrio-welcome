@@ -305,7 +305,7 @@ html[data-journey="leave"] #sendoff{order:6}
 .nbsub{margin:16px 0 2px}
 #card-explore .gallery{margin-top:16px}
 #card-neighbourhood .erow:first-of-type{border-top:none}
-.dtcar{margin-top:14px;font-size:12.5px;color:var(--muted);line-height:1.45}
+.dtcar{margin-top:6px;padding-top:12px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);line-height:1.45}
 .dtcar a{color:var(--g);font-weight:600}
 /* small external train/ticket link pills on trips + activities */
 .tlink,.alinks a{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;
@@ -435,6 +435,16 @@ html[data-tod="night"] .eatall[aria-pressed="true"]{color:var(--bg)}
 .act{display:flex;align-items:flex-start;gap:13px;padding:13px 0;border-top:1px solid var(--line)}
 .act:first-of-type{border-top:none}
 .act.hide{display:none}
+.actfoot{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:4px 0 0;padding:12px 0 2px;
+  border-top:1px solid var(--line);font-size:12.5px;line-height:1.4;color:var(--muted)}
+.actfoot a{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;
+  color:var(--g);text-decoration:none;padding:5px 10px;border-radius:999px;
+  border:1px solid color-mix(in srgb,var(--g) 28%,var(--line));
+  background:color-mix(in srgb,var(--g) 8%,var(--card))}
+.actfoot a svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;flex:none}
+.actfoot a:hover{background:color-mix(in srgb,var(--g) 16%,var(--card));
+  border-color:color-mix(in srgb,var(--g) 40%,var(--line))}
 /* activity thumbnail: rounded rectangle showing the icon until a real photo
    is dropped in (swap the inner <span class="aph">…</span> for
    <img class="shot" src="media/…" alt="…">, same as the gallery slots) */
@@ -447,7 +457,19 @@ html[data-tod="night"] .eatall[aria-pressed="true"]{color:var(--bg)}
 .atitle{font-weight:600;font-size:14.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .szn{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:999px;
   color:var(--gold);background:color-mix(in srgb,var(--gold) 15%,var(--card))}
+.atitle .ptime{font-size:10.5px;letter-spacing:.04em}
 .adesc{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.45}
+.actbar{display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:10px;row-gap:8px;margin-top:6px}
+.actbar .actdetails{display:contents}
+.actbar .actdetails > summary{grid-column:1;grid-row:1;margin:0}
+.actbar .alinks{grid-column:2;grid-row:1;margin-top:0;justify-self:start}
+.actbar .ameta,.actbar .actmap{grid-column:1/-1}
+.actbar .ameta{margin-top:0}
+.actbar:has(.actdetails[open]){grid-template-columns:1fr;align-items:start}
+.actbar:has(.actdetails[open]) .actdetails > summary{grid-column:1;grid-row:1}
+.actbar:has(.actdetails[open]) .ameta,
+.actbar:has(.actdetails[open]) .actmap{grid-column:1}
+.actbar:has(.actdetails[open]) .alinks{grid-column:1;grid-row:auto}
 .actdetails{margin-top:6px}
 .actdetails > summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:5px;
   font-family:var(--sans);font-size:11.5px;font-weight:700;color:var(--g);user-select:none}
@@ -462,6 +484,10 @@ html[data-tod="night"] .eatall[aria-pressed="true"]{color:var(--bg)}
   text-transform:uppercase;letter-spacing:.05em}
 .ameta .aval{color:var(--ink);font-weight:500}
 .ameta .aval.ph{color:var(--muted);font-style:italic;font-weight:500}
+.actmap{margin:10px 0 0;padding:0;max-width:min(100%,420px)}
+.actmap a{display:block;border-radius:10px;overflow:hidden;line-height:0}
+.actmap .shot{width:100%;height:auto;aspect-ratio:auto;object-fit:contain;display:block;border-radius:0}
+.actmap figcaption{margin-top:6px;font-size:11.5px;line-height:1.4;color:var(--muted);font-weight:500}
 
 /* ---- scroll-reveal + language-swap animation ---- */
 .reveal{opacity:0;transform:translateY(var(--rise))}
