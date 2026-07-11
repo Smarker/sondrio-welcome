@@ -155,12 +155,13 @@ html[data-journey="leave"] #sendoff{order:6}
 .codone.show{max-height:60px;opacity:1;margin-top:6px}
 .ptext{font-size:14px;line-height:1.55;color:var(--muted);margin:2px 0 0}
 /* included: EV standout + grouped everyday amenities */
-.evfeature{display:flex;align-items:center;gap:12px;margin:2px 0 16px;padding:12px 14px;border-radius:14px;
+.evfeature{display:flex;align-items:center;gap:12px;margin:10px 0 0;padding:12px 14px;border-radius:14px;
   background:color-mix(in srgb,var(--g) 9%,var(--card));border:1px solid color-mix(in srgb,var(--g) 26%,var(--line))}
 .evfeature svg{width:23px;height:23px;stroke:var(--g);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .evname{font-weight:700;font-size:14px;color:var(--ink)}
 .evsub{font-size:12.5px;color:var(--muted);margin-top:1px}
 .amgroup{margin-top:14px}
+.amgroup:first-of-type{margin-top:8px}
 .amglabel{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
 .amglabel svg{width:14px;height:14px;stroke:var(--g);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .amitems{margin:0;font-size:13.5px;line-height:1.55;color:var(--ink)}
@@ -474,7 +475,8 @@ html[data-tod="night"] .eatall[aria-pressed="true"]{color:var(--bg)}
 .actdetails{margin-top:6px}
 .actdetails > summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:5px;
   font-family:var(--sans);font-size:11.5px;font-weight:700;color:var(--g);user-select:none;
-  padding:2px 0}
+  padding:2px 0;-webkit-tap-highlight-color:transparent;outline:none}
+.actdetails > summary:focus-visible{outline:2px solid var(--g);outline-offset:3px;border-radius:4px}
 .actdetails > summary::-webkit-details-marker{display:none}
 .actdetails > summary::after{content:"";width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;
   border-top:5px solid currentColor;opacity:.75;transition:transform .18s}
