@@ -231,9 +231,15 @@ html[data-journey="leave"] #sendoff{order:6}
 .slot .shot{width:100%;height:auto;aspect-ratio:4/5;border-radius:14px;display:block;border:1px solid var(--line)}
 
 /* ---- "A peek inside" horizontal carousel: swipe photos, label on each ---- */
-.gallery.mosaic{display:flex;gap:10px;margin-top:13px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
-.gallery.mosaic::-webkit-scrollbar{display:none}
-.mosaic .slot{flex:0 0 min(78vw,280px);display:block;position:relative;min-width:0;gap:0;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.mosaic-wrap{position:relative;margin-top:13px}
+.mosaic-wrap::after{content:"";position:absolute;top:0;right:0;bottom:10px;width:40px;z-index:1;
+  background:linear-gradient(to right,transparent,var(--card));pointer-events:none}
+.gallery.mosaic{display:flex;gap:10px;margin-top:0;overflow-x:auto;padding:0 28px 10px 0;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--g) 45%,var(--line)) transparent}
+.gallery.mosaic::-webkit-scrollbar{height:4px}
+.gallery.mosaic::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--g) 45%,var(--line));border-radius:999px}
+.mosaic .slot{flex:0 0 min(78vw,280px);display:block;position:relative;min-width:0;gap:0;border-radius:12px;overflow:hidden;border:1px solid var(--line);scroll-snap-align:start}
 .mosaic .slot .shot{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;border:none;border-radius:0}
 .mosaic .slotlabel{position:absolute;left:0;right:0;bottom:0;margin:0;padding:22px 11px 8px;z-index:1;text-align:left;
   color:#fff;font-weight:700;font-size:12.5px;letter-spacing:.01em;text-shadow:0 1px 2px rgba(0,0,0,.35);
@@ -432,7 +438,8 @@ html[data-tod="night"] .eatall[aria-pressed="true"]{color:var(--bg)}
   0%,100%{box-shadow:none}
   35%{box-shadow:0 0 0 3px color-mix(in srgb,var(--g) 45%,transparent)}
 }
-.act{display:flex;align-items:flex-start;gap:13px;padding:13px 0;border-top:1px solid var(--line)}
+.act{display:grid;grid-template-columns:1fr;row-gap:8px;align-items:start;
+  padding:13px 0;border-top:1px solid var(--line)}
 .act:first-of-type{border-top:none}
 .act.hide{display:none}
 .actfoot{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:4px 0 0;padding:12px 0 2px;
@@ -448,28 +455,26 @@ html[data-tod="night"] .eatall[aria-pressed="true"]{color:var(--bg)}
 /* activity thumbnail: rounded rectangle showing the icon until a real photo
    is dropped in (swap the inner <span class="aph">…</span> for
    <img class="shot" src="media/…" alt="…">, same as the gallery slots) */
-.athumb{width:124px;aspect-ratio:4/3;flex:none;border-radius:14px;overflow:hidden;display:block;margin-top:2px}
+.athumb{width:100%;aspect-ratio:16/10;flex:none;border-radius:14px;overflow:hidden;display:block;
+  grid-column:1;grid-row:1}
 .athumb .shot{width:100%;height:100%;object-fit:cover;display:block;border:none;border-radius:0}
 .aph{display:grid;place-items:center;width:100%;height:100%;border-radius:14px;
   border:1.5px dashed color-mix(in srgb,var(--tint) 42%,var(--card));background:color-mix(in srgb,var(--tint) 12%,var(--card))}
 .aph svg{width:24px;height:24px;stroke:var(--tint);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.atext{flex:1;min-width:0}
-.atitle{font-weight:600;font-size:14.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.atext{display:contents}
+.atitle{grid-column:1;grid-row:2;font-weight:600;font-size:14.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .szn{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:999px;
   color:var(--gold);background:color-mix(in srgb,var(--gold) 15%,var(--card))}
 .atitle .ptime{font-size:10.5px;letter-spacing:.04em}
-.adesc{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.45}
-.actbar{display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:10px;row-gap:8px;margin-top:6px}
+.adesc{grid-column:1;grid-row:3;font-size:12.5px;color:var(--muted);margin-top:0;line-height:1.45}
+.actbar,
+.atext > .alinks{grid-column:1}
+.actbar{display:grid;grid-template-columns:1fr;align-items:start;row-gap:8px;margin-top:6px}
 .actbar .actdetails{display:contents}
-.actbar .actdetails > summary{grid-column:1;grid-row:1;margin:0}
-.actbar .alinks{grid-column:2;grid-row:1;margin-top:0;justify-self:start}
-.actbar .ameta,.actbar .actmap{grid-column:1/-1}
-.actbar .ameta{margin-top:0}
-.actbar:has(.actdetails[open]){grid-template-columns:1fr;align-items:start}
-.actbar:has(.actdetails[open]) .actdetails > summary{grid-column:1;grid-row:1}
-.actbar:has(.actdetails[open]) .ameta,
-.actbar:has(.actdetails[open]) .actmap{grid-column:1}
-.actbar:has(.actdetails[open]) .alinks{grid-column:1;grid-row:auto}
+.actbar .alinks{grid-row:1;margin-top:0}
+.actbar .actdetails > summary{grid-row:2;margin:10px 0 0;padding:4px 0 0}
+.actbar .ameta{grid-row:3;margin-top:0}
+.actbar .actmap{grid-row:4}
 .actdetails{margin-top:6px}
 .actdetails > summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:5px;
   font-family:var(--sans);font-size:11.5px;font-weight:700;color:var(--g);user-select:none}
@@ -478,9 +483,9 @@ html[data-tod="night"] .eatall[aria-pressed="true"]{color:var(--bg)}
   border-top:5px solid currentColor;opacity:.75;transition:transform .18s}
 .actdetails[open] > summary::after{transform:rotate(180deg)}
 .actdetails .ameta{margin-top:8px}
-.ameta{margin-top:8px;display:flex;flex-direction:column;gap:3px}
-.ameta .aitem{display:flex;gap:8px;align-items:baseline;font-size:12px;line-height:1.4}
-.ameta .alabel{flex:0 0 auto;min-width:6.8em;color:var(--muted);font-size:10.5px;font-weight:700;
+.ameta{margin-top:8px;display:flex;flex-direction:column;gap:8px}
+.ameta .aitem{display:flex;flex-direction:column;gap:2px;font-size:12px;line-height:1.45}
+.ameta .alabel{flex:none;min-width:0;color:var(--muted);font-size:10.5px;font-weight:700;
   text-transform:uppercase;letter-spacing:.05em}
 .ameta .aval{color:var(--ink);font-weight:500}
 .ameta .aval.ph{color:var(--muted);font-style:italic;font-weight:500}
@@ -511,6 +516,17 @@ html[data-tod="night"] .eatall[aria-pressed="true"]{color:var(--bg)}
   #card-explore > .gallery .slot--cap .slotcap{padding:28px 11px 10px}
   #card-explore > .gallery .slot--cap .slotlabel{font-size:12.5px}
   #card-explore > .gallery .slot--cap .slotdesc{font-size:11.5px;line-height:1.35}
+  .act{display:flex;gap:13px}
+  .athumb{width:124px;aspect-ratio:4/3;grid-column:auto;grid-row:auto;margin-top:2px}
+  .atext{display:block;flex:1;min-width:0}
+  .atitle,.adesc{grid-column:auto;grid-row:auto}
+  .adesc{margin-top:3px}
+  .actbar,
+  .atext > .alinks{grid-column:auto}
+  .actbar .actdetails > summary{margin-top:0;padding:0}
+  .ameta{gap:3px}
+  .ameta .aitem{flex-direction:row;align-items:baseline;gap:8px;line-height:1.4}
+  .ameta .alabel{flex:0 0 auto;min-width:6.8em}
 }
 
 /* ---- night mode: button labels ----
