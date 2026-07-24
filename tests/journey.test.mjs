@@ -12,7 +12,51 @@ import {
   formatStayDates,
   tipKeyForHour,
   tipTargetForHour,
+  applyJourney,
 } from '../js/journey.js';
+
+function makeEl(attrs = {}){
+  const el = {
+    _attrs: { ...attrs },
+    getAttribute(name){ return this._attrs[name] ?? null; },
+    setAttribute(name, value){ this._attrs[name] = value; },
+    hasAttribute(name){ return name in this._attrs; },
+  };
+  return el;
+}
+
+// Mirrors the real DOM: document.querySelectorAll('[data-journey]') matches
+// documentElement too, once applyJourney has tagged <html> with data-journey.
+function makeFakeDoc(){
+  const documentElement = makeEl({ lang: 'en' });
+  const cards = [
+    makeEl({ 'data-journey': 'arrive' }),
+    makeEl({ 'data-journey': 'stay' }),
+  ];
+  const body = {
+    querySelectorAll(sel){
+      if (sel === '[data-journey]:not(.jpill)') return cards;
+      if (sel === '.jpill') return [];
+      return [];
+    },
+  };
+  const doc = {
+    documentElement,
+    body,
+    querySelector: () => null,
+    getElementById: () => null,
+    querySelectorAll(sel){
+      // Real document.querySelectorAll also matches documentElement itself
+      // once it carries the matched attribute/class.
+      if (sel === '[data-journey]:not(.jpill)'){
+        return [documentElement, ...cards];
+      }
+      if (sel === '.jpill') return [];
+      return [];
+    },
+  };
+  return { doc, documentElement, cards };
+}
 
 test('phase: before check-in is welcome', () =>
   assert.equal(phaseForStay('2026-07-07', '2026-07-08', '2026-07-12'), 'welcome'));
@@ -107,4 +151,14 @@ test('tipTargetForHour points at relevant sections', () => {
 
 test('dateKeyInSondrio returns YYYY-MM-DD', () => {
   assert.match(dateKeyInSondrio(new Date('2026-07-08T10:00:00Z')), /^\d{4}-\d{2}-\d{2}$/);
+});
+
+test('applyJourney never hides the document root, including in the after phase', () => {
+  const { doc, documentElement } = makeFakeDoc();
+  applyJourney(doc, 'stay');
+  assert.notEqual(documentElement.hidden, true);
+
+  applyJourney(doc, 'after');
+  assert.notEqual(documentElement.hidden, true,
+    'documentElement.hidden=true blanks the entire page, since [hidden] is display:none');
 });

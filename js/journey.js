@@ -115,7 +115,10 @@ export function applyJourney(doc, phase, options = {}){
 
   // .jpill buttons use data-journey as their target phase, not a visibility
   // list — leave them out of the phase filter or the nav hides itself.
-  doc.querySelectorAll('[data-journey]:not(.jpill)').forEach(el => {
+  // Scoped to <body>: documentElement carries data-journey too (set above,
+  // for CSS ordering), and querySelectorAll on doc would match it and hide
+  // the whole page whenever phase !== journey (e.g. the 'after' phase).
+  doc.body.querySelectorAll('[data-journey]:not(.jpill)').forEach(el => {
     el.hidden = !visibleForPhase(el, phase);
   });
 
