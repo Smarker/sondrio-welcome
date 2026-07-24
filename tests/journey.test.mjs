@@ -96,8 +96,8 @@ test('resolvePhase uses override when provided', () => {
   assert.equal(resolvePhase(stay, now, null), 'stay');
 });
 
-test('navPhaseFor maps after to welcome', () =>
-  assert.equal(navPhaseFor('after'), 'welcome'));
+test('navPhaseFor maps after to leave', () =>
+  assert.equal(navPhaseFor('after'), 'leave'));
 
 test('heroSubKeyForPhase returns phase-specific keys', () => {
   assert.equal(heroSubKeyForPhase('arrive'), 'heroSubArrive');
@@ -161,4 +161,10 @@ test('applyJourney never hides the document root, including in the after phase',
   applyJourney(doc, 'after');
   assert.notEqual(documentElement.hidden, true,
     'documentElement.hidden=true blanks the entire page, since [hidden] is display:none');
+});
+
+test('applyJourney treats the after phase like leave for nav + card ordering', () => {
+  const { doc, documentElement } = makeFakeDoc();
+  applyJourney(doc, 'after');
+  assert.equal(documentElement.getAttribute('data-journey'), 'leave');
 });

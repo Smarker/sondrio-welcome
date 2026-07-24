@@ -31,7 +31,7 @@ export function parseStayConfig(data){
 }
 
 export function navPhaseFor(phase){
-  return phase === 'after' ? 'welcome' : phase;
+  return phase === 'after' ? 'leave' : phase;
 }
 
 export function resolvePhase(stay, now = new Date(), override = null){
